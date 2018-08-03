@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+
+            <a class="nav navbar-brand" style="color: white">Basic Login Application</a>
+
+        </div>
+
+        <div class="align-content-end">
+
+            <div class="container">
+                
+                <ul class="nav nav-tabs" *ngIf = "!isAuthenticated()">
+
+                    <li class="nav-item">
+                        <a class="nav-link" routerLinkActive="active" routerLink="/signin">Login</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" routerLinkActive="active" routerLink="/signup">Register</a>
+                    </li>
+
+                </ul>
+
+                <ul class="nav nav-tabs" *ngIf = "isAuthenticated() ">
+
+                        <li class="nav-item">
+                            <a style="cursor: pointer; color: lightskyblue ;" class="nav-link" (click) = "onLogOut()" >Logout</a>
+                        </li>
+    
+                        <li class="nav-item">
+                            <a style="cursor: pointer; color: lightskyblue ;" class="nav-link" (click) = "onDeleteUser()">Delete User</a>
+                        </li>
+    
+                    </ul>
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+</nav>

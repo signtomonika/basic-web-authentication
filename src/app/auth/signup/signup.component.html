@@ -1,0 +1,37 @@
+<div class="row container align-content-center">
+
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+  
+      <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  
+        <div class="form-group">
+  
+          <label for="email">Email</label>
+          <input type="text" name="email" id="email" class="form-control" ngModel required #email="ngModel">
+          <span class="help-block text-warning" *ngIf="!email.valid && email.touched">Please enter a valid email!</span>
+  
+        </div>
+  
+        <div class="form-group">
+  
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" class="form-control" ngModel required #password="ngModel">
+          <span class="help-block text-warning" *ngIf="!password.valid && password.touched"> Password should be atleast 6 characters long </span>
+  
+        </div>
+  
+        <button class="btn btn-primary" type="submit" [disabled]="!f.valid">SignUp</button>
+  
+        <br> <br>
+  
+        <div style="color: red">
+            {{ error }}
+        </div>
+  
+     
+  
+      </form>
+  
+    </div>
+  
+  </div>
