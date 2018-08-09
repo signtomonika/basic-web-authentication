@@ -13,12 +13,18 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from './auth/auth.service';
 import { AppRoutingModule } from './/app-routing.module';
 import { SignupComponent } from './auth/signup/signup.component';
-import { HomeComponent } from './home/home.component';
+
 
 import { HttpClient, HttpClientModule} from "@angular/common/http";
 
-import { DataRetrievalService } from './shared/data-retrieval.service';
+
 import { AuthGuard } from './auth-guard.service';
+import { HomeComponent } from './home/home.component';
+import { UserService } from './shared/user.service';
+import { SocialComponent } from './auth/social/social.component';
+import { SocialService } from './auth/social.service';
+
+
 
 
 //import { AuthService } from './auth/auth.service';
@@ -32,6 +38,8 @@ import { AuthGuard } from './auth-guard.service';
     LoginComponent,
     SignupComponent,
     HomeComponent,
+    SocialComponent
+
 
   ],
   imports: [
@@ -43,7 +51,7 @@ import { AuthGuard } from './auth-guard.service';
     AppRoutingModule
     
   ],
-  providers: [AuthService, DataRetrievalService, AuthGuard],
+  providers: [AuthService,  AuthGuard, UserService, SocialService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

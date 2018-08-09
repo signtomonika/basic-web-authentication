@@ -1,61 +1,21 @@
-<div class="container">
-
-  <div class="row">
-    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <form (ngSubmit)="getdata()" [formGroup]="getDataForm">
-
-        <div class="form-group">
-
-          <label for="queryValue">Enter Value to search</label>
-          <input type="text" id="queryValue" formControlName="queryValue" class="form-control">
-         
-        </div>
-
-
-        <div class="radio" *ngFor="let input of inputTypes">
-          <label>
-            <input type="radio" formControlName="ipType" [value]="input"> {{ input }}
-          </label>
-        </div>
-
-        <span
-        *ngIf="!getDataForm.valid && getDataForm.touched"
-        class="help-block text-warning">Please enter valid data!</span> <br>
-
-        <button class="btn btn-primary" type="submit" [disabled]="!getDataForm.valid" >Get Data</button> &nbsp;
-
-        <br>
-        <br>
-
-        <div style="color: red">
-
-          {{ errorMessage }}
+<div class="container" style="margin-top:30px">
+    <h4>Logged In As..</h4>
+    <div class="row">
+        <div class="col-xs-5 col-sm-4">
+            <div class="card">
+                <div class="card-header">
+                    {{ getName() }}
+                </div>
+                <div class="card-body">
+                    <img [src]="getPhoto()" [alt]="getName()" class="img-responsive" style="max-height:300px;">
+                </div>
+                <div class="card-footer">
+                    {{ getEmail() }}
+                </div>
+            </div>
 
         </div>
-
-        <div>
-
-          <ul class="list-group" *ngFor="let data of dataReturned">
-
-            <li class="list-group-item">
-
-              Flow : {{ data.flow }}
-              <br> RFID : {{ data.rfid }}
-              <br> Temperature : {{ data.temp }}
-              <br> Date : {{ data.timestamp | date:'medium' }}
-
-
-            </li>
-
-          </ul>
-
-        </div>
-
-      </form>
-
 
     </div>
-
-  </div>
 
 </div>

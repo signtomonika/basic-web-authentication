@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 
 import * as firebase from 'firebase';
-import {  Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { UserService } from '../shared/user.service';
 
 @Injectable()
 
@@ -11,86 +12,98 @@ export class AuthService {
 
   userEmail: string;
 
-  authenticated  = false;
+  authenticated = false;
 
-  constructor(private router : Router) { }
+  constructor(private router: Router) {
 
-  signInUser(email: string , password: string){
+
+
+  }
+
+  signInUser(email: string, password: string) {
 
     firebase.auth().signInWithEmailAndPassword(email, password)
-    .then(
-      response => {
+      .then(
+        response => {
 
-        this.userEmail = email ;
+          this.setAuthentication();
 
-        this.authenticated = true;
 
-        this.router.navigate(['/home']);
 
-       // console.log('User Logged in');
+          // console.log('User Logged in');
 
-      }
-    )
-    .catch(
-      error => {
+        }
+      )
+      .catch(
+        error => {
 
-        this.errorMessage = error.message;
+          this.errorMessage = error.message;
 
-        //console.log('error : ', error.message);
+          //console.log('error : ', error.message);
 
-      }
-    )
+        }
+      )
 
 
   }
 
-  signUpUser(email: string , password: string){
+  signUpUser(email: string, password: string) {
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then(
-      response => {
+      .then(
+        response => {
 
-       // console.log('User created');
+          // console.log('User created');
 
-        this.router.navigate(['/']);
+          this.router.navigate(['/']);
 
-      }
-    )
-    .catch(
-      error => {
+        }
+      )
+      .catch(
+        error => {
 
-        this.errorMessage = error.message;
+          this.setError(error.message);
 
-       // console.log('error : ', error.message);
+          // console.log('error : ', error.message);
 
-      }
-    )
+        }
+      )
 
 
   }
 
 
+  setError(message: string){
 
-  getError(){
+    this.errorMessage = message;
+
+  }
+
+
+  getError() {
 
     return this.errorMessage;
 
   }
 
-  getUserEmail() {
 
-    return this.userEmail ;
-
-  }
 
   isAuthenticated() {
 
-    return this.authenticated ;
+    return this.authenticated;
+  }
+
+  setAuthentication() {
+
+    this.authenticated = true;
+    this.router.navigate(['/home']);
+
   }
 
   logOut() {
 
     firebase.auth().signOut();
+
     this.authenticated = false;
     this.router.navigate(['/']);
 
@@ -99,9 +112,9 @@ export class AuthService {
   deleteUser() {
 
     this.logOut();
-     firebase.auth().currentUser.delete();
+    firebase.auth().currentUser.delete();
 
-}
+  }
 
 
 }

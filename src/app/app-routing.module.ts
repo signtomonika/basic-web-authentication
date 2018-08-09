@@ -12,7 +12,8 @@ const appRoutes : Routes =[
   {path: '', redirectTo: 'signin', pathMatch: 'full'},
   {path: 'signin', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
-  {path: 'home', canActivate:[AuthGuard] , component: HomeComponent}
+  {path: 'home' //, canActivate:[AuthGuard] 
+   , component: HomeComponent}
 
 
 ]

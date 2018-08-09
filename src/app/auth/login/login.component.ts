@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { NgForm } from '@angular/forms'
 import { AuthService } from '../auth.service';
+import { SocialService } from '../social.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   error : string;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private socialService : SocialService) { }
 
   ngOnInit() {
 
@@ -39,6 +40,19 @@ this.authService.signInUser(this.email, this.password);
 setTimeout(() => {
   this.error = this.authService.getError();
 }, 500);
+
+}
+
+socialSign(provider : string) {
+
+  // console.log(provider) ;
+
+  this.socialService.getProvider(provider);
+  
+  // setTimeout(() => {
+  //   this.error = this.authService.getError();
+  // }, 5000);
+ 
 
 }
 
