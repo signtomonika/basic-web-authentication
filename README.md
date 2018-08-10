@@ -14,14 +14,16 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+## Server Side Rendering
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Follow Steps in [Universal Rendering](https://github.com/angular/angular-cli/wiki/stories-universal-rendering)
 
-## Running end-to-end tests
+`Browser Build` - npm run build --prod
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+`Server Build` - ng run web-authentication:server
 
-## Further help
+`server.js` - npm run webpack:server
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+Run `node dist/server.js` for Node server. Navigate to `http://localhost:4000/`. 
+
