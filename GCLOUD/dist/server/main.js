@@ -118,12 +118,13 @@ var router_1 = __webpack_require__(/*! @angular/router */ "@angular/router");
 var login_component_1 = __webpack_require__(/*! ./auth/login/login.component */ "./src/app/auth/login/login.component.ts");
 var signup_component_1 = __webpack_require__(/*! ./auth/signup/signup.component */ "./src/app/auth/signup/signup.component.ts");
 var home_component_1 = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
-var auth_guard_service_1 = __webpack_require__(/*! ./auth-guard.service */ "./src/app/auth-guard.service.ts");
 var appRoutes = [
     { path: '', redirectTo: 'signin', pathMatch: 'full' },
     { path: 'signin', component: login_component_1.LoginComponent },
     { path: 'signup', component: signup_component_1.SignupComponent },
-    { path: 'home', canActivate: [auth_guard_service_1.AuthGuard], component: home_component_1.HomeComponent }
+    { path: 'home' //, canActivate:[AuthGuard] 
+        ,
+        component: home_component_1.HomeComponent }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -276,17 +277,18 @@ var i13 = __webpack_require__(/*! @angular/forms */ "@angular/forms");
 var i14 = __webpack_require__(/*! @angular/common/http */ "@angular/common/http");
 var i15 = __webpack_require__(/*! @angular/router */ "@angular/router");
 var i16 = __webpack_require__(/*! ./auth/auth.service */ "./src/app/auth/auth.service.ts");
-var i17 = __webpack_require__(/*! ./shared/data-retrieval.service */ "./src/app/shared/data-retrieval.service.ts");
-var i18 = __webpack_require__(/*! ./auth-guard.service */ "./src/app/auth-guard.service.ts");
-var i19 = __webpack_require__(/*! @angular/http */ "@angular/http");
-var i20 = __webpack_require__(/*! @angular/animations */ "@angular/animations");
-var i21 = __webpack_require__(/*! @nguniversal/module-map-ngfactory-loader */ "@nguniversal/module-map-ngfactory-loader");
-var i22 = __webpack_require__(/*! ./auth/login/login.component */ "./src/app/auth/login/login.component.ts");
-var i23 = __webpack_require__(/*! ./auth/signup/signup.component */ "./src/app/auth/signup/signup.component.ts");
-var i24 = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
-var i25 = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-var i26 = __webpack_require__(/*! ./app.module */ "./src/app/app.module.ts");
-var AppServerModuleNgFactory = i0.ɵcmf(i1.AppServerModule, [i2.AppComponent], function (_l) { return i0.ɵmod([i0.ɵmpd(512, i0.ComponentFactoryResolver, i0.ɵCodegenComponentFactoryResolver, [[8, [i3.ɵEmptyOutletComponentNgFactory, i4.LoginComponentNgFactory, i5.SignupComponentNgFactory, i6.HomeComponentNgFactory, i7.AppComponentNgFactory]], [3, i0.ComponentFactoryResolver], i0.NgModuleRef]), i0.ɵmpd(5120, i0.LOCALE_ID, i0.ɵangular_packages_core_core_l, [[3, i0.LOCALE_ID]]), i0.ɵmpd(4608, i8.NgLocalization, i8.NgLocaleLocalization, [i0.LOCALE_ID, [2, i8.ɵangular_packages_common_common_a]]), i0.ɵmpd(5120, i0.IterableDiffers, i0.ɵangular_packages_core_core_j, []), i0.ɵmpd(5120, i0.KeyValueDiffers, i0.ɵangular_packages_core_core_k, []), i0.ɵmpd(4608, i9.DomSanitizer, i9.ɵangular_packages_platform_browser_platform_browser_e, [i8.DOCUMENT]), i0.ɵmpd(6144, i0.Sanitizer, null, [i9.DomSanitizer]), i0.ɵmpd(4608, i9.HAMMER_GESTURE_CONFIG, i9.HammerGestureConfig, []), i0.ɵmpd(5120, i9.EVENT_MANAGER_PLUGINS, function (p0_0, p0_1, p0_2, p1_0, p2_0, p2_1, p2_2, p3_0) { return [new i9.ɵDomEventsPlugin(p0_0, p0_1, p0_2), new i9.ɵKeyEventsPlugin(p1_0), new i9.ɵHammerGesturesPlugin(p2_0, p2_1, p2_2), new i10.ɵangular_packages_platform_server_platform_server_d(p3_0)]; }, [i8.DOCUMENT, i0.NgZone, [2, i0.PLATFORM_ID], i8.DOCUMENT, i8.DOCUMENT, i9.HAMMER_GESTURE_CONFIG, i0.ɵConsole, i9.DOCUMENT]), i0.ɵmpd(4608, i9.EventManager, i9.EventManager, [i9.EVENT_MANAGER_PLUGINS, i0.NgZone]), i0.ɵmpd(135680, i9.ɵDomSharedStylesHost, i9.ɵDomSharedStylesHost, [i8.DOCUMENT]), i0.ɵmpd(4608, i9.ɵDomRendererFactory2, i9.ɵDomRendererFactory2, [i9.EventManager, i9.ɵDomSharedStylesHost]), i0.ɵmpd(4608, i10.ɵangular_packages_platform_server_platform_server_c, i10.ɵangular_packages_platform_server_platform_server_c, [i9.DOCUMENT, [2, i9.ɵTRANSITION_ID]]), i0.ɵmpd(6144, i9.ɵSharedStylesHost, null, [i10.ɵangular_packages_platform_server_platform_server_c]), i0.ɵmpd(4608, i10.ɵServerRendererFactory2, i10.ɵServerRendererFactory2, [i9.EventManager, i0.NgZone, i9.DOCUMENT, i9.ɵSharedStylesHost]), i0.ɵmpd(4608, i11.AnimationDriver, i11.ɵNoopAnimationDriver, []), i0.ɵmpd(5120, i11.ɵAnimationStyleNormalizer, i12.ɵangular_packages_platform_browser_animations_animations_c, []), i0.ɵmpd(4608, i11.ɵAnimationEngine, i12.ɵangular_packages_platform_browser_animations_animations_a, [i8.DOCUMENT, i11.AnimationDriver, i11.ɵAnimationStyleNormalizer]), i0.ɵmpd(5120, i0.RendererFactory2, i10.ɵangular_packages_platform_server_platform_server_a, [i10.ɵServerRendererFactory2, i11.ɵAnimationEngine, i0.NgZone]), i0.ɵmpd(4352, i0.Testability, null, []), i0.ɵmpd(4608, i9.Meta, i9.Meta, [i8.DOCUMENT]), i0.ɵmpd(4608, i9.Title, i9.Title, [i8.DOCUMENT]), i0.ɵmpd(4608, i13.ɵangular_packages_forms_forms_i, i13.ɵangular_packages_forms_forms_i, []), i0.ɵmpd(4608, i13.FormBuilder, i13.FormBuilder, []), i0.ɵmpd(4608, i14.HttpXsrfTokenExtractor, i14.ɵangular_packages_common_http_http_g, [i8.DOCUMENT, i0.PLATFORM_ID, i14.ɵangular_packages_common_http_http_e]), i0.ɵmpd(4608, i14.ɵangular_packages_common_http_http_h, i14.ɵangular_packages_common_http_http_h, [i14.HttpXsrfTokenExtractor, i14.ɵangular_packages_common_http_http_f]), i0.ɵmpd(5120, i14.HTTP_INTERCEPTORS, function (p0_0) { return [p0_0]; }, [i14.ɵangular_packages_common_http_http_h]), i0.ɵmpd(4608, i14.XhrFactory, i10.ɵangular_packages_platform_server_platform_server_e, []), i0.ɵmpd(4608, i14.HttpXhrBackend, i14.HttpXhrBackend, [i14.XhrFactory]), i0.ɵmpd(6144, i14.HttpBackend, null, [i14.HttpXhrBackend]), i0.ɵmpd(5120, i14.HttpHandler, i10.ɵangular_packages_platform_server_platform_server_h, [i14.HttpBackend, i0.Injector]), i0.ɵmpd(4608, i14.HttpClient, i14.HttpClient, [i14.HttpHandler]), i0.ɵmpd(4608, i14.ɵangular_packages_common_http_http_d, i14.ɵangular_packages_common_http_http_d, []), i0.ɵmpd(5120, i15.ActivatedRoute, i15.ɵangular_packages_router_router_f, [i15.Router]), i0.ɵmpd(4608, i15.NoPreloading, i15.NoPreloading, []), i0.ɵmpd(6144, i15.PreloadingStrategy, null, [i15.NoPreloading]), i0.ɵmpd(135680, i15.RouterPreloader, i15.RouterPreloader, [i15.Router, i0.NgModuleFactoryLoader, i0.Compiler, i0.Injector, i15.PreloadingStrategy]), i0.ɵmpd(4608, i15.PreloadAllModules, i15.PreloadAllModules, []), i0.ɵmpd(5120, i15.ROUTER_INITIALIZER, i15.ɵangular_packages_router_router_i, [i15.ɵangular_packages_router_router_g]), i0.ɵmpd(5120, i0.APP_BOOTSTRAP_LISTENER, function (p0_0) { return [p0_0]; }, [i15.ROUTER_INITIALIZER]), i0.ɵmpd(4608, i16.AuthService, i16.AuthService, [i15.Router]), i0.ɵmpd(4608, i17.DataRetrievalService, i17.DataRetrievalService, [i14.HttpClient]), i0.ɵmpd(4608, i18.AuthGuard, i18.AuthGuard, [i16.AuthService]), i0.ɵmpd(4608, i19.BrowserXhr, i10.ɵangular_packages_platform_server_platform_server_e, []), i0.ɵmpd(4608, i19.ResponseOptions, i19.BaseResponseOptions, []), i0.ɵmpd(4608, i19.XSRFStrategy, i10.ɵangular_packages_platform_server_platform_server_f, []), i0.ɵmpd(4608, i19.XHRBackend, i19.XHRBackend, [i19.BrowserXhr, i19.ResponseOptions, i19.XSRFStrategy]), i0.ɵmpd(4608, i19.RequestOptions, i19.BaseRequestOptions, []), i0.ɵmpd(5120, i19.Http, i10.ɵangular_packages_platform_server_platform_server_g, [i19.XHRBackend, i19.RequestOptions]), i0.ɵmpd(4608, i20.AnimationBuilder, i12.ɵBrowserAnimationBuilder, [i0.RendererFactory2, i9.DOCUMENT]), i0.ɵmpd(4608, i8.ViewportScroller, i8.ɵNullViewportScroller, []), i0.ɵmpd(1073742336, i8.CommonModule, i8.CommonModule, []), i0.ɵmpd(1024, i0.ErrorHandler, i9.ɵangular_packages_platform_browser_platform_browser_a, []), i0.ɵmpd(1024, i0.NgProbeToken, function () { return [i15.ɵangular_packages_router_router_b()]; }, []), i0.ɵmpd(512, i15.ɵangular_packages_router_router_g, i15.ɵangular_packages_router_router_g, [i0.Injector]), i0.ɵmpd(256, i0.APP_ID, "my-login-app", []), i0.ɵmpd(2048, i9.ɵTRANSITION_ID, null, [i0.APP_ID]), i0.ɵmpd(1024, i0.APP_INITIALIZER, function (p0_0, p1_0, p2_0, p2_1, p2_2) { return [i9.ɵangular_packages_platform_browser_platform_browser_h(p0_0), i15.ɵangular_packages_router_router_h(p1_0), i9.ɵangular_packages_platform_browser_platform_browser_f(p2_0, p2_1, p2_2)]; }, [[2, i0.NgProbeToken], i15.ɵangular_packages_router_router_g, i9.ɵTRANSITION_ID, i8.DOCUMENT, i0.Injector]), i0.ɵmpd(512, i0.ApplicationInitStatus, i0.ApplicationInitStatus, [[2, i0.APP_INITIALIZER]]), i0.ɵmpd(131584, i0.ApplicationRef, i0.ApplicationRef, [i0.NgZone, i0.ɵConsole, i0.Injector, i0.ErrorHandler, i0.ComponentFactoryResolver, i0.ApplicationInitStatus]), i0.ɵmpd(1073742336, i0.ApplicationModule, i0.ApplicationModule, [i0.ApplicationRef]), i0.ɵmpd(1073742336, i9.BrowserModule, i9.BrowserModule, [[3, i9.BrowserModule]]), i0.ɵmpd(1073742336, i13.ɵangular_packages_forms_forms_bb, i13.ɵangular_packages_forms_forms_bb, []), i0.ɵmpd(1073742336, i13.FormsModule, i13.FormsModule, []), i0.ɵmpd(1073742336, i13.ReactiveFormsModule, i13.ReactiveFormsModule, []), i0.ɵmpd(1073742336, i14.HttpClientXsrfModule, i14.HttpClientXsrfModule, []), i0.ɵmpd(1073742336, i14.HttpClientModule, i14.HttpClientModule, []), i0.ɵmpd(1024, i15.ɵangular_packages_router_router_a, i15.ɵangular_packages_router_router_d, [[3, i15.Router]]), i0.ɵmpd(512, i15.UrlSerializer, i15.DefaultUrlSerializer, []), i0.ɵmpd(512, i15.ChildrenOutletContexts, i15.ChildrenOutletContexts, []), i0.ɵmpd(256, i15.ROUTER_CONFIGURATION, {}, []), i0.ɵmpd(1024, i8.LocationStrategy, i15.ɵangular_packages_router_router_c, [i8.PlatformLocation, [2, i8.APP_BASE_HREF], i15.ROUTER_CONFIGURATION]), i0.ɵmpd(512, i8.Location, i8.Location, [i8.LocationStrategy]), i0.ɵmpd(512, i0.Compiler, i0.Compiler, []), i0.ɵmpd(512, i0.NgModuleFactoryLoader, i21.ModuleMapNgFactoryLoader, [i0.Compiler, i21.MODULE_MAP]), i0.ɵmpd(1024, i15.ROUTES, function () { return [[{ path: "", redirectTo: "signin", pathMatch: "full" }, { path: "signin", component: i22.LoginComponent }, { path: "signup", component: i23.SignupComponent }, { path: "home", canActivate: [i18.AuthGuard], component: i24.HomeComponent }]]; }, []), i0.ɵmpd(1024, i15.Router, i15.ɵangular_packages_router_router_e, [i0.ApplicationRef, i15.UrlSerializer, i15.ChildrenOutletContexts, i8.Location, i0.Injector, i0.NgModuleFactoryLoader, i0.Compiler, i15.ROUTES, i15.ROUTER_CONFIGURATION, [2, i15.UrlHandlingStrategy], [2, i15.RouteReuseStrategy]]), i0.ɵmpd(1073742336, i15.RouterModule, i15.RouterModule, [[2, i15.ɵangular_packages_router_router_a], [2, i15.Router]]), i0.ɵmpd(1073742336, i25.AppRoutingModule, i25.AppRoutingModule, []), i0.ɵmpd(1073742336, i26.AppModule, i26.AppModule, []), i0.ɵmpd(1073742336, i19.HttpModule, i19.HttpModule, []), i0.ɵmpd(1073742336, i12.NoopAnimationsModule, i12.NoopAnimationsModule, []), i0.ɵmpd(1073742336, i10.ServerModule, i10.ServerModule, []), i0.ɵmpd(1073742336, i21.ModuleMapLoaderModule, i21.ModuleMapLoaderModule, []), i0.ɵmpd(1073742336, i1.AppServerModule, i1.AppServerModule, []), i0.ɵmpd(256, i0.ɵAPP_ROOT, true, []), i0.ɵmpd(256, i14.ɵangular_packages_common_http_http_e, "XSRF-TOKEN", []), i0.ɵmpd(256, i14.ɵangular_packages_common_http_http_f, "X-XSRF-TOKEN", []), i0.ɵmpd(256, i12.ANIMATION_MODULE_TYPE, "NoopAnimations", [])]); });
+var i17 = __webpack_require__(/*! ./auth-guard.service */ "./src/app/auth-guard.service.ts");
+var i18 = __webpack_require__(/*! ./shared/user.service */ "./src/app/shared/user.service.ts");
+var i19 = __webpack_require__(/*! ./auth/social.service */ "./src/app/auth/social.service.ts");
+var i20 = __webpack_require__(/*! @angular/http */ "@angular/http");
+var i21 = __webpack_require__(/*! @angular/animations */ "@angular/animations");
+var i22 = __webpack_require__(/*! @nguniversal/module-map-ngfactory-loader */ "@nguniversal/module-map-ngfactory-loader");
+var i23 = __webpack_require__(/*! ./auth/login/login.component */ "./src/app/auth/login/login.component.ts");
+var i24 = __webpack_require__(/*! ./auth/signup/signup.component */ "./src/app/auth/signup/signup.component.ts");
+var i25 = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
+var i26 = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+var i27 = __webpack_require__(/*! ./app.module */ "./src/app/app.module.ts");
+var AppServerModuleNgFactory = i0.ɵcmf(i1.AppServerModule, [i2.AppComponent], function (_l) { return i0.ɵmod([i0.ɵmpd(512, i0.ComponentFactoryResolver, i0.ɵCodegenComponentFactoryResolver, [[8, [i3.ɵEmptyOutletComponentNgFactory, i4.LoginComponentNgFactory, i5.SignupComponentNgFactory, i6.HomeComponentNgFactory, i7.AppComponentNgFactory]], [3, i0.ComponentFactoryResolver], i0.NgModuleRef]), i0.ɵmpd(5120, i0.LOCALE_ID, i0.ɵangular_packages_core_core_l, [[3, i0.LOCALE_ID]]), i0.ɵmpd(4608, i8.NgLocalization, i8.NgLocaleLocalization, [i0.LOCALE_ID, [2, i8.ɵangular_packages_common_common_a]]), i0.ɵmpd(5120, i0.IterableDiffers, i0.ɵangular_packages_core_core_j, []), i0.ɵmpd(5120, i0.KeyValueDiffers, i0.ɵangular_packages_core_core_k, []), i0.ɵmpd(4608, i9.DomSanitizer, i9.ɵangular_packages_platform_browser_platform_browser_e, [i8.DOCUMENT]), i0.ɵmpd(6144, i0.Sanitizer, null, [i9.DomSanitizer]), i0.ɵmpd(4608, i9.HAMMER_GESTURE_CONFIG, i9.HammerGestureConfig, []), i0.ɵmpd(5120, i9.EVENT_MANAGER_PLUGINS, function (p0_0, p0_1, p0_2, p1_0, p2_0, p2_1, p2_2, p3_0) { return [new i9.ɵDomEventsPlugin(p0_0, p0_1, p0_2), new i9.ɵKeyEventsPlugin(p1_0), new i9.ɵHammerGesturesPlugin(p2_0, p2_1, p2_2), new i10.ɵangular_packages_platform_server_platform_server_d(p3_0)]; }, [i8.DOCUMENT, i0.NgZone, [2, i0.PLATFORM_ID], i8.DOCUMENT, i8.DOCUMENT, i9.HAMMER_GESTURE_CONFIG, i0.ɵConsole, i9.DOCUMENT]), i0.ɵmpd(4608, i9.EventManager, i9.EventManager, [i9.EVENT_MANAGER_PLUGINS, i0.NgZone]), i0.ɵmpd(135680, i9.ɵDomSharedStylesHost, i9.ɵDomSharedStylesHost, [i8.DOCUMENT]), i0.ɵmpd(4608, i9.ɵDomRendererFactory2, i9.ɵDomRendererFactory2, [i9.EventManager, i9.ɵDomSharedStylesHost]), i0.ɵmpd(4608, i10.ɵangular_packages_platform_server_platform_server_c, i10.ɵangular_packages_platform_server_platform_server_c, [i9.DOCUMENT, [2, i9.ɵTRANSITION_ID]]), i0.ɵmpd(6144, i9.ɵSharedStylesHost, null, [i10.ɵangular_packages_platform_server_platform_server_c]), i0.ɵmpd(4608, i10.ɵServerRendererFactory2, i10.ɵServerRendererFactory2, [i9.EventManager, i0.NgZone, i9.DOCUMENT, i9.ɵSharedStylesHost]), i0.ɵmpd(4608, i11.AnimationDriver, i11.ɵNoopAnimationDriver, []), i0.ɵmpd(5120, i11.ɵAnimationStyleNormalizer, i12.ɵangular_packages_platform_browser_animations_animations_c, []), i0.ɵmpd(4608, i11.ɵAnimationEngine, i12.ɵangular_packages_platform_browser_animations_animations_a, [i8.DOCUMENT, i11.AnimationDriver, i11.ɵAnimationStyleNormalizer]), i0.ɵmpd(5120, i0.RendererFactory2, i10.ɵangular_packages_platform_server_platform_server_a, [i10.ɵServerRendererFactory2, i11.ɵAnimationEngine, i0.NgZone]), i0.ɵmpd(4352, i0.Testability, null, []), i0.ɵmpd(4608, i9.Meta, i9.Meta, [i8.DOCUMENT]), i0.ɵmpd(4608, i9.Title, i9.Title, [i8.DOCUMENT]), i0.ɵmpd(4608, i13.ɵangular_packages_forms_forms_i, i13.ɵangular_packages_forms_forms_i, []), i0.ɵmpd(4608, i13.FormBuilder, i13.FormBuilder, []), i0.ɵmpd(4608, i14.HttpXsrfTokenExtractor, i14.ɵangular_packages_common_http_http_g, [i8.DOCUMENT, i0.PLATFORM_ID, i14.ɵangular_packages_common_http_http_e]), i0.ɵmpd(4608, i14.ɵangular_packages_common_http_http_h, i14.ɵangular_packages_common_http_http_h, [i14.HttpXsrfTokenExtractor, i14.ɵangular_packages_common_http_http_f]), i0.ɵmpd(5120, i14.HTTP_INTERCEPTORS, function (p0_0) { return [p0_0]; }, [i14.ɵangular_packages_common_http_http_h]), i0.ɵmpd(4608, i14.XhrFactory, i10.ɵangular_packages_platform_server_platform_server_e, []), i0.ɵmpd(4608, i14.HttpXhrBackend, i14.HttpXhrBackend, [i14.XhrFactory]), i0.ɵmpd(6144, i14.HttpBackend, null, [i14.HttpXhrBackend]), i0.ɵmpd(5120, i14.HttpHandler, i10.ɵangular_packages_platform_server_platform_server_h, [i14.HttpBackend, i0.Injector]), i0.ɵmpd(4608, i14.HttpClient, i14.HttpClient, [i14.HttpHandler]), i0.ɵmpd(4608, i14.ɵangular_packages_common_http_http_d, i14.ɵangular_packages_common_http_http_d, []), i0.ɵmpd(5120, i15.ActivatedRoute, i15.ɵangular_packages_router_router_f, [i15.Router]), i0.ɵmpd(4608, i15.NoPreloading, i15.NoPreloading, []), i0.ɵmpd(6144, i15.PreloadingStrategy, null, [i15.NoPreloading]), i0.ɵmpd(135680, i15.RouterPreloader, i15.RouterPreloader, [i15.Router, i0.NgModuleFactoryLoader, i0.Compiler, i0.Injector, i15.PreloadingStrategy]), i0.ɵmpd(4608, i15.PreloadAllModules, i15.PreloadAllModules, []), i0.ɵmpd(5120, i15.ROUTER_INITIALIZER, i15.ɵangular_packages_router_router_i, [i15.ɵangular_packages_router_router_g]), i0.ɵmpd(5120, i0.APP_BOOTSTRAP_LISTENER, function (p0_0) { return [p0_0]; }, [i15.ROUTER_INITIALIZER]), i0.ɵmpd(4608, i16.AuthService, i16.AuthService, [i15.Router]), i0.ɵmpd(4608, i17.AuthGuard, i17.AuthGuard, [i16.AuthService]), i0.ɵmpd(4608, i18.UserService, i18.UserService, [i16.AuthService]), i0.ɵmpd(4608, i19.SocialService, i19.SocialService, [i16.AuthService, i0.NgZone]), i0.ɵmpd(4608, i20.BrowserXhr, i10.ɵangular_packages_platform_server_platform_server_e, []), i0.ɵmpd(4608, i20.ResponseOptions, i20.BaseResponseOptions, []), i0.ɵmpd(4608, i20.XSRFStrategy, i10.ɵangular_packages_platform_server_platform_server_f, []), i0.ɵmpd(4608, i20.XHRBackend, i20.XHRBackend, [i20.BrowserXhr, i20.ResponseOptions, i20.XSRFStrategy]), i0.ɵmpd(4608, i20.RequestOptions, i20.BaseRequestOptions, []), i0.ɵmpd(5120, i20.Http, i10.ɵangular_packages_platform_server_platform_server_g, [i20.XHRBackend, i20.RequestOptions]), i0.ɵmpd(4608, i21.AnimationBuilder, i12.ɵBrowserAnimationBuilder, [i0.RendererFactory2, i9.DOCUMENT]), i0.ɵmpd(4608, i8.ViewportScroller, i8.ɵNullViewportScroller, []), i0.ɵmpd(1073742336, i8.CommonModule, i8.CommonModule, []), i0.ɵmpd(1024, i0.ErrorHandler, i9.ɵangular_packages_platform_browser_platform_browser_a, []), i0.ɵmpd(1024, i0.NgProbeToken, function () { return [i15.ɵangular_packages_router_router_b()]; }, []), i0.ɵmpd(512, i15.ɵangular_packages_router_router_g, i15.ɵangular_packages_router_router_g, [i0.Injector]), i0.ɵmpd(256, i0.APP_ID, "my-login-app", []), i0.ɵmpd(2048, i9.ɵTRANSITION_ID, null, [i0.APP_ID]), i0.ɵmpd(1024, i0.APP_INITIALIZER, function (p0_0, p1_0, p2_0, p2_1, p2_2) { return [i9.ɵangular_packages_platform_browser_platform_browser_h(p0_0), i15.ɵangular_packages_router_router_h(p1_0), i9.ɵangular_packages_platform_browser_platform_browser_f(p2_0, p2_1, p2_2)]; }, [[2, i0.NgProbeToken], i15.ɵangular_packages_router_router_g, i9.ɵTRANSITION_ID, i8.DOCUMENT, i0.Injector]), i0.ɵmpd(512, i0.ApplicationInitStatus, i0.ApplicationInitStatus, [[2, i0.APP_INITIALIZER]]), i0.ɵmpd(131584, i0.ApplicationRef, i0.ApplicationRef, [i0.NgZone, i0.ɵConsole, i0.Injector, i0.ErrorHandler, i0.ComponentFactoryResolver, i0.ApplicationInitStatus]), i0.ɵmpd(1073742336, i0.ApplicationModule, i0.ApplicationModule, [i0.ApplicationRef]), i0.ɵmpd(1073742336, i9.BrowserModule, i9.BrowserModule, [[3, i9.BrowserModule]]), i0.ɵmpd(1073742336, i13.ɵangular_packages_forms_forms_bb, i13.ɵangular_packages_forms_forms_bb, []), i0.ɵmpd(1073742336, i13.FormsModule, i13.FormsModule, []), i0.ɵmpd(1073742336, i13.ReactiveFormsModule, i13.ReactiveFormsModule, []), i0.ɵmpd(1073742336, i14.HttpClientXsrfModule, i14.HttpClientXsrfModule, []), i0.ɵmpd(1073742336, i14.HttpClientModule, i14.HttpClientModule, []), i0.ɵmpd(1024, i15.ɵangular_packages_router_router_a, i15.ɵangular_packages_router_router_d, [[3, i15.Router]]), i0.ɵmpd(512, i15.UrlSerializer, i15.DefaultUrlSerializer, []), i0.ɵmpd(512, i15.ChildrenOutletContexts, i15.ChildrenOutletContexts, []), i0.ɵmpd(256, i15.ROUTER_CONFIGURATION, {}, []), i0.ɵmpd(1024, i8.LocationStrategy, i15.ɵangular_packages_router_router_c, [i8.PlatformLocation, [2, i8.APP_BASE_HREF], i15.ROUTER_CONFIGURATION]), i0.ɵmpd(512, i8.Location, i8.Location, [i8.LocationStrategy]), i0.ɵmpd(512, i0.Compiler, i0.Compiler, []), i0.ɵmpd(512, i0.NgModuleFactoryLoader, i22.ModuleMapNgFactoryLoader, [i0.Compiler, i22.MODULE_MAP]), i0.ɵmpd(1024, i15.ROUTES, function () { return [[{ path: "", redirectTo: "signin", pathMatch: "full" }, { path: "signin", component: i23.LoginComponent }, { path: "signup", component: i24.SignupComponent }, { path: "home", component: i25.HomeComponent }]]; }, []), i0.ɵmpd(1024, i15.Router, i15.ɵangular_packages_router_router_e, [i0.ApplicationRef, i15.UrlSerializer, i15.ChildrenOutletContexts, i8.Location, i0.Injector, i0.NgModuleFactoryLoader, i0.Compiler, i15.ROUTES, i15.ROUTER_CONFIGURATION, [2, i15.UrlHandlingStrategy], [2, i15.RouteReuseStrategy]]), i0.ɵmpd(1073742336, i15.RouterModule, i15.RouterModule, [[2, i15.ɵangular_packages_router_router_a], [2, i15.Router]]), i0.ɵmpd(1073742336, i26.AppRoutingModule, i26.AppRoutingModule, []), i0.ɵmpd(1073742336, i27.AppModule, i27.AppModule, []), i0.ɵmpd(1073742336, i20.HttpModule, i20.HttpModule, []), i0.ɵmpd(1073742336, i12.NoopAnimationsModule, i12.NoopAnimationsModule, []), i0.ɵmpd(1073742336, i10.ServerModule, i10.ServerModule, []), i0.ɵmpd(1073742336, i22.ModuleMapLoaderModule, i22.ModuleMapLoaderModule, []), i0.ɵmpd(1073742336, i1.AppServerModule, i1.AppServerModule, []), i0.ɵmpd(256, i0.ɵAPP_ROOT, true, []), i0.ɵmpd(256, i14.ɵangular_packages_common_http_http_e, "XSRF-TOKEN", []), i0.ɵmpd(256, i14.ɵangular_packages_common_http_http_f, "X-XSRF-TOKEN", []), i0.ɵmpd(256, i12.ANIMATION_MODULE_TYPE, "NoopAnimations", [])]); });
 exports.AppServerModuleNgFactory = AppServerModuleNgFactory;
 
 
@@ -359,9 +361,7 @@ var AuthService = /** @class */ (function () {
         var _this = this;
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(function (response) {
-            _this.userEmail = email;
-            _this.authenticated = true;
-            _this.router.navigate(['/home']);
+            _this.setAuthentication();
             // console.log('User Logged in');
         })
             .catch(function (error) {
@@ -377,18 +377,22 @@ var AuthService = /** @class */ (function () {
             _this.router.navigate(['/']);
         })
             .catch(function (error) {
-            _this.errorMessage = error.message;
+            _this.setError(error.message);
             // console.log('error : ', error.message);
         });
+    };
+    AuthService.prototype.setError = function (message) {
+        this.errorMessage = message;
     };
     AuthService.prototype.getError = function () {
         return this.errorMessage;
     };
-    AuthService.prototype.getUserEmail = function () {
-        return this.userEmail;
-    };
     AuthService.prototype.isAuthenticated = function () {
         return this.authenticated;
+    };
+    AuthService.prototype.setAuthentication = function () {
+        this.authenticated = true;
+        this.router.navigate(['/home']);
     };
     AuthService.prototype.logOut = function () {
         firebase.auth().signOut();
@@ -450,47 +454,60 @@ var i2 = __webpack_require__(/*! @angular/forms */ "@angular/forms");
 var i3 = __webpack_require__(/*! @angular/common */ "@angular/common");
 var i4 = __webpack_require__(/*! ./login.component */ "./src/app/auth/login/login.component.ts");
 var i5 = __webpack_require__(/*! ../auth.service */ "./src/app/auth/auth.service.ts");
+var i6 = __webpack_require__(/*! ../social.service */ "./src/app/auth/social.service.ts");
 var styles_LoginComponent = [i0.styles];
 var RenderType_LoginComponent = i1.ɵcrt({ encapsulation: 0, styles: styles_LoginComponent, data: {} });
 exports.RenderType_LoginComponent = RenderType_LoginComponent;
 function View_LoginComponent_1(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 1, "span", [["class", "help-block text-warning"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["Please enter a valid email!"]))], null, null); }
 function View_LoginComponent_2(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 1, "span", [["class", "help-block text-warning"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, [" Password should be atleast 6 characters long "]))], null, null); }
-function View_LoginComponent_0(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 38, "div", [["class", "row container align-content-center"]], null, null, null, null, null)), (_l()(), i1.ɵeld(1, 0, null, null, 37, "div", [["class", "col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2"]], null, null, null, null, null)), (_l()(), i1.ɵeld(2, 0, null, null, 36, "form", [["novalidate", ""]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngSubmit"], [null, "submit"], [null, "reset"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("submit" === en)) {
-        var pd_0 = (i1.ɵnov(_v, 4).onSubmit($event) !== false);
+function View_LoginComponent_0(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 55, "div", [["class", "container"], ["style", "margin-top:30px"]], null, null, null, null, null)), (_l()(), i1.ɵeld(1, 0, null, null, 54, "div", [["class", "row"]], null, null, null, null, null)), (_l()(), i1.ɵeld(2, 0, null, null, 37, "div", [["class", "col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2"]], null, null, null, null, null)), (_l()(), i1.ɵeld(3, 0, null, null, 36, "form", [["novalidate", ""]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngSubmit"], [null, "submit"], [null, "reset"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("submit" === en)) {
+        var pd_0 = (i1.ɵnov(_v, 5).onSubmit($event) !== false);
         ad = (pd_0 && ad);
     } if (("reset" === en)) {
-        var pd_1 = (i1.ɵnov(_v, 4).onReset() !== false);
+        var pd_1 = (i1.ɵnov(_v, 5).onReset() !== false);
         ad = (pd_1 && ad);
     } if (("ngSubmit" === en)) {
-        var pd_2 = (_co.onSubmit(i1.ɵnov(_v, 4)) !== false);
+        var pd_2 = (_co.onSubmit(i1.ɵnov(_v, 5)) !== false);
         ad = (pd_2 && ad);
-    } return ad; }, null, null)), i1.ɵdid(3, 16384, null, 0, i2.ɵangular_packages_forms_forms_bg, [], null, null), i1.ɵdid(4, 4210688, [["f", 4]], 0, i2.NgForm, [[8, null], [8, null]], null, { ngSubmit: "ngSubmit" }), i1.ɵprd(2048, null, i2.ControlContainer, null, [i2.NgForm]), i1.ɵdid(6, 16384, null, 0, i2.NgControlStatusGroup, [[4, i2.ControlContainer]], null, null), (_l()(), i1.ɵeld(7, 0, null, null, 12, "div", [["class", "form-group"]], null, null, null, null, null)), (_l()(), i1.ɵeld(8, 0, null, null, 1, "label", [["for", "email"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["Email"])), (_l()(), i1.ɵeld(10, 0, null, null, 7, "input", [["class", "form-control"], ["id", "email"], ["name", "email"], ["ngModel", ""], ["required", ""], ["type", "text"]], [[1, "required", 0], [2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"]], function (_v, en, $event) { var ad = true; if (("input" === en)) {
-        var pd_0 = (i1.ɵnov(_v, 11)._handleInput($event.target.value) !== false);
+    } return ad; }, null, null)), i1.ɵdid(4, 16384, null, 0, i2.ɵangular_packages_forms_forms_bg, [], null, null), i1.ɵdid(5, 4210688, [["f", 4]], 0, i2.NgForm, [[8, null], [8, null]], null, { ngSubmit: "ngSubmit" }), i1.ɵprd(2048, null, i2.ControlContainer, null, [i2.NgForm]), i1.ɵdid(7, 16384, null, 0, i2.NgControlStatusGroup, [[4, i2.ControlContainer]], null, null), (_l()(), i1.ɵeld(8, 0, null, null, 12, "div", [["class", "form-group"]], null, null, null, null, null)), (_l()(), i1.ɵeld(9, 0, null, null, 1, "label", [["for", "email"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["Email"])), (_l()(), i1.ɵeld(11, 0, null, null, 7, "input", [["class", "form-control"], ["id", "email"], ["name", "email"], ["ngModel", ""], ["required", ""], ["type", "text"]], [[1, "required", 0], [2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"]], function (_v, en, $event) { var ad = true; if (("input" === en)) {
+        var pd_0 = (i1.ɵnov(_v, 12)._handleInput($event.target.value) !== false);
         ad = (pd_0 && ad);
     } if (("blur" === en)) {
-        var pd_1 = (i1.ɵnov(_v, 11).onTouched() !== false);
+        var pd_1 = (i1.ɵnov(_v, 12).onTouched() !== false);
         ad = (pd_1 && ad);
     } if (("compositionstart" === en)) {
-        var pd_2 = (i1.ɵnov(_v, 11)._compositionStart() !== false);
+        var pd_2 = (i1.ɵnov(_v, 12)._compositionStart() !== false);
         ad = (pd_2 && ad);
     } if (("compositionend" === en)) {
-        var pd_3 = (i1.ɵnov(_v, 11)._compositionEnd($event.target.value) !== false);
+        var pd_3 = (i1.ɵnov(_v, 12)._compositionEnd($event.target.value) !== false);
         ad = (pd_3 && ad);
-    } return ad; }, null, null)), i1.ɵdid(11, 16384, null, 0, i2.DefaultValueAccessor, [i1.Renderer2, i1.ElementRef, [2, i2.COMPOSITION_BUFFER_MODE]], null, null), i1.ɵdid(12, 16384, null, 0, i2.RequiredValidator, [], { required: [0, "required"] }, null), i1.ɵprd(1024, null, i2.NG_VALIDATORS, function (p0_0) { return [p0_0]; }, [i2.RequiredValidator]), i1.ɵprd(1024, null, i2.NG_VALUE_ACCESSOR, function (p0_0) { return [p0_0]; }, [i2.DefaultValueAccessor]), i1.ɵdid(15, 671744, [["email", 4]], 0, i2.NgModel, [[2, i2.ControlContainer], [6, i2.NG_VALIDATORS], [8, null], [6, i2.NG_VALUE_ACCESSOR]], { name: [0, "name"], model: [1, "model"] }, null), i1.ɵprd(2048, null, i2.NgControl, null, [i2.NgModel]), i1.ɵdid(17, 16384, null, 0, i2.NgControlStatus, [[4, i2.NgControl]], null, null), (_l()(), i1.ɵand(16777216, null, null, 1, null, View_LoginComponent_1)), i1.ɵdid(19, 16384, null, 0, i3.NgIf, [i1.ViewContainerRef, i1.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i1.ɵeld(20, 0, null, null, 12, "div", [["class", "form-group"]], null, null, null, null, null)), (_l()(), i1.ɵeld(21, 0, null, null, 1, "label", [["for", "password"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["Password"])), (_l()(), i1.ɵeld(23, 0, null, null, 7, "input", [["class", "form-control"], ["id", "password"], ["name", "password"], ["ngModel", ""], ["required", ""], ["type", "password"]], [[1, "required", 0], [2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"]], function (_v, en, $event) { var ad = true; if (("input" === en)) {
-        var pd_0 = (i1.ɵnov(_v, 24)._handleInput($event.target.value) !== false);
+    } return ad; }, null, null)), i1.ɵdid(12, 16384, null, 0, i2.DefaultValueAccessor, [i1.Renderer2, i1.ElementRef, [2, i2.COMPOSITION_BUFFER_MODE]], null, null), i1.ɵdid(13, 16384, null, 0, i2.RequiredValidator, [], { required: [0, "required"] }, null), i1.ɵprd(1024, null, i2.NG_VALIDATORS, function (p0_0) { return [p0_0]; }, [i2.RequiredValidator]), i1.ɵprd(1024, null, i2.NG_VALUE_ACCESSOR, function (p0_0) { return [p0_0]; }, [i2.DefaultValueAccessor]), i1.ɵdid(16, 671744, [["email", 4]], 0, i2.NgModel, [[2, i2.ControlContainer], [6, i2.NG_VALIDATORS], [8, null], [6, i2.NG_VALUE_ACCESSOR]], { name: [0, "name"], model: [1, "model"] }, null), i1.ɵprd(2048, null, i2.NgControl, null, [i2.NgModel]), i1.ɵdid(18, 16384, null, 0, i2.NgControlStatus, [[4, i2.NgControl]], null, null), (_l()(), i1.ɵand(16777216, null, null, 1, null, View_LoginComponent_1)), i1.ɵdid(20, 16384, null, 0, i3.NgIf, [i1.ViewContainerRef, i1.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i1.ɵeld(21, 0, null, null, 12, "div", [["class", "form-group"]], null, null, null, null, null)), (_l()(), i1.ɵeld(22, 0, null, null, 1, "label", [["for", "password"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["Password"])), (_l()(), i1.ɵeld(24, 0, null, null, 7, "input", [["class", "form-control"], ["id", "password"], ["name", "password"], ["ngModel", ""], ["required", ""], ["type", "password"]], [[1, "required", 0], [2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"]], function (_v, en, $event) { var ad = true; if (("input" === en)) {
+        var pd_0 = (i1.ɵnov(_v, 25)._handleInput($event.target.value) !== false);
         ad = (pd_0 && ad);
     } if (("blur" === en)) {
-        var pd_1 = (i1.ɵnov(_v, 24).onTouched() !== false);
+        var pd_1 = (i1.ɵnov(_v, 25).onTouched() !== false);
         ad = (pd_1 && ad);
     } if (("compositionstart" === en)) {
-        var pd_2 = (i1.ɵnov(_v, 24)._compositionStart() !== false);
+        var pd_2 = (i1.ɵnov(_v, 25)._compositionStart() !== false);
         ad = (pd_2 && ad);
     } if (("compositionend" === en)) {
-        var pd_3 = (i1.ɵnov(_v, 24)._compositionEnd($event.target.value) !== false);
+        var pd_3 = (i1.ɵnov(_v, 25)._compositionEnd($event.target.value) !== false);
         ad = (pd_3 && ad);
-    } return ad; }, null, null)), i1.ɵdid(24, 16384, null, 0, i2.DefaultValueAccessor, [i1.Renderer2, i1.ElementRef, [2, i2.COMPOSITION_BUFFER_MODE]], null, null), i1.ɵdid(25, 16384, null, 0, i2.RequiredValidator, [], { required: [0, "required"] }, null), i1.ɵprd(1024, null, i2.NG_VALIDATORS, function (p0_0) { return [p0_0]; }, [i2.RequiredValidator]), i1.ɵprd(1024, null, i2.NG_VALUE_ACCESSOR, function (p0_0) { return [p0_0]; }, [i2.DefaultValueAccessor]), i1.ɵdid(28, 671744, [["password", 4]], 0, i2.NgModel, [[2, i2.ControlContainer], [6, i2.NG_VALIDATORS], [8, null], [6, i2.NG_VALUE_ACCESSOR]], { name: [0, "name"], model: [1, "model"] }, null), i1.ɵprd(2048, null, i2.NgControl, null, [i2.NgModel]), i1.ɵdid(30, 16384, null, 0, i2.NgControlStatus, [[4, i2.NgControl]], null, null), (_l()(), i1.ɵand(16777216, null, null, 1, null, View_LoginComponent_2)), i1.ɵdid(32, 16384, null, 0, i3.NgIf, [i1.ViewContainerRef, i1.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i1.ɵeld(33, 0, null, null, 1, "button", [["class", "btn btn-primary"], ["type", "submit"]], [[8, "disabled", 0]], null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["Login"])), (_l()(), i1.ɵeld(35, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), i1.ɵeld(36, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), i1.ɵeld(37, 0, null, null, 1, "div", [["style", "color: red"]], null, null, null, null, null)), (_l()(), i1.ɵted(38, null, [" ", " "]))], function (_ck, _v) { var currVal_15 = ""; _ck(_v, 12, 0, currVal_15); var currVal_16 = "email"; var currVal_17 = ""; _ck(_v, 15, 0, currVal_16, currVal_17); var currVal_18 = (!i1.ɵnov(_v, 15).valid && i1.ɵnov(_v, 15).touched); _ck(_v, 19, 0, currVal_18); var currVal_27 = ""; _ck(_v, 25, 0, currVal_27); var currVal_28 = "password"; var currVal_29 = ""; _ck(_v, 28, 0, currVal_28, currVal_29); var currVal_30 = (!i1.ɵnov(_v, 28).valid && i1.ɵnov(_v, 28).touched); _ck(_v, 32, 0, currVal_30); }, function (_ck, _v) { var _co = _v.component; var currVal_0 = i1.ɵnov(_v, 6).ngClassUntouched; var currVal_1 = i1.ɵnov(_v, 6).ngClassTouched; var currVal_2 = i1.ɵnov(_v, 6).ngClassPristine; var currVal_3 = i1.ɵnov(_v, 6).ngClassDirty; var currVal_4 = i1.ɵnov(_v, 6).ngClassValid; var currVal_5 = i1.ɵnov(_v, 6).ngClassInvalid; var currVal_6 = i1.ɵnov(_v, 6).ngClassPending; _ck(_v, 2, 0, currVal_0, currVal_1, currVal_2, currVal_3, currVal_4, currVal_5, currVal_6); var currVal_7 = (i1.ɵnov(_v, 12).required ? "" : null); var currVal_8 = i1.ɵnov(_v, 17).ngClassUntouched; var currVal_9 = i1.ɵnov(_v, 17).ngClassTouched; var currVal_10 = i1.ɵnov(_v, 17).ngClassPristine; var currVal_11 = i1.ɵnov(_v, 17).ngClassDirty; var currVal_12 = i1.ɵnov(_v, 17).ngClassValid; var currVal_13 = i1.ɵnov(_v, 17).ngClassInvalid; var currVal_14 = i1.ɵnov(_v, 17).ngClassPending; _ck(_v, 10, 0, currVal_7, currVal_8, currVal_9, currVal_10, currVal_11, currVal_12, currVal_13, currVal_14); var currVal_19 = (i1.ɵnov(_v, 25).required ? "" : null); var currVal_20 = i1.ɵnov(_v, 30).ngClassUntouched; var currVal_21 = i1.ɵnov(_v, 30).ngClassTouched; var currVal_22 = i1.ɵnov(_v, 30).ngClassPristine; var currVal_23 = i1.ɵnov(_v, 30).ngClassDirty; var currVal_24 = i1.ɵnov(_v, 30).ngClassValid; var currVal_25 = i1.ɵnov(_v, 30).ngClassInvalid; var currVal_26 = i1.ɵnov(_v, 30).ngClassPending; _ck(_v, 23, 0, currVal_19, currVal_20, currVal_21, currVal_22, currVal_23, currVal_24, currVal_25, currVal_26); var currVal_31 = !i1.ɵnov(_v, 4).valid; _ck(_v, 33, 0, currVal_31); var currVal_32 = _co.error; _ck(_v, 38, 0, currVal_32); }); }
+    } return ad; }, null, null)), i1.ɵdid(25, 16384, null, 0, i2.DefaultValueAccessor, [i1.Renderer2, i1.ElementRef, [2, i2.COMPOSITION_BUFFER_MODE]], null, null), i1.ɵdid(26, 16384, null, 0, i2.RequiredValidator, [], { required: [0, "required"] }, null), i1.ɵprd(1024, null, i2.NG_VALIDATORS, function (p0_0) { return [p0_0]; }, [i2.RequiredValidator]), i1.ɵprd(1024, null, i2.NG_VALUE_ACCESSOR, function (p0_0) { return [p0_0]; }, [i2.DefaultValueAccessor]), i1.ɵdid(29, 671744, [["password", 4]], 0, i2.NgModel, [[2, i2.ControlContainer], [6, i2.NG_VALIDATORS], [8, null], [6, i2.NG_VALUE_ACCESSOR]], { name: [0, "name"], model: [1, "model"] }, null), i1.ɵprd(2048, null, i2.NgControl, null, [i2.NgModel]), i1.ɵdid(31, 16384, null, 0, i2.NgControlStatus, [[4, i2.NgControl]], null, null), (_l()(), i1.ɵand(16777216, null, null, 1, null, View_LoginComponent_2)), i1.ɵdid(33, 16384, null, 0, i3.NgIf, [i1.ViewContainerRef, i1.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i1.ɵeld(34, 0, null, null, 1, "button", [["class", "btn btn-primary"], ["type", "submit"]], [[8, "disabled", 0]], null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["Login"])), (_l()(), i1.ɵeld(36, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), i1.ɵeld(37, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), i1.ɵeld(38, 0, null, null, 1, "div", [["style", "color: red"]], null, null, null, null, null)), (_l()(), i1.ɵted(39, null, [" ", " "])), (_l()(), i1.ɵeld(40, 0, null, null, 15, "div", [["class", "col-xs-5 col-sm-3"]], null, null, null, null, null)), (_l()(), i1.ɵeld(41, 0, null, null, 14, "div", [], null, null, null, null, null)), (_l()(), i1.ɵeld(42, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, [" Login using Social Media"])), (_l()(), i1.ɵeld(44, 0, null, null, 2, "a", [["class", "btn btn-block btn-social btn-google"], ["style", "color: white"]], null, [[null, "click"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("click" === en)) {
+        var pd_0 = (_co.socialSign("google") !== false);
+        ad = (pd_0 && ad);
+    } return ad; }, null, null)), (_l()(), i1.ɵeld(45, 0, null, null, 0, "span", [["class", "fa fa-google"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, [" Sign in with Google "])), (_l()(), i1.ɵeld(47, 0, null, null, 2, "a", [["class", "btn btn-block btn-social btn-facebook"], ["style", "color: white"]], null, [[null, "click"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("click" === en)) {
+        var pd_0 = (_co.socialSign("facebook") !== false);
+        ad = (pd_0 && ad);
+    } return ad; }, null, null)), (_l()(), i1.ɵeld(48, 0, null, null, 0, "span", [["class", "fa fa-facebook"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, [" Sign in with Facebook "])), (_l()(), i1.ɵeld(50, 0, null, null, 2, "a", [["class", "btn btn-block btn-social btn-twitter"], ["style", "color: white"]], null, [[null, "click"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("click" === en)) {
+        var pd_0 = (_co.socialSign("twitter") !== false);
+        ad = (pd_0 && ad);
+    } return ad; }, null, null)), (_l()(), i1.ɵeld(51, 0, null, null, 0, "span", [["class", "fa fa-twitter"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, [" Sign in with Twitter "])), (_l()(), i1.ɵeld(53, 0, null, null, 2, "a", [["class", "btn btn-block btn-social btn-github"], ["style", "color: white"]], null, [[null, "click"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("click" === en)) {
+        var pd_0 = (_co.socialSign("github") !== false);
+        ad = (pd_0 && ad);
+    } return ad; }, null, null)), (_l()(), i1.ɵeld(54, 0, null, null, 0, "span", [["class", "fa fa-github"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, [" Sign in with Github "]))], function (_ck, _v) { var currVal_15 = ""; _ck(_v, 13, 0, currVal_15); var currVal_16 = "email"; var currVal_17 = ""; _ck(_v, 16, 0, currVal_16, currVal_17); var currVal_18 = (!i1.ɵnov(_v, 16).valid && i1.ɵnov(_v, 16).touched); _ck(_v, 20, 0, currVal_18); var currVal_27 = ""; _ck(_v, 26, 0, currVal_27); var currVal_28 = "password"; var currVal_29 = ""; _ck(_v, 29, 0, currVal_28, currVal_29); var currVal_30 = (!i1.ɵnov(_v, 29).valid && i1.ɵnov(_v, 29).touched); _ck(_v, 33, 0, currVal_30); }, function (_ck, _v) { var _co = _v.component; var currVal_0 = i1.ɵnov(_v, 7).ngClassUntouched; var currVal_1 = i1.ɵnov(_v, 7).ngClassTouched; var currVal_2 = i1.ɵnov(_v, 7).ngClassPristine; var currVal_3 = i1.ɵnov(_v, 7).ngClassDirty; var currVal_4 = i1.ɵnov(_v, 7).ngClassValid; var currVal_5 = i1.ɵnov(_v, 7).ngClassInvalid; var currVal_6 = i1.ɵnov(_v, 7).ngClassPending; _ck(_v, 3, 0, currVal_0, currVal_1, currVal_2, currVal_3, currVal_4, currVal_5, currVal_6); var currVal_7 = (i1.ɵnov(_v, 13).required ? "" : null); var currVal_8 = i1.ɵnov(_v, 18).ngClassUntouched; var currVal_9 = i1.ɵnov(_v, 18).ngClassTouched; var currVal_10 = i1.ɵnov(_v, 18).ngClassPristine; var currVal_11 = i1.ɵnov(_v, 18).ngClassDirty; var currVal_12 = i1.ɵnov(_v, 18).ngClassValid; var currVal_13 = i1.ɵnov(_v, 18).ngClassInvalid; var currVal_14 = i1.ɵnov(_v, 18).ngClassPending; _ck(_v, 11, 0, currVal_7, currVal_8, currVal_9, currVal_10, currVal_11, currVal_12, currVal_13, currVal_14); var currVal_19 = (i1.ɵnov(_v, 26).required ? "" : null); var currVal_20 = i1.ɵnov(_v, 31).ngClassUntouched; var currVal_21 = i1.ɵnov(_v, 31).ngClassTouched; var currVal_22 = i1.ɵnov(_v, 31).ngClassPristine; var currVal_23 = i1.ɵnov(_v, 31).ngClassDirty; var currVal_24 = i1.ɵnov(_v, 31).ngClassValid; var currVal_25 = i1.ɵnov(_v, 31).ngClassInvalid; var currVal_26 = i1.ɵnov(_v, 31).ngClassPending; _ck(_v, 24, 0, currVal_19, currVal_20, currVal_21, currVal_22, currVal_23, currVal_24, currVal_25, currVal_26); var currVal_31 = !i1.ɵnov(_v, 5).valid; _ck(_v, 34, 0, currVal_31); var currVal_32 = _co.error; _ck(_v, 39, 0, currVal_32); }); }
 exports.View_LoginComponent_0 = View_LoginComponent_0;
-function View_LoginComponent_Host_0(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 1, "app-login", [], null, null, null, View_LoginComponent_0, RenderType_LoginComponent)), i1.ɵdid(1, 114688, null, 0, i4.LoginComponent, [i5.AuthService], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+function View_LoginComponent_Host_0(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 1, "app-login", [], null, null, null, View_LoginComponent_0, RenderType_LoginComponent)), i1.ɵdid(1, 114688, null, 0, i4.LoginComponent, [i5.AuthService, i6.SocialService], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 exports.View_LoginComponent_Host_0 = View_LoginComponent_Host_0;
 var LoginComponentNgFactory = i1.ɵccf("app-login", i4.LoginComponent, View_LoginComponent_Host_0, {}, {}, []);
 exports.LoginComponentNgFactory = LoginComponentNgFactory;
@@ -510,9 +527,11 @@ exports.LoginComponentNgFactory = LoginComponentNgFactory;
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(/*! @angular/core */ "@angular/core");
 var auth_service_1 = __webpack_require__(/*! ../auth.service */ "./src/app/auth/auth.service.ts");
+var social_service_1 = __webpack_require__(/*! ../social.service */ "./src/app/auth/social.service.ts");
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent(authService) {
+    function LoginComponent(authService, socialService) {
         this.authService = authService;
+        this.socialService = socialService;
     }
     LoginComponent.prototype.ngOnInit = function () {
         this.authService.errorMessage = '';
@@ -527,6 +546,13 @@ var LoginComponent = /** @class */ (function () {
         setTimeout(function () {
             _this.error = _this.authService.getError();
         }, 500);
+    };
+    LoginComponent.prototype.socialSign = function (provider) {
+        // console.log(provider) ;
+        this.socialService.getProvider(provider);
+        // setTimeout(() => {
+        //   this.error = this.authService.getError();
+        // }, 5000);
     };
     return LoginComponent;
 }());
@@ -660,6 +686,83 @@ var SignupComponent = /** @class */ (function () {
     return SignupComponent;
 }());
 exports.SignupComponent = SignupComponent;
+
+
+/***/ }),
+
+/***/ "./src/app/auth/social.service.ts":
+/*!****************************************!*\
+  !*** ./src/app/auth/social.service.ts ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(/*! @angular/core */ "@angular/core");
+var firebase = __webpack_require__(/*! firebase */ "firebase");
+var auth_service_1 = __webpack_require__(/*! ./auth.service */ "./src/app/auth/auth.service.ts");
+var SocialService = /** @class */ (function () {
+    function SocialService(authService, zone) {
+        this.authService = authService;
+        this.zone = zone;
+        this.error = '';
+    }
+    SocialService.prototype.getProvider = function (provider) {
+        this.provider = null;
+        // console.log(provider);
+        switch (provider) {
+            case 'google':
+                this.provider = new firebase.auth.GoogleAuthProvider();
+                break;
+            case 'twitter':
+                this.provider = new firebase.auth.TwitterAuthProvider();
+                break;
+            case 'facebook':
+                this.provider = new firebase.auth.FacebookAuthProvider();
+                break;
+            case 'github':
+                this.provider = new firebase.auth.GithubAuthProvider();
+                break;
+        }
+        this.socialSignIn();
+    };
+    SocialService.prototype.socialSignIn = function () {
+        //console.log('Provider ', this.provider);
+        var _this = this;
+        firebase.auth().signInWithPopup(this.provider).
+            then(function (result) {
+            //console.log(result);
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            //var token = result.credential.accessToken;
+            // The signed-in user info.
+            var user = result.user;
+            //console.log('User ', user);
+            firebase.auth().currentUser.getIdToken().then(function (response) {
+                _this.zone.run(function () {
+                    _this.authService.setAuthentication();
+                });
+            });
+            // ...
+        })
+            .catch(function (error) {
+            console.log('Error ', error);
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+            // ...
+            _this.error = errorMessage;
+            _this.authService.setError(errorMessage);
+        });
+    };
+    return SocialService;
+}());
+exports.SocialService = SocialService;
 
 
 /***/ }),
@@ -809,61 +912,16 @@ exports.styles = styles;
 Object.defineProperty(exports, "__esModule", { value: true });
 var i0 = __webpack_require__(/*! ./home.component.css.shim.ngstyle */ "./src/app/home/home.component.css.shim.ngstyle.js");
 var i1 = __webpack_require__(/*! @angular/core */ "@angular/core");
-var i2 = __webpack_require__(/*! @angular/forms */ "@angular/forms");
-var i3 = __webpack_require__(/*! @angular/common */ "@angular/common");
-var i4 = __webpack_require__(/*! ./home.component */ "./src/app/home/home.component.ts");
-var i5 = __webpack_require__(/*! ../shared/data-retrieval.service */ "./src/app/shared/data-retrieval.service.ts");
-var i6 = __webpack_require__(/*! ../auth/auth.service */ "./src/app/auth/auth.service.ts");
+var i2 = __webpack_require__(/*! ./home.component */ "./src/app/home/home.component.ts");
+var i3 = __webpack_require__(/*! ../shared/user.service */ "./src/app/shared/user.service.ts");
 var styles_HomeComponent = [i0.styles];
 var RenderType_HomeComponent = i1.ɵcrt({ encapsulation: 0, styles: styles_HomeComponent, data: {} });
 exports.RenderType_HomeComponent = RenderType_HomeComponent;
-function View_HomeComponent_1(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 9, "div", [["class", "radio"]], null, null, null, null, null)), (_l()(), i1.ɵeld(1, 0, null, null, 8, "label", [], null, null, null, null, null)), (_l()(), i1.ɵeld(2, 0, null, null, 6, "input", [["formControlName", "ipType"], ["type", "radio"]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"], [null, "change"]], function (_v, en, $event) { var ad = true; if (("input" === en)) {
-        var pd_0 = (i1.ɵnov(_v, 3)._handleInput($event.target.value) !== false);
-        ad = (pd_0 && ad);
-    } if (("blur" === en)) {
-        var pd_1 = (i1.ɵnov(_v, 3).onTouched() !== false);
-        ad = (pd_1 && ad);
-    } if (("compositionstart" === en)) {
-        var pd_2 = (i1.ɵnov(_v, 3)._compositionStart() !== false);
-        ad = (pd_2 && ad);
-    } if (("compositionend" === en)) {
-        var pd_3 = (i1.ɵnov(_v, 3)._compositionEnd($event.target.value) !== false);
-        ad = (pd_3 && ad);
-    } if (("change" === en)) {
-        var pd_4 = (i1.ɵnov(_v, 4).onChange() !== false);
-        ad = (pd_4 && ad);
-    } if (("blur" === en)) {
-        var pd_5 = (i1.ɵnov(_v, 4).onTouched() !== false);
-        ad = (pd_5 && ad);
-    } return ad; }, null, null)), i1.ɵdid(3, 16384, null, 0, i2.DefaultValueAccessor, [i1.Renderer2, i1.ElementRef, [2, i2.COMPOSITION_BUFFER_MODE]], null, null), i1.ɵdid(4, 212992, null, 0, i2.RadioControlValueAccessor, [i1.Renderer2, i1.ElementRef, i2.ɵangular_packages_forms_forms_i, i1.Injector], { formControlName: [0, "formControlName"], value: [1, "value"] }, null), i1.ɵprd(1024, null, i2.NG_VALUE_ACCESSOR, function (p0_0, p1_0) { return [p0_0, p1_0]; }, [i2.DefaultValueAccessor, i2.RadioControlValueAccessor]), i1.ɵdid(6, 671744, null, 0, i2.FormControlName, [[3, i2.ControlContainer], [8, null], [8, null], [6, i2.NG_VALUE_ACCESSOR], [2, i2.ɵangular_packages_forms_forms_j]], { name: [0, "name"] }, null), i1.ɵprd(2048, null, i2.NgControl, null, [i2.FormControlName]), i1.ɵdid(8, 16384, null, 0, i2.NgControlStatus, [[4, i2.NgControl]], null, null), (_l()(), i1.ɵted(9, null, [" ", " "]))], function (_ck, _v) { var currVal_7 = "ipType"; var currVal_8 = _v.context.$implicit; _ck(_v, 4, 0, currVal_7, currVal_8); var currVal_9 = "ipType"; _ck(_v, 6, 0, currVal_9); }, function (_ck, _v) { var currVal_0 = i1.ɵnov(_v, 8).ngClassUntouched; var currVal_1 = i1.ɵnov(_v, 8).ngClassTouched; var currVal_2 = i1.ɵnov(_v, 8).ngClassPristine; var currVal_3 = i1.ɵnov(_v, 8).ngClassDirty; var currVal_4 = i1.ɵnov(_v, 8).ngClassValid; var currVal_5 = i1.ɵnov(_v, 8).ngClassInvalid; var currVal_6 = i1.ɵnov(_v, 8).ngClassPending; _ck(_v, 2, 0, currVal_0, currVal_1, currVal_2, currVal_3, currVal_4, currVal_5, currVal_6); var currVal_10 = _v.context.$implicit; _ck(_v, 9, 0, currVal_10); }); }
-function View_HomeComponent_2(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 1, "span", [["class", "help-block text-warning"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["Please enter valid data!"]))], null, null); }
-function View_HomeComponent_3(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 9, "ul", [["class", "list-group"]], null, null, null, null, null)), (_l()(), i1.ɵeld(1, 0, null, null, 8, "li", [["class", "list-group-item"]], null, null, null, null, null)), (_l()(), i1.ɵted(2, null, [" Flow : ", " "])), (_l()(), i1.ɵeld(3, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), i1.ɵted(4, null, [" RFID : ", " "])), (_l()(), i1.ɵeld(5, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), i1.ɵted(6, null, [" Temperature : ", " "])), (_l()(), i1.ɵeld(7, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), i1.ɵted(8, null, [" Date : ", " "])), i1.ɵppd(9, 2)], null, function (_ck, _v) { var currVal_0 = _v.context.$implicit.flow; _ck(_v, 2, 0, currVal_0); var currVal_1 = _v.context.$implicit.rfid; _ck(_v, 4, 0, currVal_1); var currVal_2 = _v.context.$implicit.temp; _ck(_v, 6, 0, currVal_2); var currVal_3 = i1.ɵunv(_v, 8, 0, _ck(_v, 9, 0, i1.ɵnov(_v.parent, 0), _v.context.$implicit.timestamp, "medium")); _ck(_v, 8, 0, currVal_3); }); }
-function View_HomeComponent_0(_l) { return i1.ɵvid(0, [i1.ɵpid(0, i3.DatePipe, [i1.LOCALE_ID]), (_l()(), i1.ɵeld(1, 0, null, null, 31, "div", [["class", "container"]], null, null, null, null, null)), (_l()(), i1.ɵeld(2, 0, null, null, 30, "div", [["class", "row"]], null, null, null, null, null)), (_l()(), i1.ɵeld(3, 0, null, null, 29, "div", [["class", "col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2"]], null, null, null, null, null)), (_l()(), i1.ɵeld(4, 0, null, null, 28, "form", [["novalidate", ""]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngSubmit"], [null, "submit"], [null, "reset"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("submit" === en)) {
-        var pd_0 = (i1.ɵnov(_v, 6).onSubmit($event) !== false);
-        ad = (pd_0 && ad);
-    } if (("reset" === en)) {
-        var pd_1 = (i1.ɵnov(_v, 6).onReset() !== false);
-        ad = (pd_1 && ad);
-    } if (("ngSubmit" === en)) {
-        var pd_2 = (_co.getdata() !== false);
-        ad = (pd_2 && ad);
-    } return ad; }, null, null)), i1.ɵdid(5, 16384, null, 0, i2.ɵangular_packages_forms_forms_bg, [], null, null), i1.ɵdid(6, 540672, null, 0, i2.FormGroupDirective, [[8, null], [8, null]], { form: [0, "form"] }, { ngSubmit: "ngSubmit" }), i1.ɵprd(2048, null, i2.ControlContainer, null, [i2.FormGroupDirective]), i1.ɵdid(8, 16384, null, 0, i2.NgControlStatusGroup, [[4, i2.ControlContainer]], null, null), (_l()(), i1.ɵeld(9, 0, null, null, 8, "div", [["class", "form-group"]], null, null, null, null, null)), (_l()(), i1.ɵeld(10, 0, null, null, 1, "label", [["for", "queryValue"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["Enter Value to search"])), (_l()(), i1.ɵeld(12, 0, null, null, 5, "input", [["class", "form-control"], ["formControlName", "queryValue"], ["id", "queryValue"], ["type", "text"]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"]], function (_v, en, $event) { var ad = true; if (("input" === en)) {
-        var pd_0 = (i1.ɵnov(_v, 13)._handleInput($event.target.value) !== false);
-        ad = (pd_0 && ad);
-    } if (("blur" === en)) {
-        var pd_1 = (i1.ɵnov(_v, 13).onTouched() !== false);
-        ad = (pd_1 && ad);
-    } if (("compositionstart" === en)) {
-        var pd_2 = (i1.ɵnov(_v, 13)._compositionStart() !== false);
-        ad = (pd_2 && ad);
-    } if (("compositionend" === en)) {
-        var pd_3 = (i1.ɵnov(_v, 13)._compositionEnd($event.target.value) !== false);
-        ad = (pd_3 && ad);
-    } return ad; }, null, null)), i1.ɵdid(13, 16384, null, 0, i2.DefaultValueAccessor, [i1.Renderer2, i1.ElementRef, [2, i2.COMPOSITION_BUFFER_MODE]], null, null), i1.ɵprd(1024, null, i2.NG_VALUE_ACCESSOR, function (p0_0) { return [p0_0]; }, [i2.DefaultValueAccessor]), i1.ɵdid(15, 671744, null, 0, i2.FormControlName, [[3, i2.ControlContainer], [8, null], [8, null], [6, i2.NG_VALUE_ACCESSOR], [2, i2.ɵangular_packages_forms_forms_j]], { name: [0, "name"] }, null), i1.ɵprd(2048, null, i2.NgControl, null, [i2.FormControlName]), i1.ɵdid(17, 16384, null, 0, i2.NgControlStatus, [[4, i2.NgControl]], null, null), (_l()(), i1.ɵand(16777216, null, null, 1, null, View_HomeComponent_1)), i1.ɵdid(19, 802816, null, 0, i3.NgForOf, [i1.ViewContainerRef, i1.TemplateRef, i1.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null), (_l()(), i1.ɵand(16777216, null, null, 1, null, View_HomeComponent_2)), i1.ɵdid(21, 16384, null, 0, i3.NgIf, [i1.ViewContainerRef, i1.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i1.ɵeld(22, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), i1.ɵeld(23, 0, null, null, 1, "button", [["class", "btn btn-primary"], ["type", "submit"]], [[8, "disabled", 0]], null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["Get Data"])), (_l()(), i1.ɵted(-1, null, [" \u00A0 "])), (_l()(), i1.ɵeld(26, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), i1.ɵeld(27, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), i1.ɵeld(28, 0, null, null, 1, "div", [["style", "color: red"]], null, null, null, null, null)), (_l()(), i1.ɵted(29, null, [" ", " "])), (_l()(), i1.ɵeld(30, 0, null, null, 2, "div", [], null, null, null, null, null)), (_l()(), i1.ɵand(16777216, null, null, 1, null, View_HomeComponent_3)), i1.ɵdid(32, 802816, null, 0, i3.NgForOf, [i1.ViewContainerRef, i1.TemplateRef, i1.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_7 = _co.getDataForm; _ck(_v, 6, 0, currVal_7); var currVal_15 = "queryValue"; _ck(_v, 15, 0, currVal_15); var currVal_16 = _co.inputTypes; _ck(_v, 19, 0, currVal_16); var currVal_17 = (!_co.getDataForm.valid && _co.getDataForm.touched); _ck(_v, 21, 0, currVal_17); var currVal_20 = _co.dataReturned; _ck(_v, 32, 0, currVal_20); }, function (_ck, _v) { var _co = _v.component; var currVal_0 = i1.ɵnov(_v, 8).ngClassUntouched; var currVal_1 = i1.ɵnov(_v, 8).ngClassTouched; var currVal_2 = i1.ɵnov(_v, 8).ngClassPristine; var currVal_3 = i1.ɵnov(_v, 8).ngClassDirty; var currVal_4 = i1.ɵnov(_v, 8).ngClassValid; var currVal_5 = i1.ɵnov(_v, 8).ngClassInvalid; var currVal_6 = i1.ɵnov(_v, 8).ngClassPending; _ck(_v, 4, 0, currVal_0, currVal_1, currVal_2, currVal_3, currVal_4, currVal_5, currVal_6); var currVal_8 = i1.ɵnov(_v, 17).ngClassUntouched; var currVal_9 = i1.ɵnov(_v, 17).ngClassTouched; var currVal_10 = i1.ɵnov(_v, 17).ngClassPristine; var currVal_11 = i1.ɵnov(_v, 17).ngClassDirty; var currVal_12 = i1.ɵnov(_v, 17).ngClassValid; var currVal_13 = i1.ɵnov(_v, 17).ngClassInvalid; var currVal_14 = i1.ɵnov(_v, 17).ngClassPending; _ck(_v, 12, 0, currVal_8, currVal_9, currVal_10, currVal_11, currVal_12, currVal_13, currVal_14); var currVal_18 = !_co.getDataForm.valid; _ck(_v, 23, 0, currVal_18); var currVal_19 = _co.errorMessage; _ck(_v, 29, 0, currVal_19); }); }
+function View_HomeComponent_0(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 11, "div", [["class", "container"], ["style", "margin-top:30px"]], null, null, null, null, null)), (_l()(), i1.ɵeld(1, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["Logged In As.."])), (_l()(), i1.ɵeld(3, 0, null, null, 8, "div", [["class", "row"]], null, null, null, null, null)), (_l()(), i1.ɵeld(4, 0, null, null, 7, "div", [["class", "col-xs-5 col-sm-4"]], null, null, null, null, null)), (_l()(), i1.ɵeld(5, 0, null, null, 6, "div", [["class", "card"]], null, null, null, null, null)), (_l()(), i1.ɵeld(6, 0, null, null, 1, "div", [["class", "card-header"]], null, null, null, null, null)), (_l()(), i1.ɵted(7, null, [" ", " "])), (_l()(), i1.ɵeld(8, 0, null, null, 1, "div", [["class", "card-body"]], null, null, null, null, null)), (_l()(), i1.ɵeld(9, 0, null, null, 0, "img", [["class", "img-responsive"], ["style", "max-height:300px;"]], [[8, "src", 4], [8, "alt", 0]], null, null, null, null)), (_l()(), i1.ɵeld(10, 0, null, null, 1, "div", [["class", "card-footer"]], null, null, null, null, null)), (_l()(), i1.ɵted(11, null, [" ", " "]))], null, function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.getName(); _ck(_v, 7, 0, currVal_0); var currVal_1 = _co.getPhoto(); var currVal_2 = _co.getName(); _ck(_v, 9, 0, currVal_1, currVal_2); var currVal_3 = _co.getEmail(); _ck(_v, 11, 0, currVal_3); }); }
 exports.View_HomeComponent_0 = View_HomeComponent_0;
-function View_HomeComponent_Host_0(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 1, "app-home", [], null, null, null, View_HomeComponent_0, RenderType_HomeComponent)), i1.ɵdid(1, 114688, null, 0, i4.HomeComponent, [i5.DataRetrievalService, i6.AuthService], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+function View_HomeComponent_Host_0(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 1, "app-home", [], null, null, null, View_HomeComponent_0, RenderType_HomeComponent)), i1.ɵdid(1, 114688, null, 0, i2.HomeComponent, [i3.UserService], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 exports.View_HomeComponent_Host_0 = View_HomeComponent_Host_0;
-var HomeComponentNgFactory = i1.ɵccf("app-home", i4.HomeComponent, View_HomeComponent_Host_0, {}, {}, []);
+var HomeComponentNgFactory = i1.ɵccf("app-home", i2.HomeComponent, View_HomeComponent_Host_0, {}, {}, []);
 exports.HomeComponentNgFactory = HomeComponentNgFactory;
 
 
@@ -880,43 +938,21 @@ exports.HomeComponentNgFactory = HomeComponentNgFactory;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(/*! @angular/core */ "@angular/core");
-var data_retrieval_service_1 = __webpack_require__(/*! ../shared/data-retrieval.service */ "./src/app/shared/data-retrieval.service.ts");
-var forms_1 = __webpack_require__(/*! @angular/forms */ "@angular/forms");
-var auth_service_1 = __webpack_require__(/*! ../auth/auth.service */ "./src/app/auth/auth.service.ts");
+var user_service_1 = __webpack_require__(/*! ../shared/user.service */ "./src/app/shared/user.service.ts");
 var HomeComponent = /** @class */ (function () {
-    function HomeComponent(dataService, authService) {
-        this.dataService = dataService;
-        this.authService = authService;
-        this.inputTypes = [
-            'Email',
-            'Rfid'
-        ];
+    function HomeComponent(userService) {
+        this.userService = userService;
     }
     HomeComponent.prototype.ngOnInit = function () {
-        this.getDataForm = new forms_1.FormGroup({
-            'queryValue': new forms_1.FormControl(this.authService.getUserEmail(), forms_1.Validators.required),
-            'ipType': new forms_1.FormControl('Email')
-        });
-        this.errorMessage = '';
     };
-    HomeComponent.prototype.getdata = function () {
-        var _this = this;
-        var querySelected = this.getDataForm.controls.queryValue.value;
-        var inputSelected = this.getDataForm.controls.ipType.value;
-        var query;
-        if (inputSelected == 'Rfid') {
-            query = 'rfid/'.concat(querySelected);
-        }
-        else {
-            query = querySelected;
-        }
-        this.dataService.getData(query)
-            .subscribe(function (data) {
-            _this.dataReturned = data;
-        }, function (error) {
-            _this.errorMessage = 'No Data Found for : ' + querySelected;
-        });
-        this.errorMessage = '';
+    HomeComponent.prototype.getName = function () {
+        return this.userService.getUserName();
+    };
+    HomeComponent.prototype.getEmail = function () {
+        return this.userService.getUserEmail();
+    };
+    HomeComponent.prototype.getPhoto = function () {
+        return this.userService.getUserPhoto();
     };
     return HomeComponent;
 }());
@@ -925,33 +961,34 @@ exports.HomeComponent = HomeComponent;
 
 /***/ }),
 
-/***/ "./src/app/shared/data-retrieval.service.ts":
-/*!**************************************************!*\
-  !*** ./src/app/shared/data-retrieval.service.ts ***!
-  \**************************************************/
+/***/ "./src/app/shared/user.service.ts":
+/*!****************************************!*\
+  !*** ./src/app/shared/user.service.ts ***!
+  \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var http_1 = __webpack_require__(/*! @angular/common/http */ "@angular/common/http");
-var operators_1 = __webpack_require__(/*! rxjs/operators */ "rxjs/operators");
-var DataRetrievalService = /** @class */ (function () {
-    function DataRetrievalService(http) {
-        this.http = http;
+var auth_service_1 = __webpack_require__(/*! ../auth/auth.service */ "./src/app/auth/auth.service.ts");
+var firebase = __webpack_require__(/*! firebase */ "firebase");
+var UserService = /** @class */ (function () {
+    function UserService(authService) {
+        this.authService = authService;
     }
-    DataRetrievalService.prototype.getData = function (query) {
-        return this.http.get('https://check-api-212117.appspot.com/' + query)
-            .pipe(operators_1.map(function (response) {
-            var data = response;
-            console.log(data);
-            return data;
-        }));
+    UserService.prototype.getUserName = function () {
+        return firebase.auth().currentUser.displayName;
     };
-    return DataRetrievalService;
+    UserService.prototype.getUserEmail = function () {
+        return firebase.auth().currentUser.email;
+    };
+    UserService.prototype.getUserPhoto = function () {
+        return firebase.auth().currentUser.photoURL;
+    };
+    return UserService;
 }());
-exports.DataRetrievalService = DataRetrievalService;
+exports.UserService = UserService;
 
 
 /***/ }),
@@ -1127,17 +1164,6 @@ module.exports = require("@nguniversal/module-map-ngfactory-loader");
 /***/ (function(module, exports) {
 
 module.exports = require("firebase");
-
-/***/ }),
-
-/***/ "rxjs/operators":
-/*!*********************************!*\
-  !*** external "rxjs/operators" ***!
-  \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("rxjs/operators");
 
 /***/ })
 
