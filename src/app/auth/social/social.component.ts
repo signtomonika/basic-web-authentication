@@ -20,13 +20,15 @@ export class SocialComponent implements OnInit {
 
   
   
-    this.socialService.getProvider(provider);
+    this.socialService.setProvider(provider);
     
  
   
   }
 
   windowsSign() {
+
+    //console.log('Microsoft Logged In');
 
     this.microsoft.login() ;
 

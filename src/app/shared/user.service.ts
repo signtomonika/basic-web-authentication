@@ -14,6 +14,7 @@ import { DomSanitizer } from "@angular/platform-browser";
 import { ContentType } from '@angular/http/src/enums';
 import { Promise } from 'es6-promise';
 import { ImageService } from './image.service';
+import { MsUserDetailService } from './ms-user-detail.service';
 
 declare const Buffer;
 
@@ -21,42 +22,32 @@ declare const Buffer;
 export class UserService {
 
 
-  me: microsoftgraph.User;  //Profile Information
-  subsGetMe: Subscription;
-  userPhoto: microsoftgraph.User;  //Photo Information
-  subsGetPhoto: Subscription;
-
-  private user;
 
 
-  imageToShow: any;
-  isImageLoading = false;
-
-   private graphUri = "https://graph.microsoft.com/v1.0/me/photo/$value";
-
-
-
-  constructor(private authService: AuthService, private msUserService: MSuserService,
-      private imageService : ImageService
-  ) {
-
-
-    if (this.authService.getMSuse()) {
-
-      // console.log(this.authService.getFirebaseUse());
-
-      this.subsGetMe = this.msUserService.getMe().subscribe(me => this.me = me);
-    }
-
-
-
+  constructor(private authService: AuthService, private userDetailMs: MsUserDetailService) {
 
   }
+
 
   isMicrosoftUsed() {
 
     return this.authService.getMSuse();
+  }
 
+  getMicrosoftUser() {
+
+    if (this.authService.getMSuse()) {
+
+      this.userDetailMs.getMeMs();
+
+    }
+
+  }
+
+
+  unsubMsUser() {
+
+    this.userDetailMs.unsubMe();
   }
 
 
@@ -70,8 +61,7 @@ export class UserService {
     else {
 
 
-      return this.me.displayName;
-
+      return this.userDetailMs.getUserName();
 
 
     }
@@ -89,7 +79,7 @@ export class UserService {
 
     }
     else {
-      return this.me.userPrincipalName;
+      return this.userDetailMs.getEmail();
     }
 
 
@@ -106,44 +96,15 @@ export class UserService {
     }
     else {
 
-     return this.getImageFromService();
+      return this.userDetailMs.getImageFromService();
 
-     
+
     }
 
   }
 
- 
-// Microsoft graph API returns a blob data which is converted into image
 
-  createImageFromBlob(image: Blob) {
-     let reader = new FileReader();
-     reader.addEventListener("load", () => {
 
-      //console.log(reader.result);
-        this.imageToShow = reader.result;
-     }, false);
-  
-     if (image) {
-        reader.readAsDataURL(image);
-     }
-  }
-
-  getImageFromService() {
-    this.isImageLoading = true;
-    this.imageService.getImage(this.graphUri).subscribe(data => {
-      //console.log(data);
-      this.createImageFromBlob(data);
-      this.isImageLoading = false;
-      
-    }, error => {
-      this.isImageLoading = false;
-      console.log(error);
-    });
-
-    return this.imageToShow ;
-}
- 
 
 
 }

@@ -16,7 +16,7 @@ export class SocialService {
 
 
 
-  getProvider(provider: string) {
+  setProvider(provider: string) {
 
     this.authService.setFirebaseUse();
 

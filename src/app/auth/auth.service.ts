@@ -27,12 +27,16 @@ export class AuthService {
 
   setFirebaseUse() {
 
+    // console.log('setFirebaseUse');
+
     this.isFirebaseUsed = true;
     this.isMicrosoftUsed = false;
 
   }
 
   setMSuse() {
+
+    //console.log('setMSuse');
 
     this.isFirebaseUsed = false;
     this.isMicrosoftUsed = true;
@@ -41,10 +45,14 @@ export class AuthService {
 
   getFirebaseUse() {
 
+    //console.log('FB Used? ', this.isFirebaseUsed)
+
     return this.isFirebaseUsed;
   }
 
   getMSuse() {
+
+    //console.log('MS USed? ', this.isMicrosoftUsed) ;
 
     return this.isMicrosoftUsed;
 
@@ -61,10 +69,6 @@ export class AuthService {
 
           this.setAuthentication();
 
-
-
-          // console.log('User Logged in');
-
         }
       )
       .catch(
@@ -72,7 +76,6 @@ export class AuthService {
 
           this.errorMessage = error.message;
 
-          //console.log('error : ', error.message);
 
         }
       )
@@ -80,15 +83,14 @@ export class AuthService {
 
   }
 
-  signUpUser(email: string, password: string) {
+  signUpUser(email: string, password: string, name: string , photoUrl : string) {
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(
         response => {
 
-          // console.log('User created');
 
-          this.router.navigate(['/']);
+          this.setUserProfile(name, photoUrl);
 
         }
       )
@@ -97,10 +99,30 @@ export class AuthService {
 
           this.setError(error.message);
 
-          // console.log('error : ', error.message);
-
         }
       )
+
+
+  }
+
+  setUserProfile(name: string , picUrl : string) {
+
+    firebase.auth().currentUser
+      .updateProfile(
+        {
+          displayName: name,
+          photoURL: picUrl
+        }
+
+      ).then(
+        () => {
+          this.logOut();
+        }
+      ).catch(
+
+        (error) => console.log(error)
+
+      );
 
 
   }
@@ -154,15 +176,18 @@ export class AuthService {
     this.authenticated = false;
     this.router.navigate(['/']);
 
+    //console.log('LOGOUT');
 
   }
 
   deleteUser() {
 
-    this.logOut();
+
     if (this.isFirebaseUsed) {
       firebase.auth().currentUser.delete();
     }
+
+    this.logOut();
   }
 
 

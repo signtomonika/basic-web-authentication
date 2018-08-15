@@ -14,6 +14,10 @@ export class SignupComponent implements OnInit {
 
   password: string;
 
+  name : string;
+
+  photoUrl : string;
+
   error : string;
 
   constructor(private authService: AuthService) { }
@@ -30,10 +34,14 @@ export class SignupComponent implements OnInit {
   
     this.password = form.value.password;
   
+    this.name = form.value.name;
+
+    this.photoUrl = form.value.photo;
+
     // console.log('email', this.email );
     // console.log('password', this.password );
   
-  this.authService.signUpUser(this.email, this.password);
+  this.authService.signUpUser(this.email, this.password, this.name , this.photoUrl);
   
   setTimeout(() => {
     this.error = this.authService.getError();

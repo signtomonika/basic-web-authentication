@@ -6,6 +6,10 @@ import * as hello from 'hellojs/dist/hello.all.js';
 
 import { config } from '../shared/app.config';
 import { AuthService } from './auth.service';
+import { UserService } from '../shared/user.service';
+import { MsUserDetailService } from '../shared/ms-user-detail.service';
+
+
 
 
 // HANDLES LOGIN 
@@ -13,7 +17,8 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class MicrosoftService {
 
-  constructor(private zone: NgZone , private router : Router, private authService: AuthService) { }
+  constructor(private zone: NgZone , private router : Router, 
+                  private authService: AuthService, private userDetailMs : MsUserDetailService) { }
 
 
 
@@ -41,7 +46,7 @@ export class MicrosoftService {
 
   login() {
     
-    // console.log('Before Login');
+     //console.log('set MSUSE');
 
     this.authService.setMSuse();
 
@@ -49,7 +54,7 @@ export class MicrosoftService {
       () => {
         
         this.zone.run(() => {
-          
+         this.userDetailMs.getMeMs();
           this.authService.setAuthentication();
           
         });
@@ -65,10 +70,5 @@ export class MicrosoftService {
 
  //Access Token
 
- getAccessToken() {
-  const msftReponse = hello('msft').getAuthResponse();
-  const accessToken = msftReponse.access_token;
-  return accessToken;
-}
 
 }

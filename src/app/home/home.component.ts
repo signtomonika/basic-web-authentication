@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
 
   getName() {
 
-    this.getPhoto();
+   
 
     return this.userService.getUserName();
 
@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
   ngOnDestroy() {
 
     if (this.userService.isMicrosoftUsed()) {
-      this.userService.subsGetMe.unsubscribe();
+      this.userService.unsubMsUser();
     }
   }
 

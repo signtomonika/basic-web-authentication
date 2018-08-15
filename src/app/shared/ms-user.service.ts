@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MicrosoftService } from '../auth/microsoft.service';
+
 
 // Microsoft Graph to handle User Information
 
@@ -7,13 +7,14 @@ import * as MicrosoftGraph from "@microsoft/microsoft-graph-types"
 import * as MicrosoftGraphClient from "@microsoft/microsoft-graph-client"
 import { Observable } from 'rxjs';
 import { from } from 'rxjs';
+import { HttpService } from '../auth/http.service';
 
 
 
 @Injectable()
 export class MSuserService {
 
-  constructor(private microsoft : MicrosoftService) { }
+  constructor(private httpService : HttpService) { }
 
  
 
@@ -21,7 +22,7 @@ export class MSuserService {
   {
     var client = MicrosoftGraphClient.Client.init({
       authProvider: (done) => {
-          done(null, this.microsoft.getAccessToken()); //first parameter takes an error if you can't get an access token
+          done(null, this.httpService.getAccessToken()); //first parameter takes an error if you can't get an access token
       }
     });
     return client;
@@ -49,7 +50,7 @@ export class MSuserService {
 
 getToken() {
 
-  return this.microsoft.getAccessToken();
+  return this.httpService.getAccessToken();
 
 }
 
