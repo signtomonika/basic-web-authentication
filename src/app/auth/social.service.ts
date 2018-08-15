@@ -2,6 +2,7 @@ import { Injectable, NgZone } from '@angular/core';
 
 import * as firebase from 'firebase';
 import { AuthService } from './auth.service';
+import { MicrosoftService } from './microsoft.service';
 
 
 @Injectable()
@@ -13,10 +14,11 @@ export class SocialService {
 
   error: string = '';
 
+
+
   getProvider(provider: string) {
 
-
-
+    this.authService.setFirebaseUse();
 
     this.provider = null;
 
@@ -39,16 +41,22 @@ export class SocialService {
 
         this.provider = new firebase.auth.FacebookAuthProvider();
         break;
-        
+
       case 'github':
 
-      this.provider = new firebase.auth.GithubAuthProvider();
-      break;
+        this.provider = new firebase.auth.GithubAuthProvider();
+        break;
+
+
+
     }
 
 
 
+
     this.socialSignIn();
+
+
 
   }
 
@@ -56,8 +64,6 @@ export class SocialService {
   socialSignIn() {
 
     //console.log('Provider ', this.provider);
-
-
 
     firebase.auth().signInWithPopup(this.provider).
       then(

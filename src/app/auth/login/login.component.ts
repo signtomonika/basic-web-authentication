@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   error : string;
 
-  constructor(private authService: AuthService, private socialService : SocialService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
 
@@ -43,17 +43,6 @@ setTimeout(() => {
 
 }
 
-socialSign(provider : string) {
 
-  // console.log(provider) ;
-
-  this.socialService.getProvider(provider);
-  
-  // setTimeout(() => {
-  //   this.error = this.authService.getError();
-  // }, 5000);
- 
-
-}
 
 }

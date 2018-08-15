@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/user.service';
 
+
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -8,39 +10,57 @@ import { UserService } from '../shared/user.service';
 })
 export class HomeComponent implements OnInit {
 
-  
 
-  constructor(private userService : UserService) {
-    
-   }
+  constructor(private userService: UserService) {
+
+  }
+
+ 
 
   ngOnInit() {
 
-
+  
 
   }
 
   getName() {
 
-    return this.userService.getUserName() ;
+    this.getPhoto();
+
+    return this.userService.getUserName();
+
 
   }
 
 
- 
   getEmail() {
 
-    return this.userService.getUserEmail() ;
+
+
+    return this.userService.getUserEmail();
+
+
+
 
   }
 
 
   getPhoto() {
 
-    return this.userService.getUserPhoto() ;
+
+    return this.userService.getUserPhoto();
 
   }
 
-  
+
+  ngOnDestroy() {
+
+    if (this.userService.isMicrosoftUsed()) {
+      this.userService.subsGetMe.unsubscribe();
+    }
+  }
+
+ 
+
 
 }

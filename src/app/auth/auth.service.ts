@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
 import { UserService } from '../shared/user.service';
+import * as hello from 'hellojs/dist/hello.all.js';
 
 @Injectable()
 
@@ -14,13 +15,45 @@ export class AuthService {
 
   authenticated = false;
 
+  isFirebaseUsed = false;
+
+  isMicrosoftUsed = false;
+
   constructor(private router: Router) {
 
 
 
   }
 
+  setFirebaseUse() {
+
+    this.isFirebaseUsed = true;
+    this.isMicrosoftUsed = false;
+
+  }
+
+  setMSuse() {
+
+    this.isFirebaseUsed = false;
+    this.isMicrosoftUsed = true;
+
+  }
+
+  getFirebaseUse() {
+
+    return this.isFirebaseUsed;
+  }
+
+  getMSuse() {
+
+    return this.isMicrosoftUsed;
+
+  }
+
+
   signInUser(email: string, password: string) {
+
+    this.setFirebaseUse();
 
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(
@@ -73,7 +106,7 @@ export class AuthService {
   }
 
 
-  setError(message: string){
+  setError(message: string) {
 
     this.errorMessage = message;
 
@@ -102,18 +135,34 @@ export class AuthService {
 
   logOut() {
 
-    firebase.auth().signOut();
+
+    if (this.isFirebaseUsed) {
+      firebase.auth().signOut();
+
+    } else {
+
+      //Logout from Microsoft
+
+      hello('msft').logout();
+
+    }
+
+    this.isFirebaseUsed = false;
+
+    this.isMicrosoftUsed = false;
 
     this.authenticated = false;
     this.router.navigate(['/']);
+
 
   }
 
   deleteUser() {
 
     this.logOut();
-    firebase.auth().currentUser.delete();
-
+    if (this.isFirebaseUsed) {
+      firebase.auth().currentUser.delete();
+    }
   }
 
 
