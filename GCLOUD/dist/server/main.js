@@ -104,38 +104,6 @@ exports.ɵEmptyOutletComponentNgFactory = ɵEmptyOutletComponentNgFactory;
 
 /***/ }),
 
-/***/ "./src/app/app-routing.module.ts":
-/*!***************************************!*\
-  !*** ./src/app/app-routing.module.ts ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var router_1 = __webpack_require__(/*! @angular/router */ "@angular/router");
-var login_component_1 = __webpack_require__(/*! ./auth/login/login.component */ "./src/app/auth/login/login.component.ts");
-var signup_component_1 = __webpack_require__(/*! ./auth/signup/signup.component */ "./src/app/auth/signup/signup.component.ts");
-var home_component_1 = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
-var appRoutes = [
-    { path: '', redirectTo: 'signin', pathMatch: 'full' },
-    { path: 'signin', component: login_component_1.LoginComponent },
-    { path: 'signup', component: signup_component_1.SignupComponent },
-    { path: 'home' //, canActivate:[AuthGuard] 
-        ,
-        component: home_component_1.HomeComponent }
-];
-var AppRoutingModule = /** @class */ (function () {
-    function AppRoutingModule() {
-    }
-    return AppRoutingModule;
-}());
-exports.AppRoutingModule = AppRoutingModule;
-
-
-/***/ }),
-
 /***/ "./src/app/app.component.css.shim.ngstyle.js":
 /*!***************************************************!*\
   !*** ./src/app/app.component.css.shim.ngstyle.js ***!
@@ -181,12 +149,13 @@ var i3 = __webpack_require__(/*! ./header/header.component */ "./src/app/header/
 var i4 = __webpack_require__(/*! ./auth/auth.service */ "./src/app/auth/auth.service.ts");
 var i5 = __webpack_require__(/*! @angular/router */ "@angular/router");
 var i6 = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+var i7 = __webpack_require__(/*! ./auth/microsoft.service */ "./src/app/auth/microsoft.service.ts");
 var styles_AppComponent = [i0.styles];
 var RenderType_AppComponent = i1.ɵcrt({ encapsulation: 0, styles: styles_AppComponent, data: {} });
 exports.RenderType_AppComponent = RenderType_AppComponent;
 function View_AppComponent_0(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 1, "app-header", [], null, null, null, i2.View_HeaderComponent_0, i2.RenderType_HeaderComponent)), i1.ɵdid(1, 114688, null, 0, i3.HeaderComponent, [i4.AuthService], null, null), (_l()(), i1.ɵeld(2, 16777216, null, null, 1, "router-outlet", [], null, null, null, null, null)), i1.ɵdid(3, 212992, null, 0, i5.RouterOutlet, [i5.ChildrenOutletContexts, i1.ViewContainerRef, i1.ComponentFactoryResolver, [8, null], i1.ChangeDetectorRef], null, null)], function (_ck, _v) { _ck(_v, 1, 0); _ck(_v, 3, 0); }, null); }
 exports.View_AppComponent_0 = View_AppComponent_0;
-function View_AppComponent_Host_0(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 1, "app-root", [], null, null, null, View_AppComponent_0, RenderType_AppComponent)), i1.ɵdid(1, 114688, null, 0, i6.AppComponent, [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+function View_AppComponent_Host_0(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 1, "app-root", [], null, null, null, View_AppComponent_0, RenderType_AppComponent)), i1.ɵdid(1, 114688, null, 0, i6.AppComponent, [i7.MicrosoftService], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 exports.View_AppComponent_Host_0 = View_AppComponent_Host_0;
 var AppComponentNgFactory = i1.ɵccf("app-root", i6.AppComponent, View_AppComponent_Host_0, {}, {}, []);
 exports.AppComponentNgFactory = AppComponentNgFactory;
@@ -206,15 +175,19 @@ exports.AppComponentNgFactory = AppComponentNgFactory;
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(/*! @angular/core */ "@angular/core");
 var firebase = __webpack_require__(/*! firebase */ "firebase");
+var microsoft_service_1 = __webpack_require__(/*! ./auth/microsoft.service */ "./src/app/auth/microsoft.service.ts");
 var AppComponent = /** @class */ (function () {
-    function AppComponent() {
+    function AppComponent(microsoft) {
+        this.microsoft = microsoft;
         this.title = 'app';
     }
     AppComponent.prototype.ngOnInit = function () {
+        // Initializing Auth Applications - Microsoft for Windows and Firebase for other Social Applications
         firebase.initializeApp({
             apiKey: "AIzaSyC75sUhp7rb4IwAFZ3iwxfh5RxiMZWZYnc",
             authDomain: "projauthentication.firebaseapp.com",
         });
+        this.microsoft.initAuth();
     };
     return AppComponent;
 }());
@@ -232,8 +205,8 @@ exports.AppComponent = AppComponent;
 
 "use strict";
 
+//SYSTEM MODULES
 Object.defineProperty(exports, "__esModule", { value: true });
-//import { AuthService } from './auth/auth.service';
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -277,18 +250,23 @@ var i13 = __webpack_require__(/*! @angular/forms */ "@angular/forms");
 var i14 = __webpack_require__(/*! @angular/common/http */ "@angular/common/http");
 var i15 = __webpack_require__(/*! @angular/router */ "@angular/router");
 var i16 = __webpack_require__(/*! ./auth/auth.service */ "./src/app/auth/auth.service.ts");
-var i17 = __webpack_require__(/*! ./auth-guard.service */ "./src/app/auth-guard.service.ts");
-var i18 = __webpack_require__(/*! ./shared/user.service */ "./src/app/shared/user.service.ts");
-var i19 = __webpack_require__(/*! ./auth/social.service */ "./src/app/auth/social.service.ts");
-var i20 = __webpack_require__(/*! @angular/http */ "@angular/http");
-var i21 = __webpack_require__(/*! @angular/animations */ "@angular/animations");
-var i22 = __webpack_require__(/*! @nguniversal/module-map-ngfactory-loader */ "@nguniversal/module-map-ngfactory-loader");
-var i23 = __webpack_require__(/*! ./auth/login/login.component */ "./src/app/auth/login/login.component.ts");
-var i24 = __webpack_require__(/*! ./auth/signup/signup.component */ "./src/app/auth/signup/signup.component.ts");
-var i25 = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
-var i26 = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-var i27 = __webpack_require__(/*! ./app.module */ "./src/app/app.module.ts");
-var AppServerModuleNgFactory = i0.ɵcmf(i1.AppServerModule, [i2.AppComponent], function (_l) { return i0.ɵmod([i0.ɵmpd(512, i0.ComponentFactoryResolver, i0.ɵCodegenComponentFactoryResolver, [[8, [i3.ɵEmptyOutletComponentNgFactory, i4.LoginComponentNgFactory, i5.SignupComponentNgFactory, i6.HomeComponentNgFactory, i7.AppComponentNgFactory]], [3, i0.ComponentFactoryResolver], i0.NgModuleRef]), i0.ɵmpd(5120, i0.LOCALE_ID, i0.ɵangular_packages_core_core_l, [[3, i0.LOCALE_ID]]), i0.ɵmpd(4608, i8.NgLocalization, i8.NgLocaleLocalization, [i0.LOCALE_ID, [2, i8.ɵangular_packages_common_common_a]]), i0.ɵmpd(5120, i0.IterableDiffers, i0.ɵangular_packages_core_core_j, []), i0.ɵmpd(5120, i0.KeyValueDiffers, i0.ɵangular_packages_core_core_k, []), i0.ɵmpd(4608, i9.DomSanitizer, i9.ɵangular_packages_platform_browser_platform_browser_e, [i8.DOCUMENT]), i0.ɵmpd(6144, i0.Sanitizer, null, [i9.DomSanitizer]), i0.ɵmpd(4608, i9.HAMMER_GESTURE_CONFIG, i9.HammerGestureConfig, []), i0.ɵmpd(5120, i9.EVENT_MANAGER_PLUGINS, function (p0_0, p0_1, p0_2, p1_0, p2_0, p2_1, p2_2, p3_0) { return [new i9.ɵDomEventsPlugin(p0_0, p0_1, p0_2), new i9.ɵKeyEventsPlugin(p1_0), new i9.ɵHammerGesturesPlugin(p2_0, p2_1, p2_2), new i10.ɵangular_packages_platform_server_platform_server_d(p3_0)]; }, [i8.DOCUMENT, i0.NgZone, [2, i0.PLATFORM_ID], i8.DOCUMENT, i8.DOCUMENT, i9.HAMMER_GESTURE_CONFIG, i0.ɵConsole, i9.DOCUMENT]), i0.ɵmpd(4608, i9.EventManager, i9.EventManager, [i9.EVENT_MANAGER_PLUGINS, i0.NgZone]), i0.ɵmpd(135680, i9.ɵDomSharedStylesHost, i9.ɵDomSharedStylesHost, [i8.DOCUMENT]), i0.ɵmpd(4608, i9.ɵDomRendererFactory2, i9.ɵDomRendererFactory2, [i9.EventManager, i9.ɵDomSharedStylesHost]), i0.ɵmpd(4608, i10.ɵangular_packages_platform_server_platform_server_c, i10.ɵangular_packages_platform_server_platform_server_c, [i9.DOCUMENT, [2, i9.ɵTRANSITION_ID]]), i0.ɵmpd(6144, i9.ɵSharedStylesHost, null, [i10.ɵangular_packages_platform_server_platform_server_c]), i0.ɵmpd(4608, i10.ɵServerRendererFactory2, i10.ɵServerRendererFactory2, [i9.EventManager, i0.NgZone, i9.DOCUMENT, i9.ɵSharedStylesHost]), i0.ɵmpd(4608, i11.AnimationDriver, i11.ɵNoopAnimationDriver, []), i0.ɵmpd(5120, i11.ɵAnimationStyleNormalizer, i12.ɵangular_packages_platform_browser_animations_animations_c, []), i0.ɵmpd(4608, i11.ɵAnimationEngine, i12.ɵangular_packages_platform_browser_animations_animations_a, [i8.DOCUMENT, i11.AnimationDriver, i11.ɵAnimationStyleNormalizer]), i0.ɵmpd(5120, i0.RendererFactory2, i10.ɵangular_packages_platform_server_platform_server_a, [i10.ɵServerRendererFactory2, i11.ɵAnimationEngine, i0.NgZone]), i0.ɵmpd(4352, i0.Testability, null, []), i0.ɵmpd(4608, i9.Meta, i9.Meta, [i8.DOCUMENT]), i0.ɵmpd(4608, i9.Title, i9.Title, [i8.DOCUMENT]), i0.ɵmpd(4608, i13.ɵangular_packages_forms_forms_i, i13.ɵangular_packages_forms_forms_i, []), i0.ɵmpd(4608, i13.FormBuilder, i13.FormBuilder, []), i0.ɵmpd(4608, i14.HttpXsrfTokenExtractor, i14.ɵangular_packages_common_http_http_g, [i8.DOCUMENT, i0.PLATFORM_ID, i14.ɵangular_packages_common_http_http_e]), i0.ɵmpd(4608, i14.ɵangular_packages_common_http_http_h, i14.ɵangular_packages_common_http_http_h, [i14.HttpXsrfTokenExtractor, i14.ɵangular_packages_common_http_http_f]), i0.ɵmpd(5120, i14.HTTP_INTERCEPTORS, function (p0_0) { return [p0_0]; }, [i14.ɵangular_packages_common_http_http_h]), i0.ɵmpd(4608, i14.XhrFactory, i10.ɵangular_packages_platform_server_platform_server_e, []), i0.ɵmpd(4608, i14.HttpXhrBackend, i14.HttpXhrBackend, [i14.XhrFactory]), i0.ɵmpd(6144, i14.HttpBackend, null, [i14.HttpXhrBackend]), i0.ɵmpd(5120, i14.HttpHandler, i10.ɵangular_packages_platform_server_platform_server_h, [i14.HttpBackend, i0.Injector]), i0.ɵmpd(4608, i14.HttpClient, i14.HttpClient, [i14.HttpHandler]), i0.ɵmpd(4608, i14.ɵangular_packages_common_http_http_d, i14.ɵangular_packages_common_http_http_d, []), i0.ɵmpd(5120, i15.ActivatedRoute, i15.ɵangular_packages_router_router_f, [i15.Router]), i0.ɵmpd(4608, i15.NoPreloading, i15.NoPreloading, []), i0.ɵmpd(6144, i15.PreloadingStrategy, null, [i15.NoPreloading]), i0.ɵmpd(135680, i15.RouterPreloader, i15.RouterPreloader, [i15.Router, i0.NgModuleFactoryLoader, i0.Compiler, i0.Injector, i15.PreloadingStrategy]), i0.ɵmpd(4608, i15.PreloadAllModules, i15.PreloadAllModules, []), i0.ɵmpd(5120, i15.ROUTER_INITIALIZER, i15.ɵangular_packages_router_router_i, [i15.ɵangular_packages_router_router_g]), i0.ɵmpd(5120, i0.APP_BOOTSTRAP_LISTENER, function (p0_0) { return [p0_0]; }, [i15.ROUTER_INITIALIZER]), i0.ɵmpd(4608, i16.AuthService, i16.AuthService, [i15.Router]), i0.ɵmpd(4608, i17.AuthGuard, i17.AuthGuard, [i16.AuthService]), i0.ɵmpd(4608, i18.UserService, i18.UserService, [i16.AuthService]), i0.ɵmpd(4608, i19.SocialService, i19.SocialService, [i16.AuthService, i0.NgZone]), i0.ɵmpd(4608, i20.BrowserXhr, i10.ɵangular_packages_platform_server_platform_server_e, []), i0.ɵmpd(4608, i20.ResponseOptions, i20.BaseResponseOptions, []), i0.ɵmpd(4608, i20.XSRFStrategy, i10.ɵangular_packages_platform_server_platform_server_f, []), i0.ɵmpd(4608, i20.XHRBackend, i20.XHRBackend, [i20.BrowserXhr, i20.ResponseOptions, i20.XSRFStrategy]), i0.ɵmpd(4608, i20.RequestOptions, i20.BaseRequestOptions, []), i0.ɵmpd(5120, i20.Http, i10.ɵangular_packages_platform_server_platform_server_g, [i20.XHRBackend, i20.RequestOptions]), i0.ɵmpd(4608, i21.AnimationBuilder, i12.ɵBrowserAnimationBuilder, [i0.RendererFactory2, i9.DOCUMENT]), i0.ɵmpd(4608, i8.ViewportScroller, i8.ɵNullViewportScroller, []), i0.ɵmpd(1073742336, i8.CommonModule, i8.CommonModule, []), i0.ɵmpd(1024, i0.ErrorHandler, i9.ɵangular_packages_platform_browser_platform_browser_a, []), i0.ɵmpd(1024, i0.NgProbeToken, function () { return [i15.ɵangular_packages_router_router_b()]; }, []), i0.ɵmpd(512, i15.ɵangular_packages_router_router_g, i15.ɵangular_packages_router_router_g, [i0.Injector]), i0.ɵmpd(256, i0.APP_ID, "my-login-app", []), i0.ɵmpd(2048, i9.ɵTRANSITION_ID, null, [i0.APP_ID]), i0.ɵmpd(1024, i0.APP_INITIALIZER, function (p0_0, p1_0, p2_0, p2_1, p2_2) { return [i9.ɵangular_packages_platform_browser_platform_browser_h(p0_0), i15.ɵangular_packages_router_router_h(p1_0), i9.ɵangular_packages_platform_browser_platform_browser_f(p2_0, p2_1, p2_2)]; }, [[2, i0.NgProbeToken], i15.ɵangular_packages_router_router_g, i9.ɵTRANSITION_ID, i8.DOCUMENT, i0.Injector]), i0.ɵmpd(512, i0.ApplicationInitStatus, i0.ApplicationInitStatus, [[2, i0.APP_INITIALIZER]]), i0.ɵmpd(131584, i0.ApplicationRef, i0.ApplicationRef, [i0.NgZone, i0.ɵConsole, i0.Injector, i0.ErrorHandler, i0.ComponentFactoryResolver, i0.ApplicationInitStatus]), i0.ɵmpd(1073742336, i0.ApplicationModule, i0.ApplicationModule, [i0.ApplicationRef]), i0.ɵmpd(1073742336, i9.BrowserModule, i9.BrowserModule, [[3, i9.BrowserModule]]), i0.ɵmpd(1073742336, i13.ɵangular_packages_forms_forms_bb, i13.ɵangular_packages_forms_forms_bb, []), i0.ɵmpd(1073742336, i13.FormsModule, i13.FormsModule, []), i0.ɵmpd(1073742336, i13.ReactiveFormsModule, i13.ReactiveFormsModule, []), i0.ɵmpd(1073742336, i14.HttpClientXsrfModule, i14.HttpClientXsrfModule, []), i0.ɵmpd(1073742336, i14.HttpClientModule, i14.HttpClientModule, []), i0.ɵmpd(1024, i15.ɵangular_packages_router_router_a, i15.ɵangular_packages_router_router_d, [[3, i15.Router]]), i0.ɵmpd(512, i15.UrlSerializer, i15.DefaultUrlSerializer, []), i0.ɵmpd(512, i15.ChildrenOutletContexts, i15.ChildrenOutletContexts, []), i0.ɵmpd(256, i15.ROUTER_CONFIGURATION, {}, []), i0.ɵmpd(1024, i8.LocationStrategy, i15.ɵangular_packages_router_router_c, [i8.PlatformLocation, [2, i8.APP_BASE_HREF], i15.ROUTER_CONFIGURATION]), i0.ɵmpd(512, i8.Location, i8.Location, [i8.LocationStrategy]), i0.ɵmpd(512, i0.Compiler, i0.Compiler, []), i0.ɵmpd(512, i0.NgModuleFactoryLoader, i22.ModuleMapNgFactoryLoader, [i0.Compiler, i22.MODULE_MAP]), i0.ɵmpd(1024, i15.ROUTES, function () { return [[{ path: "", redirectTo: "signin", pathMatch: "full" }, { path: "signin", component: i23.LoginComponent }, { path: "signup", component: i24.SignupComponent }, { path: "home", component: i25.HomeComponent }]]; }, []), i0.ɵmpd(1024, i15.Router, i15.ɵangular_packages_router_router_e, [i0.ApplicationRef, i15.UrlSerializer, i15.ChildrenOutletContexts, i8.Location, i0.Injector, i0.NgModuleFactoryLoader, i0.Compiler, i15.ROUTES, i15.ROUTER_CONFIGURATION, [2, i15.UrlHandlingStrategy], [2, i15.RouteReuseStrategy]]), i0.ɵmpd(1073742336, i15.RouterModule, i15.RouterModule, [[2, i15.ɵangular_packages_router_router_a], [2, i15.Router]]), i0.ɵmpd(1073742336, i26.AppRoutingModule, i26.AppRoutingModule, []), i0.ɵmpd(1073742336, i27.AppModule, i27.AppModule, []), i0.ɵmpd(1073742336, i20.HttpModule, i20.HttpModule, []), i0.ɵmpd(1073742336, i12.NoopAnimationsModule, i12.NoopAnimationsModule, []), i0.ɵmpd(1073742336, i10.ServerModule, i10.ServerModule, []), i0.ɵmpd(1073742336, i22.ModuleMapLoaderModule, i22.ModuleMapLoaderModule, []), i0.ɵmpd(1073742336, i1.AppServerModule, i1.AppServerModule, []), i0.ɵmpd(256, i0.ɵAPP_ROOT, true, []), i0.ɵmpd(256, i14.ɵangular_packages_common_http_http_e, "XSRF-TOKEN", []), i0.ɵmpd(256, i14.ɵangular_packages_common_http_http_f, "X-XSRF-TOKEN", []), i0.ɵmpd(256, i12.ANIMATION_MODULE_TYPE, "NoopAnimations", [])]); });
+var i17 = __webpack_require__(/*! ./routes/auth-guard.service */ "./src/app/routes/auth-guard.service.ts");
+var i18 = __webpack_require__(/*! ./auth/http.service */ "./src/app/auth/http.service.ts");
+var i19 = __webpack_require__(/*! ./shared/ms-user.service */ "./src/app/shared/ms-user.service.ts");
+var i20 = __webpack_require__(/*! ./shared/image.service */ "./src/app/shared/image.service.ts");
+var i21 = __webpack_require__(/*! ./shared/ms-user-detail.service */ "./src/app/shared/ms-user-detail.service.ts");
+var i22 = __webpack_require__(/*! ./shared/user.service */ "./src/app/shared/user.service.ts");
+var i23 = __webpack_require__(/*! ./auth/social.service */ "./src/app/auth/social.service.ts");
+var i24 = __webpack_require__(/*! ./auth/microsoft.service */ "./src/app/auth/microsoft.service.ts");
+var i25 = __webpack_require__(/*! @angular/http */ "@angular/http");
+var i26 = __webpack_require__(/*! @angular/animations */ "@angular/animations");
+var i27 = __webpack_require__(/*! @nguniversal/module-map-ngfactory-loader */ "@nguniversal/module-map-ngfactory-loader");
+var i28 = __webpack_require__(/*! ./auth/login/login.component */ "./src/app/auth/login/login.component.ts");
+var i29 = __webpack_require__(/*! ./auth/signup/signup.component */ "./src/app/auth/signup/signup.component.ts");
+var i30 = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
+var i31 = __webpack_require__(/*! ./routes/app-routing.module */ "./src/app/routes/app-routing.module.ts");
+var i32 = __webpack_require__(/*! ./app.module */ "./src/app/app.module.ts");
+var AppServerModuleNgFactory = i0.ɵcmf(i1.AppServerModule, [i2.AppComponent], function (_l) { return i0.ɵmod([i0.ɵmpd(512, i0.ComponentFactoryResolver, i0.ɵCodegenComponentFactoryResolver, [[8, [i3.ɵEmptyOutletComponentNgFactory, i4.LoginComponentNgFactory, i5.SignupComponentNgFactory, i6.HomeComponentNgFactory, i7.AppComponentNgFactory]], [3, i0.ComponentFactoryResolver], i0.NgModuleRef]), i0.ɵmpd(5120, i0.LOCALE_ID, i0.ɵangular_packages_core_core_l, [[3, i0.LOCALE_ID]]), i0.ɵmpd(4608, i8.NgLocalization, i8.NgLocaleLocalization, [i0.LOCALE_ID, [2, i8.ɵangular_packages_common_common_a]]), i0.ɵmpd(5120, i0.IterableDiffers, i0.ɵangular_packages_core_core_j, []), i0.ɵmpd(5120, i0.KeyValueDiffers, i0.ɵangular_packages_core_core_k, []), i0.ɵmpd(4608, i9.DomSanitizer, i9.ɵangular_packages_platform_browser_platform_browser_e, [i8.DOCUMENT]), i0.ɵmpd(6144, i0.Sanitizer, null, [i9.DomSanitizer]), i0.ɵmpd(4608, i9.HAMMER_GESTURE_CONFIG, i9.HammerGestureConfig, []), i0.ɵmpd(5120, i9.EVENT_MANAGER_PLUGINS, function (p0_0, p0_1, p0_2, p1_0, p2_0, p2_1, p2_2, p3_0) { return [new i9.ɵDomEventsPlugin(p0_0, p0_1, p0_2), new i9.ɵKeyEventsPlugin(p1_0), new i9.ɵHammerGesturesPlugin(p2_0, p2_1, p2_2), new i10.ɵangular_packages_platform_server_platform_server_d(p3_0)]; }, [i8.DOCUMENT, i0.NgZone, [2, i0.PLATFORM_ID], i8.DOCUMENT, i8.DOCUMENT, i9.HAMMER_GESTURE_CONFIG, i0.ɵConsole, i9.DOCUMENT]), i0.ɵmpd(4608, i9.EventManager, i9.EventManager, [i9.EVENT_MANAGER_PLUGINS, i0.NgZone]), i0.ɵmpd(135680, i9.ɵDomSharedStylesHost, i9.ɵDomSharedStylesHost, [i8.DOCUMENT]), i0.ɵmpd(4608, i9.ɵDomRendererFactory2, i9.ɵDomRendererFactory2, [i9.EventManager, i9.ɵDomSharedStylesHost]), i0.ɵmpd(4608, i10.ɵangular_packages_platform_server_platform_server_c, i10.ɵangular_packages_platform_server_platform_server_c, [i9.DOCUMENT, [2, i9.ɵTRANSITION_ID]]), i0.ɵmpd(6144, i9.ɵSharedStylesHost, null, [i10.ɵangular_packages_platform_server_platform_server_c]), i0.ɵmpd(4608, i10.ɵServerRendererFactory2, i10.ɵServerRendererFactory2, [i9.EventManager, i0.NgZone, i9.DOCUMENT, i9.ɵSharedStylesHost]), i0.ɵmpd(4608, i11.AnimationDriver, i11.ɵNoopAnimationDriver, []), i0.ɵmpd(5120, i11.ɵAnimationStyleNormalizer, i12.ɵangular_packages_platform_browser_animations_animations_c, []), i0.ɵmpd(4608, i11.ɵAnimationEngine, i12.ɵangular_packages_platform_browser_animations_animations_a, [i8.DOCUMENT, i11.AnimationDriver, i11.ɵAnimationStyleNormalizer]), i0.ɵmpd(5120, i0.RendererFactory2, i10.ɵangular_packages_platform_server_platform_server_a, [i10.ɵServerRendererFactory2, i11.ɵAnimationEngine, i0.NgZone]), i0.ɵmpd(4352, i0.Testability, null, []), i0.ɵmpd(4608, i9.Meta, i9.Meta, [i8.DOCUMENT]), i0.ɵmpd(4608, i9.Title, i9.Title, [i8.DOCUMENT]), i0.ɵmpd(4608, i13.ɵangular_packages_forms_forms_i, i13.ɵangular_packages_forms_forms_i, []), i0.ɵmpd(4608, i13.FormBuilder, i13.FormBuilder, []), i0.ɵmpd(4608, i14.HttpXsrfTokenExtractor, i14.ɵangular_packages_common_http_http_g, [i8.DOCUMENT, i0.PLATFORM_ID, i14.ɵangular_packages_common_http_http_e]), i0.ɵmpd(4608, i14.ɵangular_packages_common_http_http_h, i14.ɵangular_packages_common_http_http_h, [i14.HttpXsrfTokenExtractor, i14.ɵangular_packages_common_http_http_f]), i0.ɵmpd(5120, i14.HTTP_INTERCEPTORS, function (p0_0) { return [p0_0]; }, [i14.ɵangular_packages_common_http_http_h]), i0.ɵmpd(4608, i14.XhrFactory, i10.ɵangular_packages_platform_server_platform_server_e, []), i0.ɵmpd(4608, i14.HttpXhrBackend, i14.HttpXhrBackend, [i14.XhrFactory]), i0.ɵmpd(6144, i14.HttpBackend, null, [i14.HttpXhrBackend]), i0.ɵmpd(5120, i14.HttpHandler, i10.ɵangular_packages_platform_server_platform_server_h, [i14.HttpBackend, i0.Injector]), i0.ɵmpd(4608, i14.HttpClient, i14.HttpClient, [i14.HttpHandler]), i0.ɵmpd(4608, i14.ɵangular_packages_common_http_http_d, i14.ɵangular_packages_common_http_http_d, []), i0.ɵmpd(5120, i15.ActivatedRoute, i15.ɵangular_packages_router_router_f, [i15.Router]), i0.ɵmpd(4608, i15.NoPreloading, i15.NoPreloading, []), i0.ɵmpd(6144, i15.PreloadingStrategy, null, [i15.NoPreloading]), i0.ɵmpd(135680, i15.RouterPreloader, i15.RouterPreloader, [i15.Router, i0.NgModuleFactoryLoader, i0.Compiler, i0.Injector, i15.PreloadingStrategy]), i0.ɵmpd(4608, i15.PreloadAllModules, i15.PreloadAllModules, []), i0.ɵmpd(5120, i15.ROUTER_INITIALIZER, i15.ɵangular_packages_router_router_i, [i15.ɵangular_packages_router_router_g]), i0.ɵmpd(5120, i0.APP_BOOTSTRAP_LISTENER, function (p0_0) { return [p0_0]; }, [i15.ROUTER_INITIALIZER]), i0.ɵmpd(4608, i16.AuthService, i16.AuthService, [i15.Router]), i0.ɵmpd(4608, i17.AuthGuard, i17.AuthGuard, [i16.AuthService]), i0.ɵmpd(4608, i18.HttpService, i18.HttpService, []), i0.ɵmpd(4608, i19.MSuserService, i19.MSuserService, [i18.HttpService]), i0.ɵmpd(4608, i20.ImageService, i20.ImageService, [i14.HttpClient, i19.MSuserService]), i0.ɵmpd(4608, i21.MsUserDetailService, i21.MsUserDetailService, [i19.MSuserService, i20.ImageService]), i0.ɵmpd(4608, i22.UserService, i22.UserService, [i16.AuthService, i21.MsUserDetailService]), i0.ɵmpd(4608, i23.SocialService, i23.SocialService, [i16.AuthService, i0.NgZone]), i0.ɵmpd(4608, i24.MicrosoftService, i24.MicrosoftService, [i0.NgZone, i15.Router, i16.AuthService, i21.MsUserDetailService]), i0.ɵmpd(4608, i25.BrowserXhr, i10.ɵangular_packages_platform_server_platform_server_e, []), i0.ɵmpd(4608, i25.ResponseOptions, i25.BaseResponseOptions, []), i0.ɵmpd(4608, i25.XSRFStrategy, i10.ɵangular_packages_platform_server_platform_server_f, []), i0.ɵmpd(4608, i25.XHRBackend, i25.XHRBackend, [i25.BrowserXhr, i25.ResponseOptions, i25.XSRFStrategy]), i0.ɵmpd(4608, i25.RequestOptions, i25.BaseRequestOptions, []), i0.ɵmpd(5120, i25.Http, i10.ɵangular_packages_platform_server_platform_server_g, [i25.XHRBackend, i25.RequestOptions]), i0.ɵmpd(4608, i26.AnimationBuilder, i12.ɵBrowserAnimationBuilder, [i0.RendererFactory2, i9.DOCUMENT]), i0.ɵmpd(4608, i8.ViewportScroller, i8.ɵNullViewportScroller, []), i0.ɵmpd(1073742336, i8.CommonModule, i8.CommonModule, []), i0.ɵmpd(1024, i0.ErrorHandler, i9.ɵangular_packages_platform_browser_platform_browser_a, []), i0.ɵmpd(1024, i0.NgProbeToken, function () { return [i15.ɵangular_packages_router_router_b()]; }, []), i0.ɵmpd(512, i15.ɵangular_packages_router_router_g, i15.ɵangular_packages_router_router_g, [i0.Injector]), i0.ɵmpd(256, i0.APP_ID, "my-login-app", []), i0.ɵmpd(2048, i9.ɵTRANSITION_ID, null, [i0.APP_ID]), i0.ɵmpd(1024, i0.APP_INITIALIZER, function (p0_0, p1_0, p2_0, p2_1, p2_2) { return [i9.ɵangular_packages_platform_browser_platform_browser_h(p0_0), i15.ɵangular_packages_router_router_h(p1_0), i9.ɵangular_packages_platform_browser_platform_browser_f(p2_0, p2_1, p2_2)]; }, [[2, i0.NgProbeToken], i15.ɵangular_packages_router_router_g, i9.ɵTRANSITION_ID, i8.DOCUMENT, i0.Injector]), i0.ɵmpd(512, i0.ApplicationInitStatus, i0.ApplicationInitStatus, [[2, i0.APP_INITIALIZER]]), i0.ɵmpd(131584, i0.ApplicationRef, i0.ApplicationRef, [i0.NgZone, i0.ɵConsole, i0.Injector, i0.ErrorHandler, i0.ComponentFactoryResolver, i0.ApplicationInitStatus]), i0.ɵmpd(1073742336, i0.ApplicationModule, i0.ApplicationModule, [i0.ApplicationRef]), i0.ɵmpd(1073742336, i9.BrowserModule, i9.BrowserModule, [[3, i9.BrowserModule]]), i0.ɵmpd(1073742336, i13.ɵangular_packages_forms_forms_bb, i13.ɵangular_packages_forms_forms_bb, []), i0.ɵmpd(1073742336, i13.FormsModule, i13.FormsModule, []), i0.ɵmpd(1073742336, i13.ReactiveFormsModule, i13.ReactiveFormsModule, []), i0.ɵmpd(1073742336, i14.HttpClientXsrfModule, i14.HttpClientXsrfModule, []), i0.ɵmpd(1073742336, i14.HttpClientModule, i14.HttpClientModule, []), i0.ɵmpd(1024, i15.ɵangular_packages_router_router_a, i15.ɵangular_packages_router_router_d, [[3, i15.Router]]), i0.ɵmpd(512, i15.UrlSerializer, i15.DefaultUrlSerializer, []), i0.ɵmpd(512, i15.ChildrenOutletContexts, i15.ChildrenOutletContexts, []), i0.ɵmpd(256, i15.ROUTER_CONFIGURATION, {}, []), i0.ɵmpd(1024, i8.LocationStrategy, i15.ɵangular_packages_router_router_c, [i8.PlatformLocation, [2, i8.APP_BASE_HREF], i15.ROUTER_CONFIGURATION]), i0.ɵmpd(512, i8.Location, i8.Location, [i8.LocationStrategy]), i0.ɵmpd(512, i0.Compiler, i0.Compiler, []), i0.ɵmpd(512, i0.NgModuleFactoryLoader, i27.ModuleMapNgFactoryLoader, [i0.Compiler, i27.MODULE_MAP]), i0.ɵmpd(1024, i15.ROUTES, function () { return [[{ path: "", redirectTo: "signin", pathMatch: "full" }, { path: "signin", component: i28.LoginComponent }, { path: "signup", component: i29.SignupComponent }, { path: "home", component: i30.HomeComponent }]]; }, []), i0.ɵmpd(1024, i15.Router, i15.ɵangular_packages_router_router_e, [i0.ApplicationRef, i15.UrlSerializer, i15.ChildrenOutletContexts, i8.Location, i0.Injector, i0.NgModuleFactoryLoader, i0.Compiler, i15.ROUTES, i15.ROUTER_CONFIGURATION, [2, i15.UrlHandlingStrategy], [2, i15.RouteReuseStrategy]]), i0.ɵmpd(1073742336, i15.RouterModule, i15.RouterModule, [[2, i15.ɵangular_packages_router_router_a], [2, i15.Router]]), i0.ɵmpd(1073742336, i31.AppRoutingModule, i31.AppRoutingModule, []), i0.ɵmpd(1073742336, i32.AppModule, i32.AppModule, []), i0.ɵmpd(1073742336, i25.HttpModule, i25.HttpModule, []), i0.ɵmpd(1073742336, i12.NoopAnimationsModule, i12.NoopAnimationsModule, []), i0.ɵmpd(1073742336, i10.ServerModule, i10.ServerModule, []), i0.ɵmpd(1073742336, i27.ModuleMapLoaderModule, i27.ModuleMapLoaderModule, []), i0.ɵmpd(1073742336, i1.AppServerModule, i1.AppServerModule, []), i0.ɵmpd(256, i0.ɵAPP_ROOT, true, []), i0.ɵmpd(256, i14.ɵangular_packages_common_http_http_e, "XSRF-TOKEN", []), i0.ɵmpd(256, i14.ɵangular_packages_common_http_http_f, "X-XSRF-TOKEN", []), i0.ɵmpd(256, i12.ANIMATION_MODULE_TYPE, "NoopAnimations", [])]); });
 exports.AppServerModuleNgFactory = AppServerModuleNgFactory;
 
 
@@ -314,31 +292,6 @@ exports.AppServerModule = AppServerModule;
 
 /***/ }),
 
-/***/ "./src/app/auth-guard.service.ts":
-/*!***************************************!*\
-  !*** ./src/app/auth-guard.service.ts ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var auth_service_1 = __webpack_require__(/*! ./auth/auth.service */ "./src/app/auth/auth.service.ts");
-var AuthGuard = /** @class */ (function () {
-    function AuthGuard(authService) {
-        this.authService = authService;
-    }
-    AuthGuard.prototype.canActivate = function (route, state) {
-        return this.authService.isAuthenticated();
-    };
-    return AuthGuard;
-}());
-exports.AuthGuard = AuthGuard;
-
-
-/***/ }),
-
 /***/ "./src/app/auth/auth.service.ts":
 /*!**************************************!*\
   !*** ./src/app/auth/auth.service.ts ***!
@@ -351,35 +304,63 @@ exports.AuthGuard = AuthGuard;
 Object.defineProperty(exports, "__esModule", { value: true });
 var firebase = __webpack_require__(/*! firebase */ "firebase");
 var router_1 = __webpack_require__(/*! @angular/router */ "@angular/router");
+var hello = __webpack_require__(/*! hellojs/dist/hello.all.js */ "hellojs/dist/hello.all.js");
 var AuthService = /** @class */ (function () {
     function AuthService(router) {
         this.router = router;
         this.errorMessage = '';
         this.authenticated = false;
+        this.isFirebaseUsed = false;
+        this.isMicrosoftUsed = false;
     }
+    AuthService.prototype.setFirebaseUse = function () {
+        // console.log('setFirebaseUse');
+        this.isFirebaseUsed = true;
+        this.isMicrosoftUsed = false;
+    };
+    AuthService.prototype.setMSuse = function () {
+        //console.log('setMSuse');
+        this.isFirebaseUsed = false;
+        this.isMicrosoftUsed = true;
+    };
+    AuthService.prototype.getFirebaseUse = function () {
+        //console.log('FB Used? ', this.isFirebaseUsed)
+        return this.isFirebaseUsed;
+    };
+    AuthService.prototype.getMSuse = function () {
+        //console.log('MS USed? ', this.isMicrosoftUsed) ;
+        return this.isMicrosoftUsed;
+    };
     AuthService.prototype.signInUser = function (email, password) {
         var _this = this;
+        this.setFirebaseUse();
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(function (response) {
             _this.setAuthentication();
-            // console.log('User Logged in');
         })
             .catch(function (error) {
             _this.errorMessage = error.message;
-            //console.log('error : ', error.message);
         });
     };
-    AuthService.prototype.signUpUser = function (email, password) {
+    AuthService.prototype.signUpUser = function (email, password, name, photoUrl) {
         var _this = this;
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(function (response) {
-            // console.log('User created');
-            _this.router.navigate(['/']);
+            _this.setUserProfile(name, photoUrl);
         })
             .catch(function (error) {
             _this.setError(error.message);
-            // console.log('error : ', error.message);
         });
+    };
+    AuthService.prototype.setUserProfile = function (name, picUrl) {
+        var _this = this;
+        firebase.auth().currentUser
+            .updateProfile({
+            displayName: name,
+            photoURL: picUrl
+        }).then(function () {
+            _this.logOut();
+        }).catch(function (error) { return console.log(error); });
     };
     AuthService.prototype.setError = function (message) {
         this.errorMessage = message;
@@ -395,17 +376,54 @@ var AuthService = /** @class */ (function () {
         this.router.navigate(['/home']);
     };
     AuthService.prototype.logOut = function () {
-        firebase.auth().signOut();
+        if (this.isFirebaseUsed) {
+            firebase.auth().signOut();
+        }
+        else {
+            //Logout from Microsoft
+            hello('msft').logout();
+        }
+        this.isFirebaseUsed = false;
+        this.isMicrosoftUsed = false;
         this.authenticated = false;
         this.router.navigate(['/']);
+        //console.log('LOGOUT');
     };
     AuthService.prototype.deleteUser = function () {
+        if (this.isFirebaseUsed) {
+            firebase.auth().currentUser.delete();
+        }
         this.logOut();
-        firebase.auth().currentUser.delete();
     };
     return AuthService;
 }());
 exports.AuthService = AuthService;
+
+
+/***/ }),
+
+/***/ "./src/app/auth/http.service.ts":
+/*!**************************************!*\
+  !*** ./src/app/auth/http.service.ts ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var hello = __webpack_require__(/*! hellojs/dist/hello.all.js */ "hellojs/dist/hello.all.js");
+var HttpService = /** @class */ (function () {
+    function HttpService() {
+    }
+    HttpService.prototype.getAccessToken = function () {
+        var msft = hello('msft').getAuthResponse();
+        var accessToken = msft.access_token;
+        return accessToken;
+    };
+    return HttpService;
+}());
+exports.HttpService = HttpService;
 
 
 /***/ }),
@@ -452,15 +470,18 @@ var i0 = __webpack_require__(/*! ./login.component.css.shim.ngstyle */ "./src/ap
 var i1 = __webpack_require__(/*! @angular/core */ "@angular/core");
 var i2 = __webpack_require__(/*! @angular/forms */ "@angular/forms");
 var i3 = __webpack_require__(/*! @angular/common */ "@angular/common");
-var i4 = __webpack_require__(/*! ./login.component */ "./src/app/auth/login/login.component.ts");
-var i5 = __webpack_require__(/*! ../auth.service */ "./src/app/auth/auth.service.ts");
+var i4 = __webpack_require__(/*! ../social/social.component.ngfactory */ "./src/app/auth/social/social.component.ngfactory.js");
+var i5 = __webpack_require__(/*! ../social/social.component */ "./src/app/auth/social/social.component.ts");
 var i6 = __webpack_require__(/*! ../social.service */ "./src/app/auth/social.service.ts");
+var i7 = __webpack_require__(/*! ../microsoft.service */ "./src/app/auth/microsoft.service.ts");
+var i8 = __webpack_require__(/*! ./login.component */ "./src/app/auth/login/login.component.ts");
+var i9 = __webpack_require__(/*! ../auth.service */ "./src/app/auth/auth.service.ts");
 var styles_LoginComponent = [i0.styles];
 var RenderType_LoginComponent = i1.ɵcrt({ encapsulation: 0, styles: styles_LoginComponent, data: {} });
 exports.RenderType_LoginComponent = RenderType_LoginComponent;
 function View_LoginComponent_1(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 1, "span", [["class", "help-block text-warning"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["Please enter a valid email!"]))], null, null); }
 function View_LoginComponent_2(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 1, "span", [["class", "help-block text-warning"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, [" Password should be atleast 6 characters long "]))], null, null); }
-function View_LoginComponent_0(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 55, "div", [["class", "container"], ["style", "margin-top:30px"]], null, null, null, null, null)), (_l()(), i1.ɵeld(1, 0, null, null, 54, "div", [["class", "row"]], null, null, null, null, null)), (_l()(), i1.ɵeld(2, 0, null, null, 37, "div", [["class", "col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2"]], null, null, null, null, null)), (_l()(), i1.ɵeld(3, 0, null, null, 36, "form", [["novalidate", ""]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngSubmit"], [null, "submit"], [null, "reset"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("submit" === en)) {
+function View_LoginComponent_0(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 42, "div", [["class", "container"], ["style", "margin-top:30px"]], null, null, null, null, null)), (_l()(), i1.ɵeld(1, 0, null, null, 41, "div", [["class", "row"]], null, null, null, null, null)), (_l()(), i1.ɵeld(2, 0, null, null, 37, "div", [["class", "col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2"]], null, null, null, null, null)), (_l()(), i1.ɵeld(3, 0, null, null, 36, "form", [["novalidate", ""]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngSubmit"], [null, "submit"], [null, "reset"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("submit" === en)) {
         var pd_0 = (i1.ɵnov(_v, 5).onSubmit($event) !== false);
         ad = (pd_0 && ad);
     } if (("reset" === en)) {
@@ -493,23 +514,11 @@ function View_LoginComponent_0(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0,
     } if (("compositionend" === en)) {
         var pd_3 = (i1.ɵnov(_v, 25)._compositionEnd($event.target.value) !== false);
         ad = (pd_3 && ad);
-    } return ad; }, null, null)), i1.ɵdid(25, 16384, null, 0, i2.DefaultValueAccessor, [i1.Renderer2, i1.ElementRef, [2, i2.COMPOSITION_BUFFER_MODE]], null, null), i1.ɵdid(26, 16384, null, 0, i2.RequiredValidator, [], { required: [0, "required"] }, null), i1.ɵprd(1024, null, i2.NG_VALIDATORS, function (p0_0) { return [p0_0]; }, [i2.RequiredValidator]), i1.ɵprd(1024, null, i2.NG_VALUE_ACCESSOR, function (p0_0) { return [p0_0]; }, [i2.DefaultValueAccessor]), i1.ɵdid(29, 671744, [["password", 4]], 0, i2.NgModel, [[2, i2.ControlContainer], [6, i2.NG_VALIDATORS], [8, null], [6, i2.NG_VALUE_ACCESSOR]], { name: [0, "name"], model: [1, "model"] }, null), i1.ɵprd(2048, null, i2.NgControl, null, [i2.NgModel]), i1.ɵdid(31, 16384, null, 0, i2.NgControlStatus, [[4, i2.NgControl]], null, null), (_l()(), i1.ɵand(16777216, null, null, 1, null, View_LoginComponent_2)), i1.ɵdid(33, 16384, null, 0, i3.NgIf, [i1.ViewContainerRef, i1.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i1.ɵeld(34, 0, null, null, 1, "button", [["class", "btn btn-primary"], ["type", "submit"]], [[8, "disabled", 0]], null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["Login"])), (_l()(), i1.ɵeld(36, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), i1.ɵeld(37, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), i1.ɵeld(38, 0, null, null, 1, "div", [["style", "color: red"]], null, null, null, null, null)), (_l()(), i1.ɵted(39, null, [" ", " "])), (_l()(), i1.ɵeld(40, 0, null, null, 15, "div", [["class", "col-xs-5 col-sm-3"]], null, null, null, null, null)), (_l()(), i1.ɵeld(41, 0, null, null, 14, "div", [], null, null, null, null, null)), (_l()(), i1.ɵeld(42, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, [" Login using Social Media"])), (_l()(), i1.ɵeld(44, 0, null, null, 2, "a", [["class", "btn btn-block btn-social btn-google"], ["style", "color: white"]], null, [[null, "click"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("click" === en)) {
-        var pd_0 = (_co.socialSign("google") !== false);
-        ad = (pd_0 && ad);
-    } return ad; }, null, null)), (_l()(), i1.ɵeld(45, 0, null, null, 0, "span", [["class", "fa fa-google"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, [" Sign in with Google "])), (_l()(), i1.ɵeld(47, 0, null, null, 2, "a", [["class", "btn btn-block btn-social btn-facebook"], ["style", "color: white"]], null, [[null, "click"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("click" === en)) {
-        var pd_0 = (_co.socialSign("facebook") !== false);
-        ad = (pd_0 && ad);
-    } return ad; }, null, null)), (_l()(), i1.ɵeld(48, 0, null, null, 0, "span", [["class", "fa fa-facebook"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, [" Sign in with Facebook "])), (_l()(), i1.ɵeld(50, 0, null, null, 2, "a", [["class", "btn btn-block btn-social btn-twitter"], ["style", "color: white"]], null, [[null, "click"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("click" === en)) {
-        var pd_0 = (_co.socialSign("twitter") !== false);
-        ad = (pd_0 && ad);
-    } return ad; }, null, null)), (_l()(), i1.ɵeld(51, 0, null, null, 0, "span", [["class", "fa fa-twitter"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, [" Sign in with Twitter "])), (_l()(), i1.ɵeld(53, 0, null, null, 2, "a", [["class", "btn btn-block btn-social btn-github"], ["style", "color: white"]], null, [[null, "click"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("click" === en)) {
-        var pd_0 = (_co.socialSign("github") !== false);
-        ad = (pd_0 && ad);
-    } return ad; }, null, null)), (_l()(), i1.ɵeld(54, 0, null, null, 0, "span", [["class", "fa fa-github"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, [" Sign in with Github "]))], function (_ck, _v) { var currVal_15 = ""; _ck(_v, 13, 0, currVal_15); var currVal_16 = "email"; var currVal_17 = ""; _ck(_v, 16, 0, currVal_16, currVal_17); var currVal_18 = (!i1.ɵnov(_v, 16).valid && i1.ɵnov(_v, 16).touched); _ck(_v, 20, 0, currVal_18); var currVal_27 = ""; _ck(_v, 26, 0, currVal_27); var currVal_28 = "password"; var currVal_29 = ""; _ck(_v, 29, 0, currVal_28, currVal_29); var currVal_30 = (!i1.ɵnov(_v, 29).valid && i1.ɵnov(_v, 29).touched); _ck(_v, 33, 0, currVal_30); }, function (_ck, _v) { var _co = _v.component; var currVal_0 = i1.ɵnov(_v, 7).ngClassUntouched; var currVal_1 = i1.ɵnov(_v, 7).ngClassTouched; var currVal_2 = i1.ɵnov(_v, 7).ngClassPristine; var currVal_3 = i1.ɵnov(_v, 7).ngClassDirty; var currVal_4 = i1.ɵnov(_v, 7).ngClassValid; var currVal_5 = i1.ɵnov(_v, 7).ngClassInvalid; var currVal_6 = i1.ɵnov(_v, 7).ngClassPending; _ck(_v, 3, 0, currVal_0, currVal_1, currVal_2, currVal_3, currVal_4, currVal_5, currVal_6); var currVal_7 = (i1.ɵnov(_v, 13).required ? "" : null); var currVal_8 = i1.ɵnov(_v, 18).ngClassUntouched; var currVal_9 = i1.ɵnov(_v, 18).ngClassTouched; var currVal_10 = i1.ɵnov(_v, 18).ngClassPristine; var currVal_11 = i1.ɵnov(_v, 18).ngClassDirty; var currVal_12 = i1.ɵnov(_v, 18).ngClassValid; var currVal_13 = i1.ɵnov(_v, 18).ngClassInvalid; var currVal_14 = i1.ɵnov(_v, 18).ngClassPending; _ck(_v, 11, 0, currVal_7, currVal_8, currVal_9, currVal_10, currVal_11, currVal_12, currVal_13, currVal_14); var currVal_19 = (i1.ɵnov(_v, 26).required ? "" : null); var currVal_20 = i1.ɵnov(_v, 31).ngClassUntouched; var currVal_21 = i1.ɵnov(_v, 31).ngClassTouched; var currVal_22 = i1.ɵnov(_v, 31).ngClassPristine; var currVal_23 = i1.ɵnov(_v, 31).ngClassDirty; var currVal_24 = i1.ɵnov(_v, 31).ngClassValid; var currVal_25 = i1.ɵnov(_v, 31).ngClassInvalid; var currVal_26 = i1.ɵnov(_v, 31).ngClassPending; _ck(_v, 24, 0, currVal_19, currVal_20, currVal_21, currVal_22, currVal_23, currVal_24, currVal_25, currVal_26); var currVal_31 = !i1.ɵnov(_v, 5).valid; _ck(_v, 34, 0, currVal_31); var currVal_32 = _co.error; _ck(_v, 39, 0, currVal_32); }); }
+    } return ad; }, null, null)), i1.ɵdid(25, 16384, null, 0, i2.DefaultValueAccessor, [i1.Renderer2, i1.ElementRef, [2, i2.COMPOSITION_BUFFER_MODE]], null, null), i1.ɵdid(26, 16384, null, 0, i2.RequiredValidator, [], { required: [0, "required"] }, null), i1.ɵprd(1024, null, i2.NG_VALIDATORS, function (p0_0) { return [p0_0]; }, [i2.RequiredValidator]), i1.ɵprd(1024, null, i2.NG_VALUE_ACCESSOR, function (p0_0) { return [p0_0]; }, [i2.DefaultValueAccessor]), i1.ɵdid(29, 671744, [["password", 4]], 0, i2.NgModel, [[2, i2.ControlContainer], [6, i2.NG_VALIDATORS], [8, null], [6, i2.NG_VALUE_ACCESSOR]], { name: [0, "name"], model: [1, "model"] }, null), i1.ɵprd(2048, null, i2.NgControl, null, [i2.NgModel]), i1.ɵdid(31, 16384, null, 0, i2.NgControlStatus, [[4, i2.NgControl]], null, null), (_l()(), i1.ɵand(16777216, null, null, 1, null, View_LoginComponent_2)), i1.ɵdid(33, 16384, null, 0, i3.NgIf, [i1.ViewContainerRef, i1.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i1.ɵeld(34, 0, null, null, 1, "button", [["class", "btn btn-primary"], ["type", "submit"]], [[8, "disabled", 0]], null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["Login"])), (_l()(), i1.ɵeld(36, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), i1.ɵeld(37, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), i1.ɵeld(38, 0, null, null, 1, "div", [["style", "color: red"]], null, null, null, null, null)), (_l()(), i1.ɵted(39, null, [" ", " "])), (_l()(), i1.ɵeld(40, 0, null, null, 2, "div", [["class", "col-xs-5 col-sm-3"]], null, null, null, null, null)), (_l()(), i1.ɵeld(41, 0, null, null, 1, "app-social", [], null, null, null, i4.View_SocialComponent_0, i4.RenderType_SocialComponent)), i1.ɵdid(42, 114688, null, 0, i5.SocialComponent, [i6.SocialService, i7.MicrosoftService], null, null)], function (_ck, _v) { var currVal_15 = ""; _ck(_v, 13, 0, currVal_15); var currVal_16 = "email"; var currVal_17 = ""; _ck(_v, 16, 0, currVal_16, currVal_17); var currVal_18 = (!i1.ɵnov(_v, 16).valid && i1.ɵnov(_v, 16).touched); _ck(_v, 20, 0, currVal_18); var currVal_27 = ""; _ck(_v, 26, 0, currVal_27); var currVal_28 = "password"; var currVal_29 = ""; _ck(_v, 29, 0, currVal_28, currVal_29); var currVal_30 = (!i1.ɵnov(_v, 29).valid && i1.ɵnov(_v, 29).touched); _ck(_v, 33, 0, currVal_30); _ck(_v, 42, 0); }, function (_ck, _v) { var _co = _v.component; var currVal_0 = i1.ɵnov(_v, 7).ngClassUntouched; var currVal_1 = i1.ɵnov(_v, 7).ngClassTouched; var currVal_2 = i1.ɵnov(_v, 7).ngClassPristine; var currVal_3 = i1.ɵnov(_v, 7).ngClassDirty; var currVal_4 = i1.ɵnov(_v, 7).ngClassValid; var currVal_5 = i1.ɵnov(_v, 7).ngClassInvalid; var currVal_6 = i1.ɵnov(_v, 7).ngClassPending; _ck(_v, 3, 0, currVal_0, currVal_1, currVal_2, currVal_3, currVal_4, currVal_5, currVal_6); var currVal_7 = (i1.ɵnov(_v, 13).required ? "" : null); var currVal_8 = i1.ɵnov(_v, 18).ngClassUntouched; var currVal_9 = i1.ɵnov(_v, 18).ngClassTouched; var currVal_10 = i1.ɵnov(_v, 18).ngClassPristine; var currVal_11 = i1.ɵnov(_v, 18).ngClassDirty; var currVal_12 = i1.ɵnov(_v, 18).ngClassValid; var currVal_13 = i1.ɵnov(_v, 18).ngClassInvalid; var currVal_14 = i1.ɵnov(_v, 18).ngClassPending; _ck(_v, 11, 0, currVal_7, currVal_8, currVal_9, currVal_10, currVal_11, currVal_12, currVal_13, currVal_14); var currVal_19 = (i1.ɵnov(_v, 26).required ? "" : null); var currVal_20 = i1.ɵnov(_v, 31).ngClassUntouched; var currVal_21 = i1.ɵnov(_v, 31).ngClassTouched; var currVal_22 = i1.ɵnov(_v, 31).ngClassPristine; var currVal_23 = i1.ɵnov(_v, 31).ngClassDirty; var currVal_24 = i1.ɵnov(_v, 31).ngClassValid; var currVal_25 = i1.ɵnov(_v, 31).ngClassInvalid; var currVal_26 = i1.ɵnov(_v, 31).ngClassPending; _ck(_v, 24, 0, currVal_19, currVal_20, currVal_21, currVal_22, currVal_23, currVal_24, currVal_25, currVal_26); var currVal_31 = !i1.ɵnov(_v, 5).valid; _ck(_v, 34, 0, currVal_31); var currVal_32 = _co.error; _ck(_v, 39, 0, currVal_32); }); }
 exports.View_LoginComponent_0 = View_LoginComponent_0;
-function View_LoginComponent_Host_0(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 1, "app-login", [], null, null, null, View_LoginComponent_0, RenderType_LoginComponent)), i1.ɵdid(1, 114688, null, 0, i4.LoginComponent, [i5.AuthService, i6.SocialService], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+function View_LoginComponent_Host_0(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 1, "app-login", [], null, null, null, View_LoginComponent_0, RenderType_LoginComponent)), i1.ɵdid(1, 114688, null, 0, i8.LoginComponent, [i9.AuthService], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 exports.View_LoginComponent_Host_0 = View_LoginComponent_Host_0;
-var LoginComponentNgFactory = i1.ɵccf("app-login", i4.LoginComponent, View_LoginComponent_Host_0, {}, {}, []);
+var LoginComponentNgFactory = i1.ɵccf("app-login", i8.LoginComponent, View_LoginComponent_Host_0, {}, {}, []);
 exports.LoginComponentNgFactory = LoginComponentNgFactory;
 
 
@@ -527,11 +536,9 @@ exports.LoginComponentNgFactory = LoginComponentNgFactory;
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(/*! @angular/core */ "@angular/core");
 var auth_service_1 = __webpack_require__(/*! ../auth.service */ "./src/app/auth/auth.service.ts");
-var social_service_1 = __webpack_require__(/*! ../social.service */ "./src/app/auth/social.service.ts");
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent(authService, socialService) {
+    function LoginComponent(authService) {
         this.authService = authService;
-        this.socialService = socialService;
     }
     LoginComponent.prototype.ngOnInit = function () {
         this.authService.errorMessage = '';
@@ -547,16 +554,71 @@ var LoginComponent = /** @class */ (function () {
             _this.error = _this.authService.getError();
         }, 500);
     };
-    LoginComponent.prototype.socialSign = function (provider) {
-        // console.log(provider) ;
-        this.socialService.getProvider(provider);
-        // setTimeout(() => {
-        //   this.error = this.authService.getError();
-        // }, 5000);
-    };
     return LoginComponent;
 }());
 exports.LoginComponent = LoginComponent;
+
+
+/***/ }),
+
+/***/ "./src/app/auth/microsoft.service.ts":
+/*!*******************************************!*\
+  !*** ./src/app/auth/microsoft.service.ts ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(/*! @angular/core */ "@angular/core");
+var router_1 = __webpack_require__(/*! @angular/router */ "@angular/router");
+var hello = __webpack_require__(/*! hellojs/dist/hello.all.js */ "hellojs/dist/hello.all.js");
+var app_config_1 = __webpack_require__(/*! ../shared/app.config */ "./src/app/shared/app.config.ts");
+var auth_service_1 = __webpack_require__(/*! ./auth.service */ "./src/app/auth/auth.service.ts");
+var ms_user_detail_service_1 = __webpack_require__(/*! ../shared/ms-user-detail.service */ "./src/app/shared/ms-user-detail.service.ts");
+// HANDLES LOGIN 
+var MicrosoftService = /** @class */ (function () {
+    function MicrosoftService(zone, router, authService, userDetailMs) {
+        this.zone = zone;
+        this.router = router;
+        this.authService = authService;
+        this.userDetailMs = userDetailMs;
+    }
+    //Initializing Microsoft Developer App to use for Authentication
+    MicrosoftService.prototype.initAuth = function () {
+        hello.init({
+            msft: {
+                id: app_config_1.config.appId,
+                oauth: {
+                    version: 2,
+                    auth: 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize'
+                },
+                scope_delim: ' ',
+                form: false
+            },
+        }
+        // ,
+        // { redirect_uri:  ''  //window.location.href 
+        // }
+        );
+        // console.log('Microsoft Initialized')
+    };
+    //Login
+    MicrosoftService.prototype.login = function () {
+        //console.log('set MSUSE');
+        var _this = this;
+        this.authService.setMSuse();
+        hello('msft').login({ scope: app_config_1.config.scope }).then(function () {
+            _this.zone.run(function () {
+                _this.userDetailMs.getMeMs();
+                _this.authService.setAuthentication();
+            });
+        }, function (e) { return console.error(e.error.message); });
+    };
+    return MicrosoftService;
+}());
+exports.MicrosoftService = MicrosoftService;
 
 
 /***/ }),
@@ -608,42 +670,68 @@ var i5 = __webpack_require__(/*! ../auth.service */ "./src/app/auth/auth.service
 var styles_SignupComponent = [i0.styles];
 var RenderType_SignupComponent = i1.ɵcrt({ encapsulation: 0, styles: styles_SignupComponent, data: {} });
 exports.RenderType_SignupComponent = RenderType_SignupComponent;
-function View_SignupComponent_1(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 1, "span", [["class", "help-block text-warning"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["Please enter a valid email!"]))], null, null); }
-function View_SignupComponent_2(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 1, "span", [["class", "help-block text-warning"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, [" Password should be atleast 6 characters long "]))], null, null); }
-function View_SignupComponent_0(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 38, "div", [["class", "row container align-content-center"]], null, null, null, null, null)), (_l()(), i1.ɵeld(1, 0, null, null, 37, "div", [["class", "col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2"]], null, null, null, null, null)), (_l()(), i1.ɵeld(2, 0, null, null, 36, "form", [["novalidate", ""]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngSubmit"], [null, "submit"], [null, "reset"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("submit" === en)) {
-        var pd_0 = (i1.ɵnov(_v, 4).onSubmit($event) !== false);
+function View_SignupComponent_1(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 1, "span", [["class", "help-block text-warning"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["Please enter a valid User Name!"]))], null, null); }
+function View_SignupComponent_2(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 1, "span", [["class", "help-block text-warning"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["Please enter a valid Url!"]))], null, null); }
+function View_SignupComponent_3(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 1, "span", [["class", "help-block text-warning"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["Please enter a valid email!"]))], null, null); }
+function View_SignupComponent_4(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 1, "span", [["class", "help-block text-warning"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, [" Password should be atleast 6 characters long "]))], null, null); }
+function View_SignupComponent_0(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 69, "div", [["class", "container"], ["style", "margin-top:30px"]], null, null, null, null, null)), (_l()(), i1.ɵeld(1, 0, null, null, 68, "div", [["class", "row"]], null, null, null, null, null)), (_l()(), i1.ɵeld(2, 0, null, null, 67, "div", [["class", "col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2"]], null, null, null, null, null)), (_l()(), i1.ɵeld(3, 0, null, null, 66, "form", [["novalidate", ""]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngSubmit"], [null, "submit"], [null, "reset"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("submit" === en)) {
+        var pd_0 = (i1.ɵnov(_v, 5).onSubmit($event) !== false);
         ad = (pd_0 && ad);
     } if (("reset" === en)) {
-        var pd_1 = (i1.ɵnov(_v, 4).onReset() !== false);
+        var pd_1 = (i1.ɵnov(_v, 5).onReset() !== false);
         ad = (pd_1 && ad);
     } if (("ngSubmit" === en)) {
-        var pd_2 = (_co.onSubmit(i1.ɵnov(_v, 4)) !== false);
+        var pd_2 = (_co.onSubmit(i1.ɵnov(_v, 5)) !== false);
         ad = (pd_2 && ad);
-    } return ad; }, null, null)), i1.ɵdid(3, 16384, null, 0, i2.ɵangular_packages_forms_forms_bg, [], null, null), i1.ɵdid(4, 4210688, [["f", 4]], 0, i2.NgForm, [[8, null], [8, null]], null, { ngSubmit: "ngSubmit" }), i1.ɵprd(2048, null, i2.ControlContainer, null, [i2.NgForm]), i1.ɵdid(6, 16384, null, 0, i2.NgControlStatusGroup, [[4, i2.ControlContainer]], null, null), (_l()(), i1.ɵeld(7, 0, null, null, 12, "div", [["class", "form-group"]], null, null, null, null, null)), (_l()(), i1.ɵeld(8, 0, null, null, 1, "label", [["for", "email"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["Email"])), (_l()(), i1.ɵeld(10, 0, null, null, 7, "input", [["class", "form-control"], ["id", "email"], ["name", "email"], ["ngModel", ""], ["required", ""], ["type", "text"]], [[1, "required", 0], [2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"]], function (_v, en, $event) { var ad = true; if (("input" === en)) {
-        var pd_0 = (i1.ɵnov(_v, 11)._handleInput($event.target.value) !== false);
+    } return ad; }, null, null)), i1.ɵdid(4, 16384, null, 0, i2.ɵangular_packages_forms_forms_bg, [], null, null), i1.ɵdid(5, 4210688, [["f", 4]], 0, i2.NgForm, [[8, null], [8, null]], null, { ngSubmit: "ngSubmit" }), i1.ɵprd(2048, null, i2.ControlContainer, null, [i2.NgForm]), i1.ɵdid(7, 16384, null, 0, i2.NgControlStatusGroup, [[4, i2.ControlContainer]], null, null), (_l()(), i1.ɵeld(8, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["Profile Information"])), (_l()(), i1.ɵeld(10, 0, null, null, 12, "div", [["class", "form-group"]], null, null, null, null, null)), (_l()(), i1.ɵeld(11, 0, null, null, 1, "label", [["for", "name"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["Name"])), (_l()(), i1.ɵeld(13, 0, null, null, 7, "input", [["class", "form-control"], ["id", "name"], ["name", "name"], ["ngModel", ""], ["required", ""], ["type", "text"]], [[1, "required", 0], [2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"]], function (_v, en, $event) { var ad = true; if (("input" === en)) {
+        var pd_0 = (i1.ɵnov(_v, 14)._handleInput($event.target.value) !== false);
         ad = (pd_0 && ad);
     } if (("blur" === en)) {
-        var pd_1 = (i1.ɵnov(_v, 11).onTouched() !== false);
+        var pd_1 = (i1.ɵnov(_v, 14).onTouched() !== false);
         ad = (pd_1 && ad);
     } if (("compositionstart" === en)) {
-        var pd_2 = (i1.ɵnov(_v, 11)._compositionStart() !== false);
+        var pd_2 = (i1.ɵnov(_v, 14)._compositionStart() !== false);
         ad = (pd_2 && ad);
     } if (("compositionend" === en)) {
-        var pd_3 = (i1.ɵnov(_v, 11)._compositionEnd($event.target.value) !== false);
+        var pd_3 = (i1.ɵnov(_v, 14)._compositionEnd($event.target.value) !== false);
         ad = (pd_3 && ad);
-    } return ad; }, null, null)), i1.ɵdid(11, 16384, null, 0, i2.DefaultValueAccessor, [i1.Renderer2, i1.ElementRef, [2, i2.COMPOSITION_BUFFER_MODE]], null, null), i1.ɵdid(12, 16384, null, 0, i2.RequiredValidator, [], { required: [0, "required"] }, null), i1.ɵprd(1024, null, i2.NG_VALIDATORS, function (p0_0) { return [p0_0]; }, [i2.RequiredValidator]), i1.ɵprd(1024, null, i2.NG_VALUE_ACCESSOR, function (p0_0) { return [p0_0]; }, [i2.DefaultValueAccessor]), i1.ɵdid(15, 671744, [["email", 4]], 0, i2.NgModel, [[2, i2.ControlContainer], [6, i2.NG_VALIDATORS], [8, null], [6, i2.NG_VALUE_ACCESSOR]], { name: [0, "name"], model: [1, "model"] }, null), i1.ɵprd(2048, null, i2.NgControl, null, [i2.NgModel]), i1.ɵdid(17, 16384, null, 0, i2.NgControlStatus, [[4, i2.NgControl]], null, null), (_l()(), i1.ɵand(16777216, null, null, 1, null, View_SignupComponent_1)), i1.ɵdid(19, 16384, null, 0, i3.NgIf, [i1.ViewContainerRef, i1.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i1.ɵeld(20, 0, null, null, 12, "div", [["class", "form-group"]], null, null, null, null, null)), (_l()(), i1.ɵeld(21, 0, null, null, 1, "label", [["for", "password"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["Password"])), (_l()(), i1.ɵeld(23, 0, null, null, 7, "input", [["class", "form-control"], ["id", "password"], ["name", "password"], ["ngModel", ""], ["required", ""], ["type", "password"]], [[1, "required", 0], [2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"]], function (_v, en, $event) { var ad = true; if (("input" === en)) {
-        var pd_0 = (i1.ɵnov(_v, 24)._handleInput($event.target.value) !== false);
+    } return ad; }, null, null)), i1.ɵdid(14, 16384, null, 0, i2.DefaultValueAccessor, [i1.Renderer2, i1.ElementRef, [2, i2.COMPOSITION_BUFFER_MODE]], null, null), i1.ɵdid(15, 16384, null, 0, i2.RequiredValidator, [], { required: [0, "required"] }, null), i1.ɵprd(1024, null, i2.NG_VALIDATORS, function (p0_0) { return [p0_0]; }, [i2.RequiredValidator]), i1.ɵprd(1024, null, i2.NG_VALUE_ACCESSOR, function (p0_0) { return [p0_0]; }, [i2.DefaultValueAccessor]), i1.ɵdid(18, 671744, [["name", 4]], 0, i2.NgModel, [[2, i2.ControlContainer], [6, i2.NG_VALIDATORS], [8, null], [6, i2.NG_VALUE_ACCESSOR]], { name: [0, "name"], model: [1, "model"] }, null), i1.ɵprd(2048, null, i2.NgControl, null, [i2.NgModel]), i1.ɵdid(20, 16384, null, 0, i2.NgControlStatus, [[4, i2.NgControl]], null, null), (_l()(), i1.ɵand(16777216, null, null, 1, null, View_SignupComponent_1)), i1.ɵdid(22, 16384, null, 0, i3.NgIf, [i1.ViewContainerRef, i1.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i1.ɵeld(23, 0, null, null, 12, "div", [["class", "form-group"]], null, null, null, null, null)), (_l()(), i1.ɵeld(24, 0, null, null, 1, "label", [["for", "photo"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["Photo Url"])), (_l()(), i1.ɵeld(26, 0, null, null, 7, "input", [["class", "form-control"], ["id", "photo"], ["name", "photo"], ["ngModel", ""], ["required", ""], ["type", "text"]], [[1, "required", 0], [2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"]], function (_v, en, $event) { var ad = true; if (("input" === en)) {
+        var pd_0 = (i1.ɵnov(_v, 27)._handleInput($event.target.value) !== false);
         ad = (pd_0 && ad);
     } if (("blur" === en)) {
-        var pd_1 = (i1.ɵnov(_v, 24).onTouched() !== false);
+        var pd_1 = (i1.ɵnov(_v, 27).onTouched() !== false);
         ad = (pd_1 && ad);
     } if (("compositionstart" === en)) {
-        var pd_2 = (i1.ɵnov(_v, 24)._compositionStart() !== false);
+        var pd_2 = (i1.ɵnov(_v, 27)._compositionStart() !== false);
         ad = (pd_2 && ad);
     } if (("compositionend" === en)) {
-        var pd_3 = (i1.ɵnov(_v, 24)._compositionEnd($event.target.value) !== false);
+        var pd_3 = (i1.ɵnov(_v, 27)._compositionEnd($event.target.value) !== false);
         ad = (pd_3 && ad);
-    } return ad; }, null, null)), i1.ɵdid(24, 16384, null, 0, i2.DefaultValueAccessor, [i1.Renderer2, i1.ElementRef, [2, i2.COMPOSITION_BUFFER_MODE]], null, null), i1.ɵdid(25, 16384, null, 0, i2.RequiredValidator, [], { required: [0, "required"] }, null), i1.ɵprd(1024, null, i2.NG_VALIDATORS, function (p0_0) { return [p0_0]; }, [i2.RequiredValidator]), i1.ɵprd(1024, null, i2.NG_VALUE_ACCESSOR, function (p0_0) { return [p0_0]; }, [i2.DefaultValueAccessor]), i1.ɵdid(28, 671744, [["password", 4]], 0, i2.NgModel, [[2, i2.ControlContainer], [6, i2.NG_VALIDATORS], [8, null], [6, i2.NG_VALUE_ACCESSOR]], { name: [0, "name"], model: [1, "model"] }, null), i1.ɵprd(2048, null, i2.NgControl, null, [i2.NgModel]), i1.ɵdid(30, 16384, null, 0, i2.NgControlStatus, [[4, i2.NgControl]], null, null), (_l()(), i1.ɵand(16777216, null, null, 1, null, View_SignupComponent_2)), i1.ɵdid(32, 16384, null, 0, i3.NgIf, [i1.ViewContainerRef, i1.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i1.ɵeld(33, 0, null, null, 1, "button", [["class", "btn btn-primary"], ["type", "submit"]], [[8, "disabled", 0]], null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["SignUp"])), (_l()(), i1.ɵeld(35, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), i1.ɵeld(36, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), i1.ɵeld(37, 0, null, null, 1, "div", [["style", "color: red"]], null, null, null, null, null)), (_l()(), i1.ɵted(38, null, [" ", " "]))], function (_ck, _v) { var currVal_15 = ""; _ck(_v, 12, 0, currVal_15); var currVal_16 = "email"; var currVal_17 = ""; _ck(_v, 15, 0, currVal_16, currVal_17); var currVal_18 = (!i1.ɵnov(_v, 15).valid && i1.ɵnov(_v, 15).touched); _ck(_v, 19, 0, currVal_18); var currVal_27 = ""; _ck(_v, 25, 0, currVal_27); var currVal_28 = "password"; var currVal_29 = ""; _ck(_v, 28, 0, currVal_28, currVal_29); var currVal_30 = (!i1.ɵnov(_v, 28).valid && i1.ɵnov(_v, 28).touched); _ck(_v, 32, 0, currVal_30); }, function (_ck, _v) { var _co = _v.component; var currVal_0 = i1.ɵnov(_v, 6).ngClassUntouched; var currVal_1 = i1.ɵnov(_v, 6).ngClassTouched; var currVal_2 = i1.ɵnov(_v, 6).ngClassPristine; var currVal_3 = i1.ɵnov(_v, 6).ngClassDirty; var currVal_4 = i1.ɵnov(_v, 6).ngClassValid; var currVal_5 = i1.ɵnov(_v, 6).ngClassInvalid; var currVal_6 = i1.ɵnov(_v, 6).ngClassPending; _ck(_v, 2, 0, currVal_0, currVal_1, currVal_2, currVal_3, currVal_4, currVal_5, currVal_6); var currVal_7 = (i1.ɵnov(_v, 12).required ? "" : null); var currVal_8 = i1.ɵnov(_v, 17).ngClassUntouched; var currVal_9 = i1.ɵnov(_v, 17).ngClassTouched; var currVal_10 = i1.ɵnov(_v, 17).ngClassPristine; var currVal_11 = i1.ɵnov(_v, 17).ngClassDirty; var currVal_12 = i1.ɵnov(_v, 17).ngClassValid; var currVal_13 = i1.ɵnov(_v, 17).ngClassInvalid; var currVal_14 = i1.ɵnov(_v, 17).ngClassPending; _ck(_v, 10, 0, currVal_7, currVal_8, currVal_9, currVal_10, currVal_11, currVal_12, currVal_13, currVal_14); var currVal_19 = (i1.ɵnov(_v, 25).required ? "" : null); var currVal_20 = i1.ɵnov(_v, 30).ngClassUntouched; var currVal_21 = i1.ɵnov(_v, 30).ngClassTouched; var currVal_22 = i1.ɵnov(_v, 30).ngClassPristine; var currVal_23 = i1.ɵnov(_v, 30).ngClassDirty; var currVal_24 = i1.ɵnov(_v, 30).ngClassValid; var currVal_25 = i1.ɵnov(_v, 30).ngClassInvalid; var currVal_26 = i1.ɵnov(_v, 30).ngClassPending; _ck(_v, 23, 0, currVal_19, currVal_20, currVal_21, currVal_22, currVal_23, currVal_24, currVal_25, currVal_26); var currVal_31 = !i1.ɵnov(_v, 4).valid; _ck(_v, 33, 0, currVal_31); var currVal_32 = _co.error; _ck(_v, 38, 0, currVal_32); }); }
+    } return ad; }, null, null)), i1.ɵdid(27, 16384, null, 0, i2.DefaultValueAccessor, [i1.Renderer2, i1.ElementRef, [2, i2.COMPOSITION_BUFFER_MODE]], null, null), i1.ɵdid(28, 16384, null, 0, i2.RequiredValidator, [], { required: [0, "required"] }, null), i1.ɵprd(1024, null, i2.NG_VALIDATORS, function (p0_0) { return [p0_0]; }, [i2.RequiredValidator]), i1.ɵprd(1024, null, i2.NG_VALUE_ACCESSOR, function (p0_0) { return [p0_0]; }, [i2.DefaultValueAccessor]), i1.ɵdid(31, 671744, [["photo", 4]], 0, i2.NgModel, [[2, i2.ControlContainer], [6, i2.NG_VALIDATORS], [8, null], [6, i2.NG_VALUE_ACCESSOR]], { name: [0, "name"], model: [1, "model"] }, null), i1.ɵprd(2048, null, i2.NgControl, null, [i2.NgModel]), i1.ɵdid(33, 16384, null, 0, i2.NgControlStatus, [[4, i2.NgControl]], null, null), (_l()(), i1.ɵand(16777216, null, null, 1, null, View_SignupComponent_2)), i1.ɵdid(35, 16384, null, 0, i3.NgIf, [i1.ViewContainerRef, i1.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i1.ɵeld(36, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["Login Credentials"])), (_l()(), i1.ɵeld(38, 0, null, null, 12, "div", [["class", "form-group"]], null, null, null, null, null)), (_l()(), i1.ɵeld(39, 0, null, null, 1, "label", [["for", "email"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["Email"])), (_l()(), i1.ɵeld(41, 0, null, null, 7, "input", [["class", "form-control"], ["id", "email"], ["name", "email"], ["ngModel", ""], ["required", ""], ["type", "text"]], [[1, "required", 0], [2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"]], function (_v, en, $event) { var ad = true; if (("input" === en)) {
+        var pd_0 = (i1.ɵnov(_v, 42)._handleInput($event.target.value) !== false);
+        ad = (pd_0 && ad);
+    } if (("blur" === en)) {
+        var pd_1 = (i1.ɵnov(_v, 42).onTouched() !== false);
+        ad = (pd_1 && ad);
+    } if (("compositionstart" === en)) {
+        var pd_2 = (i1.ɵnov(_v, 42)._compositionStart() !== false);
+        ad = (pd_2 && ad);
+    } if (("compositionend" === en)) {
+        var pd_3 = (i1.ɵnov(_v, 42)._compositionEnd($event.target.value) !== false);
+        ad = (pd_3 && ad);
+    } return ad; }, null, null)), i1.ɵdid(42, 16384, null, 0, i2.DefaultValueAccessor, [i1.Renderer2, i1.ElementRef, [2, i2.COMPOSITION_BUFFER_MODE]], null, null), i1.ɵdid(43, 16384, null, 0, i2.RequiredValidator, [], { required: [0, "required"] }, null), i1.ɵprd(1024, null, i2.NG_VALIDATORS, function (p0_0) { return [p0_0]; }, [i2.RequiredValidator]), i1.ɵprd(1024, null, i2.NG_VALUE_ACCESSOR, function (p0_0) { return [p0_0]; }, [i2.DefaultValueAccessor]), i1.ɵdid(46, 671744, [["email", 4]], 0, i2.NgModel, [[2, i2.ControlContainer], [6, i2.NG_VALIDATORS], [8, null], [6, i2.NG_VALUE_ACCESSOR]], { name: [0, "name"], model: [1, "model"] }, null), i1.ɵprd(2048, null, i2.NgControl, null, [i2.NgModel]), i1.ɵdid(48, 16384, null, 0, i2.NgControlStatus, [[4, i2.NgControl]], null, null), (_l()(), i1.ɵand(16777216, null, null, 1, null, View_SignupComponent_3)), i1.ɵdid(50, 16384, null, 0, i3.NgIf, [i1.ViewContainerRef, i1.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i1.ɵeld(51, 0, null, null, 12, "div", [["class", "form-group"]], null, null, null, null, null)), (_l()(), i1.ɵeld(52, 0, null, null, 1, "label", [["for", "password"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["Password"])), (_l()(), i1.ɵeld(54, 0, null, null, 7, "input", [["class", "form-control"], ["id", "password"], ["name", "password"], ["ngModel", ""], ["required", ""], ["type", "password"]], [[1, "required", 0], [2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"]], function (_v, en, $event) { var ad = true; if (("input" === en)) {
+        var pd_0 = (i1.ɵnov(_v, 55)._handleInput($event.target.value) !== false);
+        ad = (pd_0 && ad);
+    } if (("blur" === en)) {
+        var pd_1 = (i1.ɵnov(_v, 55).onTouched() !== false);
+        ad = (pd_1 && ad);
+    } if (("compositionstart" === en)) {
+        var pd_2 = (i1.ɵnov(_v, 55)._compositionStart() !== false);
+        ad = (pd_2 && ad);
+    } if (("compositionend" === en)) {
+        var pd_3 = (i1.ɵnov(_v, 55)._compositionEnd($event.target.value) !== false);
+        ad = (pd_3 && ad);
+    } return ad; }, null, null)), i1.ɵdid(55, 16384, null, 0, i2.DefaultValueAccessor, [i1.Renderer2, i1.ElementRef, [2, i2.COMPOSITION_BUFFER_MODE]], null, null), i1.ɵdid(56, 16384, null, 0, i2.RequiredValidator, [], { required: [0, "required"] }, null), i1.ɵprd(1024, null, i2.NG_VALIDATORS, function (p0_0) { return [p0_0]; }, [i2.RequiredValidator]), i1.ɵprd(1024, null, i2.NG_VALUE_ACCESSOR, function (p0_0) { return [p0_0]; }, [i2.DefaultValueAccessor]), i1.ɵdid(59, 671744, [["password", 4]], 0, i2.NgModel, [[2, i2.ControlContainer], [6, i2.NG_VALIDATORS], [8, null], [6, i2.NG_VALUE_ACCESSOR]], { name: [0, "name"], model: [1, "model"] }, null), i1.ɵprd(2048, null, i2.NgControl, null, [i2.NgModel]), i1.ɵdid(61, 16384, null, 0, i2.NgControlStatus, [[4, i2.NgControl]], null, null), (_l()(), i1.ɵand(16777216, null, null, 1, null, View_SignupComponent_4)), i1.ɵdid(63, 16384, null, 0, i3.NgIf, [i1.ViewContainerRef, i1.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i1.ɵeld(64, 0, null, null, 1, "button", [["class", "btn btn-primary"], ["type", "submit"]], [[8, "disabled", 0]], null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["SignUp"])), (_l()(), i1.ɵeld(66, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), i1.ɵeld(67, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), i1.ɵeld(68, 0, null, null, 1, "div", [["style", "color: red"]], null, null, null, null, null)), (_l()(), i1.ɵted(69, null, [" ", " "]))], function (_ck, _v) { var currVal_15 = ""; _ck(_v, 15, 0, currVal_15); var currVal_16 = "name"; var currVal_17 = ""; _ck(_v, 18, 0, currVal_16, currVal_17); var currVal_18 = (!i1.ɵnov(_v, 18).valid && i1.ɵnov(_v, 18).touched); _ck(_v, 22, 0, currVal_18); var currVal_27 = ""; _ck(_v, 28, 0, currVal_27); var currVal_28 = "photo"; var currVal_29 = ""; _ck(_v, 31, 0, currVal_28, currVal_29); var currVal_30 = (!i1.ɵnov(_v, 31).valid && i1.ɵnov(_v, 31).touched); _ck(_v, 35, 0, currVal_30); var currVal_39 = ""; _ck(_v, 43, 0, currVal_39); var currVal_40 = "email"; var currVal_41 = ""; _ck(_v, 46, 0, currVal_40, currVal_41); var currVal_42 = (!i1.ɵnov(_v, 46).valid && i1.ɵnov(_v, 46).touched); _ck(_v, 50, 0, currVal_42); var currVal_51 = ""; _ck(_v, 56, 0, currVal_51); var currVal_52 = "password"; var currVal_53 = ""; _ck(_v, 59, 0, currVal_52, currVal_53); var currVal_54 = (!i1.ɵnov(_v, 59).valid && i1.ɵnov(_v, 59).touched); _ck(_v, 63, 0, currVal_54); }, function (_ck, _v) { var _co = _v.component; var currVal_0 = i1.ɵnov(_v, 7).ngClassUntouched; var currVal_1 = i1.ɵnov(_v, 7).ngClassTouched; var currVal_2 = i1.ɵnov(_v, 7).ngClassPristine; var currVal_3 = i1.ɵnov(_v, 7).ngClassDirty; var currVal_4 = i1.ɵnov(_v, 7).ngClassValid; var currVal_5 = i1.ɵnov(_v, 7).ngClassInvalid; var currVal_6 = i1.ɵnov(_v, 7).ngClassPending; _ck(_v, 3, 0, currVal_0, currVal_1, currVal_2, currVal_3, currVal_4, currVal_5, currVal_6); var currVal_7 = (i1.ɵnov(_v, 15).required ? "" : null); var currVal_8 = i1.ɵnov(_v, 20).ngClassUntouched; var currVal_9 = i1.ɵnov(_v, 20).ngClassTouched; var currVal_10 = i1.ɵnov(_v, 20).ngClassPristine; var currVal_11 = i1.ɵnov(_v, 20).ngClassDirty; var currVal_12 = i1.ɵnov(_v, 20).ngClassValid; var currVal_13 = i1.ɵnov(_v, 20).ngClassInvalid; var currVal_14 = i1.ɵnov(_v, 20).ngClassPending; _ck(_v, 13, 0, currVal_7, currVal_8, currVal_9, currVal_10, currVal_11, currVal_12, currVal_13, currVal_14); var currVal_19 = (i1.ɵnov(_v, 28).required ? "" : null); var currVal_20 = i1.ɵnov(_v, 33).ngClassUntouched; var currVal_21 = i1.ɵnov(_v, 33).ngClassTouched; var currVal_22 = i1.ɵnov(_v, 33).ngClassPristine; var currVal_23 = i1.ɵnov(_v, 33).ngClassDirty; var currVal_24 = i1.ɵnov(_v, 33).ngClassValid; var currVal_25 = i1.ɵnov(_v, 33).ngClassInvalid; var currVal_26 = i1.ɵnov(_v, 33).ngClassPending; _ck(_v, 26, 0, currVal_19, currVal_20, currVal_21, currVal_22, currVal_23, currVal_24, currVal_25, currVal_26); var currVal_31 = (i1.ɵnov(_v, 43).required ? "" : null); var currVal_32 = i1.ɵnov(_v, 48).ngClassUntouched; var currVal_33 = i1.ɵnov(_v, 48).ngClassTouched; var currVal_34 = i1.ɵnov(_v, 48).ngClassPristine; var currVal_35 = i1.ɵnov(_v, 48).ngClassDirty; var currVal_36 = i1.ɵnov(_v, 48).ngClassValid; var currVal_37 = i1.ɵnov(_v, 48).ngClassInvalid; var currVal_38 = i1.ɵnov(_v, 48).ngClassPending; _ck(_v, 41, 0, currVal_31, currVal_32, currVal_33, currVal_34, currVal_35, currVal_36, currVal_37, currVal_38); var currVal_43 = (i1.ɵnov(_v, 56).required ? "" : null); var currVal_44 = i1.ɵnov(_v, 61).ngClassUntouched; var currVal_45 = i1.ɵnov(_v, 61).ngClassTouched; var currVal_46 = i1.ɵnov(_v, 61).ngClassPristine; var currVal_47 = i1.ɵnov(_v, 61).ngClassDirty; var currVal_48 = i1.ɵnov(_v, 61).ngClassValid; var currVal_49 = i1.ɵnov(_v, 61).ngClassInvalid; var currVal_50 = i1.ɵnov(_v, 61).ngClassPending; _ck(_v, 54, 0, currVal_43, currVal_44, currVal_45, currVal_46, currVal_47, currVal_48, currVal_49, currVal_50); var currVal_55 = !i1.ɵnov(_v, 5).valid; _ck(_v, 64, 0, currVal_55); var currVal_56 = _co.error; _ck(_v, 69, 0, currVal_56); }); }
 exports.View_SignupComponent_0 = View_SignupComponent_0;
 function View_SignupComponent_Host_0(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 1, "app-signup", [], null, null, null, View_SignupComponent_0, RenderType_SignupComponent)), i1.ɵdid(1, 114688, null, 0, i4.SignupComponent, [i5.AuthService], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 exports.View_SignupComponent_Host_0 = View_SignupComponent_Host_0;
@@ -676,9 +764,11 @@ var SignupComponent = /** @class */ (function () {
         var _this = this;
         this.email = form.value.email;
         this.password = form.value.password;
+        this.name = form.value.name;
+        this.photoUrl = form.value.photo;
         // console.log('email', this.email );
         // console.log('password', this.password );
-        this.authService.signUpUser(this.email, this.password);
+        this.authService.signUpUser(this.email, this.password, this.name, this.photoUrl);
         setTimeout(function () {
             _this.error = _this.authService.getError();
         }, 500);
@@ -709,7 +799,8 @@ var SocialService = /** @class */ (function () {
         this.zone = zone;
         this.error = '';
     }
-    SocialService.prototype.getProvider = function (provider) {
+    SocialService.prototype.setProvider = function (provider) {
+        this.authService.setFirebaseUse();
         this.provider = null;
         // console.log(provider);
         switch (provider) {
@@ -763,6 +854,113 @@ var SocialService = /** @class */ (function () {
     return SocialService;
 }());
 exports.SocialService = SocialService;
+
+
+/***/ }),
+
+/***/ "./src/app/auth/social/social.component.css.shim.ngstyle.js":
+/*!******************************************************************!*\
+  !*** ./src/app/auth/social/social.component.css.shim.ngstyle.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * @fileoverview This file was generated by the Angular template compiler. Do not edit.
+ *
+ * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
+ * tslint:disable
+ */ 
+Object.defineProperty(exports, "__esModule", { value: true });
+var styles = [""];
+exports.styles = styles;
+
+
+/***/ }),
+
+/***/ "./src/app/auth/social/social.component.ngfactory.js":
+/*!***********************************************************!*\
+  !*** ./src/app/auth/social/social.component.ngfactory.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * @fileoverview This file was generated by the Angular template compiler. Do not edit.
+ *
+ * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
+ * tslint:disable
+ */ 
+Object.defineProperty(exports, "__esModule", { value: true });
+var i0 = __webpack_require__(/*! ./social.component.css.shim.ngstyle */ "./src/app/auth/social/social.component.css.shim.ngstyle.js");
+var i1 = __webpack_require__(/*! @angular/core */ "@angular/core");
+var i2 = __webpack_require__(/*! ./social.component */ "./src/app/auth/social/social.component.ts");
+var i3 = __webpack_require__(/*! ../social.service */ "./src/app/auth/social.service.ts");
+var i4 = __webpack_require__(/*! ../microsoft.service */ "./src/app/auth/microsoft.service.ts");
+var styles_SocialComponent = [i0.styles];
+var RenderType_SocialComponent = i1.ɵcrt({ encapsulation: 0, styles: styles_SocialComponent, data: {} });
+exports.RenderType_SocialComponent = RenderType_SocialComponent;
+function View_SocialComponent_0(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 17, "div", [], null, null, null, null, null)), (_l()(), i1.ɵeld(1, 0, null, null, 1, "h5", [], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, [" Or Login using Social Media"])), (_l()(), i1.ɵeld(3, 0, null, null, 2, "a", [["class", "btn btn-block btn-social btn-google"], ["style", "color: white"]], null, [[null, "click"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("click" === en)) {
+        var pd_0 = (_co.socialSign("google") !== false);
+        ad = (pd_0 && ad);
+    } return ad; }, null, null)), (_l()(), i1.ɵeld(4, 0, null, null, 0, "span", [["class", "fa fa-google"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, [" Sign in with Google "])), (_l()(), i1.ɵeld(6, 0, null, null, 2, "a", [["class", "btn btn-block btn-social btn-facebook"], ["style", "color: white"]], null, [[null, "click"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("click" === en)) {
+        var pd_0 = (_co.socialSign("facebook") !== false);
+        ad = (pd_0 && ad);
+    } return ad; }, null, null)), (_l()(), i1.ɵeld(7, 0, null, null, 0, "span", [["class", "fa fa-facebook"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, [" Sign in with Facebook "])), (_l()(), i1.ɵeld(9, 0, null, null, 2, "a", [["class", "btn btn-block btn-social btn-twitter"], ["style", "color: white"]], null, [[null, "click"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("click" === en)) {
+        var pd_0 = (_co.socialSign("twitter") !== false);
+        ad = (pd_0 && ad);
+    } return ad; }, null, null)), (_l()(), i1.ɵeld(10, 0, null, null, 0, "span", [["class", "fa fa-twitter"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, [" Sign in with Twitter "])), (_l()(), i1.ɵeld(12, 0, null, null, 2, "a", [["class", "btn btn-block btn-social btn-github"], ["style", "color: white"]], null, [[null, "click"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("click" === en)) {
+        var pd_0 = (_co.socialSign("github") !== false);
+        ad = (pd_0 && ad);
+    } return ad; }, null, null)), (_l()(), i1.ɵeld(13, 0, null, null, 0, "span", [["class", "fa fa-github"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, [" Sign in with Github "])), (_l()(), i1.ɵeld(15, 0, null, null, 2, "a", [["class", "btn btn-block btn-social btn-microsoft"], ["style", "color: white"]], null, [[null, "click"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("click" === en)) {
+        var pd_0 = (_co.windowsSign() !== false);
+        ad = (pd_0 && ad);
+    } return ad; }, null, null)), (_l()(), i1.ɵeld(16, 0, null, null, 0, "span", [["class", "fa fa-windows"]], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, [" Sign in with Microsoft "]))], null, null); }
+exports.View_SocialComponent_0 = View_SocialComponent_0;
+function View_SocialComponent_Host_0(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 1, "app-social", [], null, null, null, View_SocialComponent_0, RenderType_SocialComponent)), i1.ɵdid(1, 114688, null, 0, i2.SocialComponent, [i3.SocialService, i4.MicrosoftService], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+exports.View_SocialComponent_Host_0 = View_SocialComponent_Host_0;
+var SocialComponentNgFactory = i1.ɵccf("app-social", i2.SocialComponent, View_SocialComponent_Host_0, {}, {}, []);
+exports.SocialComponentNgFactory = SocialComponentNgFactory;
+
+
+/***/ }),
+
+/***/ "./src/app/auth/social/social.component.ts":
+/*!*************************************************!*\
+  !*** ./src/app/auth/social/social.component.ts ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(/*! @angular/core */ "@angular/core");
+var social_service_1 = __webpack_require__(/*! ../social.service */ "./src/app/auth/social.service.ts");
+var microsoft_service_1 = __webpack_require__(/*! ../microsoft.service */ "./src/app/auth/microsoft.service.ts");
+var SocialComponent = /** @class */ (function () {
+    function SocialComponent(socialService, microsoft) {
+        this.socialService = socialService;
+        this.microsoft = microsoft;
+        this.state = 'final';
+        this.start = false;
+    }
+    SocialComponent.prototype.ngOnInit = function () {
+    };
+    SocialComponent.prototype.socialSign = function (provider) {
+        this.socialService.setProvider(provider);
+    };
+    SocialComponent.prototype.windowsSign = function () {
+        //console.log('Microsoft Logged In');
+        this.microsoft.login();
+    };
+    return SocialComponent;
+}());
+exports.SocialComponent = SocialComponent;
 
 
 /***/ }),
@@ -821,10 +1019,10 @@ function View_HeaderComponent_1(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0
         var pd_0 = (i1.ɵnov(_v, 10).onClick($event.button, $event.ctrlKey, $event.metaKey, $event.shiftKey) !== false);
         ad = (pd_0 && ad);
     } return ad; }, null, null)), i1.ɵdid(10, 671744, [[4, 4]], 0, i2.RouterLinkWithHref, [i2.Router, i2.ActivatedRoute, i3.LocationStrategy], { routerLink: [0, "routerLink"] }, null), i1.ɵdid(11, 1720320, null, 2, i2.RouterLinkActive, [i2.Router, i1.ElementRef, i1.Renderer2, i1.ChangeDetectorRef], { routerLinkActive: [0, "routerLinkActive"] }, null), i1.ɵqud(603979776, 3, { links: 1 }), i1.ɵqud(603979776, 4, { linksWithHrefs: 1 }), (_l()(), i1.ɵted(-1, null, ["Register"]))], function (_ck, _v) { var currVal_2 = "/signin"; _ck(_v, 3, 0, currVal_2); var currVal_3 = "active"; _ck(_v, 4, 0, currVal_3); var currVal_6 = "/signup"; _ck(_v, 10, 0, currVal_6); var currVal_7 = "active"; _ck(_v, 11, 0, currVal_7); }, function (_ck, _v) { var currVal_0 = i1.ɵnov(_v, 3).target; var currVal_1 = i1.ɵnov(_v, 3).href; _ck(_v, 2, 0, currVal_0, currVal_1); var currVal_4 = i1.ɵnov(_v, 10).target; var currVal_5 = i1.ɵnov(_v, 10).href; _ck(_v, 9, 0, currVal_4, currVal_5); }); }
-function View_HeaderComponent_2(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 6, "ul", [["class", "nav nav-tabs"]], null, null, null, null, null)), (_l()(), i1.ɵeld(1, 0, null, null, 2, "li", [["class", "nav-item"]], null, null, null, null, null)), (_l()(), i1.ɵeld(2, 0, null, null, 1, "a", [["class", "nav-link"], ["style", "cursor: pointer; color: lightskyblue ;"]], null, [[null, "click"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("click" === en)) {
+function View_HeaderComponent_2(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 9, "ul", [["class", "nav nav-tabs"]], null, null, null, null, null)), (_l()(), i1.ɵeld(1, 0, null, null, 2, "li", [["class", "nav-item"]], null, null, null, null, null)), (_l()(), i1.ɵeld(2, 0, null, null, 1, "a", [["class", "nav-link"], ["href", "https://github.com/MonikaRavi/Basic-Web-Authentication.git"], ["style", "cursor: pointer;  color: lightskyblue;"], ["target", "_blank"]], null, null, null, null, null)), (_l()(), i1.ɵeld(3, 0, null, null, 0, "img", [["alt", "GitHub Repository"], ["src", "../../assets/GitHub-Mark-32px.png"]], null, null, null, null, null)), (_l()(), i1.ɵeld(4, 0, null, null, 2, "li", [["class", "nav-item"]], null, null, null, null, null)), (_l()(), i1.ɵeld(5, 0, null, null, 1, "a", [["class", "nav-link"], ["style", "cursor: pointer; color: lightskyblue ;"]], null, [[null, "click"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("click" === en)) {
         var pd_0 = (_co.onLogOut() !== false);
         ad = (pd_0 && ad);
-    } return ad; }, null, null)), (_l()(), i1.ɵted(-1, null, ["Logout"])), (_l()(), i1.ɵeld(4, 0, null, null, 2, "li", [["class", "nav-item"]], null, null, null, null, null)), (_l()(), i1.ɵeld(5, 0, null, null, 1, "a", [["class", "nav-link"], ["style", "cursor: pointer; color: lightskyblue ;"]], null, [[null, "click"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("click" === en)) {
+    } return ad; }, null, null)), (_l()(), i1.ɵted(-1, null, ["Logout"])), (_l()(), i1.ɵeld(7, 0, null, null, 2, "li", [["class", "nav-item"]], null, null, null, null, null)), (_l()(), i1.ɵeld(8, 0, null, null, 1, "a", [["class", "nav-link"], ["style", "cursor: pointer; color: lightskyblue ;"]], null, [[null, "click"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("click" === en)) {
         var pd_0 = (_co.onDeleteUser() !== false);
         ad = (pd_0 && ad);
     } return ad; }, null, null)), (_l()(), i1.ɵted(-1, null, ["Delete User"]))], null, null); }
@@ -857,6 +1055,7 @@ var HeaderComponent = /** @class */ (function () {
     HeaderComponent.prototype.ngOnInit = function () {
     };
     HeaderComponent.prototype.isAuthenticated = function () {
+        //console.log(this.authService.isAuthenticated());
         return this.authService.isAuthenticated();
     };
     HeaderComponent.prototype.onLogOut = function () {
@@ -917,9 +1116,9 @@ var i3 = __webpack_require__(/*! ../shared/user.service */ "./src/app/shared/use
 var styles_HomeComponent = [i0.styles];
 var RenderType_HomeComponent = i1.ɵcrt({ encapsulation: 0, styles: styles_HomeComponent, data: {} });
 exports.RenderType_HomeComponent = RenderType_HomeComponent;
-function View_HomeComponent_0(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 11, "div", [["class", "container"], ["style", "margin-top:30px"]], null, null, null, null, null)), (_l()(), i1.ɵeld(1, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["Logged In As.."])), (_l()(), i1.ɵeld(3, 0, null, null, 8, "div", [["class", "row"]], null, null, null, null, null)), (_l()(), i1.ɵeld(4, 0, null, null, 7, "div", [["class", "col-xs-5 col-sm-4"]], null, null, null, null, null)), (_l()(), i1.ɵeld(5, 0, null, null, 6, "div", [["class", "card"]], null, null, null, null, null)), (_l()(), i1.ɵeld(6, 0, null, null, 1, "div", [["class", "card-header"]], null, null, null, null, null)), (_l()(), i1.ɵted(7, null, [" ", " "])), (_l()(), i1.ɵeld(8, 0, null, null, 1, "div", [["class", "card-body"]], null, null, null, null, null)), (_l()(), i1.ɵeld(9, 0, null, null, 0, "img", [["class", "img-responsive"], ["style", "max-height:300px;"]], [[8, "src", 4], [8, "alt", 0]], null, null, null, null)), (_l()(), i1.ɵeld(10, 0, null, null, 1, "div", [["class", "card-footer"]], null, null, null, null, null)), (_l()(), i1.ɵted(11, null, [" ", " "]))], null, function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.getName(); _ck(_v, 7, 0, currVal_0); var currVal_1 = _co.getPhoto(); var currVal_2 = _co.getName(); _ck(_v, 9, 0, currVal_1, currVal_2); var currVal_3 = _co.getEmail(); _ck(_v, 11, 0, currVal_3); }); }
+function View_HomeComponent_0(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 11, "div", [["class", "container"], ["style", "margin-top:30px"]], null, null, null, null, null)), (_l()(), i1.ɵeld(1, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), i1.ɵted(-1, null, ["Logged In As.."])), (_l()(), i1.ɵeld(3, 0, null, null, 8, "div", [["class", "row"]], null, null, null, null, null)), (_l()(), i1.ɵeld(4, 0, null, null, 7, "div", [["class", "col-xs-5 col-sm-4"]], null, null, null, null, null)), (_l()(), i1.ɵeld(5, 0, null, null, 6, "div", [["class", "card"]], null, null, null, null, null)), (_l()(), i1.ɵeld(6, 0, null, null, 1, "div", [["class", "card-header"]], null, null, null, null, null)), (_l()(), i1.ɵted(7, null, [" ", " "])), (_l()(), i1.ɵeld(8, 0, null, null, 1, "div", [["class", "card-body"]], null, null, null, null, null)), (_l()(), i1.ɵeld(9, 0, null, null, 0, "img", [["class", "img-responsive"], ["style", "max-height:300px; max-width: 300px;"]], [[8, "src", 4], [8, "alt", 0]], null, null, null, null)), (_l()(), i1.ɵeld(10, 0, null, null, 1, "div", [["class", "card-footer"]], null, null, null, null, null)), (_l()(), i1.ɵted(11, null, [" ", " "]))], null, function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.getName(); _ck(_v, 7, 0, currVal_0); var currVal_1 = _co.getPhoto(); var currVal_2 = _co.getName(); _ck(_v, 9, 0, currVal_1, currVal_2); var currVal_3 = _co.getEmail(); _ck(_v, 11, 0, currVal_3); }); }
 exports.View_HomeComponent_0 = View_HomeComponent_0;
-function View_HomeComponent_Host_0(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 1, "app-home", [], null, null, null, View_HomeComponent_0, RenderType_HomeComponent)), i1.ɵdid(1, 114688, null, 0, i2.HomeComponent, [i3.UserService], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+function View_HomeComponent_Host_0(_l) { return i1.ɵvid(0, [(_l()(), i1.ɵeld(0, 0, null, null, 1, "app-home", [], null, null, null, View_HomeComponent_0, RenderType_HomeComponent)), i1.ɵdid(1, 245760, null, 0, i2.HomeComponent, [i3.UserService], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 exports.View_HomeComponent_Host_0 = View_HomeComponent_Host_0;
 var HomeComponentNgFactory = i1.ɵccf("app-home", i2.HomeComponent, View_HomeComponent_Host_0, {}, {}, []);
 exports.HomeComponentNgFactory = HomeComponentNgFactory;
@@ -954,9 +1153,234 @@ var HomeComponent = /** @class */ (function () {
     HomeComponent.prototype.getPhoto = function () {
         return this.userService.getUserPhoto();
     };
+    HomeComponent.prototype.ngOnDestroy = function () {
+        if (this.userService.isMicrosoftUsed()) {
+            this.userService.unsubMsUser();
+        }
+    };
     return HomeComponent;
 }());
 exports.HomeComponent = HomeComponent;
+
+
+/***/ }),
+
+/***/ "./src/app/routes/app-routing.module.ts":
+/*!**********************************************!*\
+  !*** ./src/app/routes/app-routing.module.ts ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var router_1 = __webpack_require__(/*! @angular/router */ "@angular/router");
+var login_component_1 = __webpack_require__(/*! ../auth/login/login.component */ "./src/app/auth/login/login.component.ts");
+var signup_component_1 = __webpack_require__(/*! ../auth/signup/signup.component */ "./src/app/auth/signup/signup.component.ts");
+var home_component_1 = __webpack_require__(/*! ../home/home.component */ "./src/app/home/home.component.ts");
+var appRoutes = [
+    { path: '', redirectTo: 'signin', pathMatch: 'full' },
+    { path: 'signin', component: login_component_1.LoginComponent },
+    { path: 'signup', component: signup_component_1.SignupComponent },
+    { path: 'home' //, canActivate:[AuthGuard] 
+        ,
+        component: home_component_1.HomeComponent }
+];
+var AppRoutingModule = /** @class */ (function () {
+    function AppRoutingModule() {
+    }
+    return AppRoutingModule;
+}());
+exports.AppRoutingModule = AppRoutingModule;
+
+
+/***/ }),
+
+/***/ "./src/app/routes/auth-guard.service.ts":
+/*!**********************************************!*\
+  !*** ./src/app/routes/auth-guard.service.ts ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var auth_service_1 = __webpack_require__(/*! ../auth/auth.service */ "./src/app/auth/auth.service.ts");
+var AuthGuard = /** @class */ (function () {
+    function AuthGuard(authService) {
+        this.authService = authService;
+    }
+    AuthGuard.prototype.canActivate = function (route, state) {
+        return this.authService.isAuthenticated();
+    };
+    return AuthGuard;
+}());
+exports.AuthGuard = AuthGuard;
+
+
+/***/ }),
+
+/***/ "./src/app/shared/app.config.ts":
+/*!**************************************!*\
+  !*** ./src/app/shared/app.config.ts ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.config = {
+    // Microsoft Connect Starts
+    appId: '4c7b56aa-34e7-4aa0-804f-d63e07b1dd67',
+    scope: 'User.Read Mail.Send'
+};
+
+
+/***/ }),
+
+/***/ "./src/app/shared/image.service.ts":
+/*!*****************************************!*\
+  !*** ./src/app/shared/image.service.ts ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var http_1 = __webpack_require__(/*! @angular/common/http */ "@angular/common/http");
+var ms_user_service_1 = __webpack_require__(/*! ./ms-user.service */ "./src/app/shared/ms-user.service.ts");
+var ImageService = /** @class */ (function () {
+    function ImageService(httpClient, msUserService) {
+        this.httpClient = httpClient;
+        this.msUserService = msUserService;
+    }
+    ImageService.prototype.getImage = function (imageUrl) {
+        //  console.log('response defined before get ', this.httpClient.get<Blob>(imageUrl)) ;
+        //  console.log( 'response type inside get ' ,this.httpClient.get(imageUrl, {responseType : 'blob' })) ;
+        return this.httpClient.get(imageUrl, {
+            headers: new http_1.HttpHeaders().set('Authorization', 'Bearer ' + this.msUserService.getToken()),
+            responseType: 'blob'
+        });
+    };
+    return ImageService;
+}());
+exports.ImageService = ImageService;
+
+
+/***/ }),
+
+/***/ "./src/app/shared/ms-user-detail.service.ts":
+/*!**************************************************!*\
+  !*** ./src/app/shared/ms-user-detail.service.ts ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var ms_user_service_1 = __webpack_require__(/*! ./ms-user.service */ "./src/app/shared/ms-user.service.ts");
+var image_service_1 = __webpack_require__(/*! ./image.service */ "./src/app/shared/image.service.ts");
+var MsUserDetailService = /** @class */ (function () {
+    function MsUserDetailService(msUserService, imageService) {
+        this.msUserService = msUserService;
+        this.imageService = imageService;
+        this.isImageLoading = false;
+        this.graphUri = "https://graph.microsoft.com/v1.0/me/photo/$value";
+    }
+    MsUserDetailService.prototype.getMeMs = function () {
+        var _this = this;
+        this.subsGetMe = this.msUserService.getMe().subscribe(function (me) { return _this.me = me; });
+    };
+    MsUserDetailService.prototype.unsubMe = function () {
+        this.subsGetMe.unsubscribe();
+    };
+    MsUserDetailService.prototype.getEmail = function () {
+        return this.me.userPrincipalName;
+    };
+    MsUserDetailService.prototype.getUserName = function () {
+        return this.me.displayName;
+    };
+    // Microsoft graph API returns a blob data which is converted into image
+    MsUserDetailService.prototype.createImageFromBlob = function (image) {
+        var _this = this;
+        var reader = new FileReader();
+        reader.addEventListener("load", function () {
+            //console.log(reader.result);
+            _this.imageToShow = reader.result;
+        }, false);
+        if (image) {
+            reader.readAsDataURL(image);
+        }
+    };
+    MsUserDetailService.prototype.getImageFromService = function () {
+        var _this = this;
+        this.isImageLoading = true;
+        this.imageService.getImage(this.graphUri).subscribe(function (data) {
+            //console.log(data);
+            _this.createImageFromBlob(data);
+            _this.isImageLoading = false;
+        }, function (error) {
+            _this.isImageLoading = false;
+            console.log(error);
+        });
+        return this.imageToShow;
+    };
+    return MsUserDetailService;
+}());
+exports.MsUserDetailService = MsUserDetailService;
+
+
+/***/ }),
+
+/***/ "./src/app/shared/ms-user.service.ts":
+/*!*******************************************!*\
+  !*** ./src/app/shared/ms-user.service.ts ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var MicrosoftGraphClient = __webpack_require__(/*! @microsoft/microsoft-graph-client */ "@microsoft/microsoft-graph-client");
+var rxjs_1 = __webpack_require__(/*! rxjs */ "rxjs");
+var http_service_1 = __webpack_require__(/*! ../auth/http.service */ "./src/app/auth/http.service.ts");
+var MSuserService = /** @class */ (function () {
+    function MSuserService(httpService) {
+        this.httpService = httpService;
+    }
+    MSuserService.prototype.getClient = function () {
+        var _this = this;
+        var client = MicrosoftGraphClient.Client.init({
+            authProvider: function (done) {
+                done(null, _this.httpService.getAccessToken()); //first parameter takes an error if you can't get an access token
+            }
+        });
+        return client;
+    };
+    MSuserService.prototype.getMe = function () {
+        var client = this.getClient();
+        // console.log( 'Client ',client);
+        return rxjs_1.from(client
+            .api('me')
+            .select("displayName, userPrincipalName, id, mail")
+            .get()
+            .then((function (res) {
+            // console.log(res);
+            return res;
+        })));
+    };
+    MSuserService.prototype.getToken = function () {
+        return this.httpService.getAccessToken();
+    };
+    return MSuserService;
+}());
+exports.MSuserService = MSuserService;
 
 
 /***/ }),
@@ -973,18 +1397,46 @@ exports.HomeComponent = HomeComponent;
 Object.defineProperty(exports, "__esModule", { value: true });
 var auth_service_1 = __webpack_require__(/*! ../auth/auth.service */ "./src/app/auth/auth.service.ts");
 var firebase = __webpack_require__(/*! firebase */ "firebase");
+var ms_user_detail_service_1 = __webpack_require__(/*! ./ms-user-detail.service */ "./src/app/shared/ms-user-detail.service.ts");
 var UserService = /** @class */ (function () {
-    function UserService(authService) {
+    function UserService(authService, userDetailMs) {
         this.authService = authService;
+        this.userDetailMs = userDetailMs;
     }
+    UserService.prototype.isMicrosoftUsed = function () {
+        return this.authService.getMSuse();
+    };
+    UserService.prototype.getMicrosoftUser = function () {
+        if (this.authService.getMSuse()) {
+            this.userDetailMs.getMeMs();
+        }
+    };
+    UserService.prototype.unsubMsUser = function () {
+        this.userDetailMs.unsubMe();
+    };
     UserService.prototype.getUserName = function () {
-        return firebase.auth().currentUser.displayName;
+        if (this.authService.getFirebaseUse()) {
+            return firebase.auth().currentUser.displayName;
+        }
+        else {
+            return this.userDetailMs.getUserName();
+        }
     };
     UserService.prototype.getUserEmail = function () {
-        return firebase.auth().currentUser.email;
+        if (this.authService.getFirebaseUse()) {
+            return firebase.auth().currentUser.email;
+        }
+        else {
+            return this.userDetailMs.getEmail();
+        }
     };
     UserService.prototype.getUserPhoto = function () {
-        return firebase.auth().currentUser.photoURL;
+        if (this.authService.getFirebaseUse()) {
+            return firebase.auth().currentUser.photoURL;
+        }
+        else {
+            return this.userDetailMs.getImageFromService();
+        }
     };
     return UserService;
 }());
@@ -1145,6 +1597,17 @@ module.exports = require("@angular/router");
 
 /***/ }),
 
+/***/ "@microsoft/microsoft-graph-client":
+/*!****************************************************!*\
+  !*** external "@microsoft/microsoft-graph-client" ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("@microsoft/microsoft-graph-client");
+
+/***/ }),
+
 /***/ "@nguniversal/module-map-ngfactory-loader":
 /*!***********************************************************!*\
   !*** external "@nguniversal/module-map-ngfactory-loader" ***!
@@ -1164,6 +1627,28 @@ module.exports = require("@nguniversal/module-map-ngfactory-loader");
 /***/ (function(module, exports) {
 
 module.exports = require("firebase");
+
+/***/ }),
+
+/***/ "hellojs/dist/hello.all.js":
+/*!********************************************!*\
+  !*** external "hellojs/dist/hello.all.js" ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("hellojs/dist/hello.all.js");
+
+/***/ }),
+
+/***/ "rxjs":
+/*!***********************!*\
+  !*** external "rxjs" ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("rxjs");
 
 /***/ })
 
