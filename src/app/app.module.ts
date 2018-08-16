@@ -32,6 +32,8 @@ import { HttpService } from './auth/http.service';
 import { UserService } from './shared/user.service';
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,4 +67,8 @@ import { UserService } from './shared/user.service';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+
+  
+
+}

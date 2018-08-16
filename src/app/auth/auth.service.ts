@@ -5,6 +5,10 @@ import { Router } from '@angular/router';
 import { UserService } from '../shared/user.service';
 import * as hello from 'hellojs/dist/hello.all.js';
 
+import * as window from 'window' ;
+
+
+
 @Injectable()
 
 export class AuthService {

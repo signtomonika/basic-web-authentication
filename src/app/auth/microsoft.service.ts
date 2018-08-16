@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
 import { UserService } from '../shared/user.service';
 import { MsUserDetailService } from '../shared/ms-user-detail.service';
 
-
+import * as window from 'window' ;
 
 
 // HANDLES LOGIN 

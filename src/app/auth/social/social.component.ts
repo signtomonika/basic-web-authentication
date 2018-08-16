@@ -3,6 +3,8 @@ import { SocialService } from '../social.service';
 
 import * as hello from 'hellojs/dist/hello.all.js'
 import { MicrosoftService } from '../microsoft.service';
+import * as window from 'window' ;
+
 
 
 @Component({
