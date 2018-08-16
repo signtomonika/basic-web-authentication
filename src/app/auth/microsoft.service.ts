@@ -35,8 +35,11 @@ export class MicrosoftService {
           scope_delim: ' ',
           form: false
         },
-      },
-      { redirect_uri: window.location.href }
+      }
+      // ,
+      // { redirect_uri:  ''  //window.location.href 
+      
+      // }
     );
 
     // console.log('Microsoft Initialized')
