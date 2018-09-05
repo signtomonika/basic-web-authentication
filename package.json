@@ -7,10 +7,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "webpack:server": "webpack --config webpack.server.config.js --progress --colors",
-    "serve:ssr": "node dist/server.js",
-    "postinstall": "ng build"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
