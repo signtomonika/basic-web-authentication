@@ -14,16 +14,14 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Server Side Rendering
+## Hosting
 
-Follow Steps in [Universal Rendering](https://github.com/angular/angular-cli/wiki/stories-universal-rendering)
+runs from `dist/browser`
 
-`Browser Build` - npm run build --prod
+Followed steps in [Firebase Quick Start](https://firebase.google.com/docs/hosting/quickstart)
 
-`Server Build` - ng run web-authentication:server
+### On Error: can't deploy Firebase Functions
 
-`server.js` - npm run webpack:server
+Run `firebase deploy --only hosting`
 
-
-Run `node dist/server.js` for Node server. Navigate to `http://localhost:4000/`. 
 
